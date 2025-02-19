@@ -60,7 +60,7 @@
 
   home.shellAliases = {
       he = "home-manager edit";
-      hms = "home-manager switch";
+      hms = "home-manager switch --flake /etc/nixos/hosts/vm/home-manager/";
       ne = "nvim /etc/nixos/hosts/vm/configuration.nix";
       fe = "nvim /etc/nixos/flake.nix";
       nrs = "sudo nixos-rebuild switch --flake /etc/nixos#vm";

@@ -29,6 +29,7 @@
     vscode
     pinentry-gtk2
     floorp
+    github-desktop
 
     # # You can also create simple shell scripts directly inside your
     # # configuration. For example, this adds a command 'my-hello' to your
@@ -59,7 +60,7 @@
   };
 
   home.shellAliases = {
-      he = "home-manager edit";
+      he = "nvim /etc/nixos/hosts/vm/home-manager/home.nix";
       hms = "home-manager switch --flake /etc/nixos/hosts/vm/home-manager/";
       ne = "nvim /etc/nixos/hosts/vm/configuration.nix";
       fe = "nvim /etc/nixos/flake.nix";
@@ -68,7 +69,7 @@
       nrb = "sudo nixos-rebuild boot --flake /etc/nixos#vm";
       nrbu = "nix flake update --flake /etc/nixos && sudo nixos-rebuild boot --flake /etc/nixos#vm";
       nrt = "sudo nixos-rebuild test --flake /etc/nixos#vm";
-      nhe = "nvim /etc/nixos/hosts/vm/configuration.nix ~/.config/home-manager/home.nix";
+      nhe = "nvim /etc/nixos/hosts/vm/configuration.nix /etc/nixos/hosts/vm/home-manager/home.nix";
       rm = "rm -I";
   };
   programs.bash = {

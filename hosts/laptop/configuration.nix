@@ -98,7 +98,7 @@
     description = "Jonah Hohlfeld";
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
-    #  firefox
+      firefox
     #  thunderbird
     ];
   };

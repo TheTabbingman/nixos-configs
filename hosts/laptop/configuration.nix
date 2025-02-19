@@ -52,15 +52,15 @@
   services.displayManager.sddm.enable = true;
   services.desktopManager.plasma6.enable = true;
   # Enable hyprland
-  programs.hyprland.enable = true;
+  # programs.hyprland.enable = true;
 
   # services.flatpak.enable = true;
   virtualisation.waydroid.enable = true;
 
-  programs.partition-manager.enable = true;
+  # programs.partition-manager.enable = true;
   
-  programs.steam.enable = true;
-  programs.neovim.enable = true;
+  # programs.steam.enable = true;
+  # programs.neovim.enable = true;
 
   # Configure keymap in X11
   services.xserver = {
@@ -125,24 +125,13 @@
      font-awesome
      networkmanagerapplet
      compsize
-     floorp
      prismlauncher
-     git
-     gnumake
-     unzip
-     gcc
-     ripgrep
-     nil
-     rustc
-     cargo
-     vscode
-     gh
   ];
 
-fonts.packages = with pkgs; [
-  (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
-  jetbrains-mono
-];
+  # fonts.packages = with pkgs; [
+  #   (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+  #   jetbrains-mono
+  # ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

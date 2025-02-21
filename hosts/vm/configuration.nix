@@ -111,9 +111,6 @@
     #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     #  wget
     neovim
-    (import ../../scripts/check-home-diff.nix { inherit pkgs; })
-    (import ../../scripts/check-nix-diff.nix { inherit pkgs; })
-    (import ../../scripts/check-nix-boot-diff.nix { inherit pkgs; })
   ];
 
   # fonts.packages = with pkgs; [

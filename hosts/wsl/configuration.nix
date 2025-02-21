@@ -27,9 +27,6 @@
     nil
     nixfmt-rfc-style
     neovim
-    # (import ../../scripts/check-home-diff.nix { inherit pkgs; })
-    # (import ../../scripts/check-nix-diff.nix { inherit pkgs; })
-    # (import ../../scripts/check-nix-boot-diff.nix { inherit pkgs; })
   ];
 
   programs.nix-ld = {

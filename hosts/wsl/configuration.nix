@@ -14,7 +14,7 @@
   ];
 
   wsl.enable = true;
-  wsl.defaultUser = "nixos";
+  wsl.defaultUser = "jonah";
 
   networking.hostName = hostname; # Define your hostname.
 

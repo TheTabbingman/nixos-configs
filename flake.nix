@@ -23,9 +23,6 @@
       jonah = {
         name = "jonah";
       };
-      nixos = {
-        name = "nixos";
-      };
     };
 
     mkNixosConfiguration = username: hostname:
@@ -70,13 +67,13 @@
     nixosConfigurations = {
       vm = mkNixosConfiguration "jonah" "vm" ;
       laptop = mkNixosConfiguration "jonah" "laptop";
-      wsl = mkNixosWSLConfiguration "nixos" "wsl";
+      wsl = mkNixosWSLConfiguration "jonah" "wsl";
     };
 
     homeConfigurations = {
       "jonah@nixos-vm" = mkHomeConfiguration "jonah" "vm";
       "jonah@nixos-laptop" = mkHomeConfiguration "jonah" "laptop";
-      "nixos@nixos-wsl" = mkHomeConfiguration "nixos" "wsl";
+      "jonah@nixos-wsl" = mkHomeConfiguration "jonah" "wsl";
     };
   };
 }

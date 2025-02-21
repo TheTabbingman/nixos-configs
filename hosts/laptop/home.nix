@@ -1,4 +1,4 @@
-{ config, pkgs, userConfig, ... }:
+{ config, pkgs, userConfig, nhModules, ... }:
 
 
 {
@@ -9,6 +9,15 @@
   # want to update the value, then make sure to first check the Home Manager
   # release notes.
   home.stateVersion = "24.11"; # Please read the comment before changing.
+
+  imports = [
+    (import "${nhModules}/shell.nix" { 
+      nix = "/etc/nixos";
+      nixHost = "/etc/nixos/hosts/vm";
+      nixFlake = "/etc/nixos#vm";
+      homeFlake = "/etc/nixos";
+    })
+  ];
 
   nixpkgs.config.allowUnfree = true;
 
@@ -56,34 +65,6 @@
     #   org.gradle.console=verbose
     #   org.gradle.daemon.idletimeout=3600000
     # '';
-  };
-
-  home.sessionVariables = {
-    EDITOR = "nvim";
-    # NIXPKGS_ALLOW_UNFREE = 1;
-  };
-
-  home.shellAliases = {
-      he = "nvim /etc/nixos/hosts/laptop/home-manager/home.nix";
-      hms = "home-manager switch --flake /etc/nixos/hosts/laptop/home-manager/";
-      ne = "nvim /etc/nixos/hosts/laptop/configuration.nix";
-      fe = "nvim /etc/nixos/flake.nix";
-      nrs = "sudo nixos-rebuild switch --flake /etc/nixos#laptop";
-      nrsu = "nix flake update --flake /etc/nixos && sudo nixos-rebuild switch --flake /etc/nixos#laptop";
-      nrb = "sudo nixos-rebuild boot --flake /etc/nixos#laptop";
-      nrbu = "nix flake update --flake /etc/nixos && sudo nixos-rebuild boot --flake /etc/nixos#laptop";
-      nrt = "sudo nixos-rebuild test --flake /etc/nixos#laptop";
-      nhe = "nvim /etc/nixos/hosts/laptop/configuration.nix /etc/nixos/hosts/laptop/home-manager/home.nix";
-      rm = "rm -I";
-  };
-  programs.bash = {
-    enable = true;
-  };
-  programs.zsh = {
-    enable = true;
-  };
-  programs.fish = {
-    enable = true;
   };
 
   programs.git = {

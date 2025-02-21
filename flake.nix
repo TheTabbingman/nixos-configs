@@ -34,6 +34,19 @@
         modules = [./hosts/${hostname}/configuration.nix];
       };
 
+    mkNixosWSLConfiguration = username: hostname:
+      nixpkgs.lib.nixosSystem {
+        specialArgs = {
+          inherit inputs outputs hostname;
+          userConfig = users.${username};
+        };
+        system = "x86_64-linux";
+        modules = [
+          nixos-wsl.nixosModules.default
+          ./hosts/${hostname}/configuration.nix
+          ];
+      };
+
     mkHomeConfiguration = username: hostname:
       home-manager.lib.homeManagerConfiguration {
         pkgs = import nixpkgs-unstable {system = "x86_64-linux";};
@@ -46,17 +59,18 @@
           ./hosts/${hostname}/home-manager/home.nix
         ];
       };
+
   in {
     nixosConfigurations = {
       vm = mkNixosConfiguration "jonah" "vm" ;
       laptop = mkNixosConfiguration "jonah" "laptop";
-      wsl = mkNixosConfiguration "jonah" "wsl";
+      wsl = mkNixosWSLConfiguration "jonah" "wsl";
     };
 
     homeConfigurations = {
       "jonah@nixos-vm" = mkHomeConfiguration "jonah" "vm";
       "jonah@nixos-laptop" = mkHomeConfiguration "jonah" "laptop";
-      "jonah@wsl" = mkHomeConfiguration "jonah" "wsl";
+      "nixos@nixos-wsl" = mkHomeConfiguration "jonah" "wsl";
     };
   };
 }

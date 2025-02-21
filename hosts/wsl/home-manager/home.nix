@@ -60,7 +60,7 @@
     nix = "/etc/nixos";
     nixHost = "/etc/nixos/hosts/wsl";
     nixFlake = "/etc/nixos#wsl";
-    homeFlake = "/etc/nixos/hosts/wsl/home-manager";
+    homeFlake = "/etc/nixos";
   in
     {
       he = "nvim ${homeFlake}/home.nix";

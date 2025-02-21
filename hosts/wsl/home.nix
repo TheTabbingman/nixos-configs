@@ -8,14 +8,14 @@
   home.stateVersion = "24.11";
 
   imports = [
-    (import "${nhModules}/shell.nix" { 
+    (import "${nhModules}/programs/shell.nix" { 
       nix = "/etc/nixos";
       nixHost = "/etc/nixos/hosts/wsl";
       nixFlake = "/etc/nixos#wsl";
       homeFlake = "/etc/nixos";
     })
-    "${nhModules}/git.nix"
-    "${nhModules}/gpg.nix"
+    "${nhModules}/programs/git.nix"
+    "${nhModules}/programs/gpg.nix"
   ];
 
   nixpkgs.config.allowUnfree = true;
@@ -33,6 +33,9 @@
     gh
     pinentry-gtk2
     nvd
+    (import "${nhModules}/scripts/check-home-diff.nix" { inherit pkgs; })
+    (import "${nhModules}/scripts/check-nix-diff.nix" { inherit pkgs; })
+    (import "${nhModules}/scripts/check-nix-boot-diff.nix" { inherit pkgs; })
   ];
 
   # Let Home Manager install and manage itself.

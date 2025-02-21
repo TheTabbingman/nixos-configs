@@ -56,7 +56,7 @@
           pkgs-stable = import nixpkgs {system = "x86_64-linux";};
         };
         modules = [
-          ./hosts/${hostname}/home-manager/home.nix
+          ./hosts/${hostname}/home.nix
         ];
       };
 

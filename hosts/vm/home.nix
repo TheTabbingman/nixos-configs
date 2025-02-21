@@ -66,7 +66,7 @@
     nix = "/etc/nixos";
     nixHost = "/etc/nixos/hosts/vm";
     nixFlake = "/etc/nixos#vm";
-    homeFlake = "/etc/nixos/hosts/vm/home-manager";
+    homeFlake = "/etc/nixos";
   in
     {
       he = "nvim ${homeFlake}/home.nix";

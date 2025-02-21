@@ -5,7 +5,7 @@
 # NixOS-WSL specific options are documented on the NixOS-WSL repository:
 # https://github.com/nix-community/NixOS-WSL
 
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, hostname,... }:
 
 {
   imports = [
@@ -16,7 +16,7 @@
   wsl.enable = true;
   wsl.defaultUser = "nixos";
 
-  networking.hostName = "nixos-wsl"; # Define your hostname.
+  networking.hostName = hostname; # Define your hostname.
 
   nixpkgs.config.allowUnfree = true;
 

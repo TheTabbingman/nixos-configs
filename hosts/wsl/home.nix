@@ -11,7 +11,6 @@
   home.stateVersion = "24.11"; # Please read the comment before changing.
 
   imports = [
-    # "${nhModules}/shell.nix"
     (import "${nhModules}/shell.nix" { 
       nix = "/etc/nixos";
       nixHost = "/etc/nixos/hosts/wsl";

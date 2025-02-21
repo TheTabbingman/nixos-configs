@@ -1,4 +1,4 @@
-{ config, pkgs, pkgs-stable, userConfig, ... }:
+{ config, pkgs, pkgs-stable, userConfig, nhModules, ... }:
 
 
 {
@@ -9,6 +9,15 @@
   # want to update the value, then make sure to first check the Home Manager
   # release notes.
   home.stateVersion = "24.11"; # Please read the comment before changing.
+
+  imports = [
+    (import "${nhModules}/shell.nix" { 
+      nix = "/etc/nixos";
+      nixHost = "/etc/nixos/hosts/vm";
+      nixFlake = "/etc/nixos#vm";
+      homeFlake = "/etc/nixos";
+    })
+  ];
 
   nixpkgs.config.allowUnfree = true;
 
@@ -54,51 +63,6 @@
     #   org.gradle.console=verbose
     #   org.gradle.daemon.idletimeout=3600000
     # '';
-  };
-
-  home.sessionVariables = {
-    EDITOR = "nvim";
-    # NIXPKGS_ALLOW_UNFREE = 1;
-  };
-
-  home.shellAliases = 
-  let
-    nix = "/etc/nixos";
-    nixHost = "/etc/nixos/hosts/vm";
-    nixFlake = "/etc/nixos#vm";
-    homeFlake = "/etc/nixos";
-  in
-    {
-      he = "nvim ${homeFlake}/home.nix";
-      hne = "nvim ${homeFlake}/flake.nix";
-      hms = "home-manager switch --flake ${homeFlake} && chd";
-      hmu = "nix flake update --flake ${homeFlake}";
-      hmsu = "hmu && hms";
-      hd = "nvd diff $(home-manager generations | sed 's/.*-> //' | head -n 2 | tail -n 1) $(home-manager generations | sed 's/.*-> //' | head -n 1)";
-      sd = "home-manager generations | sed 's/.*-> //' | head -n 2 | tail -n 1 > /home/jonah/test.txt";
-      ne = "nvim ${nixHost}/configuration.nix";
-      fe = "nvim ${nix}/flake.nix";
-      nrs = "sudo nixos-rebuild switch --flake ${nixFlake} && cnd";
-      nrsu = "nu && nrs";
-      nrb = "sudo nixos-rebuild boot --flake ${nixFlake} && cnbd";
-      nrbu = "nu && nrb";
-      nrt = "sudo nixos-rebuild test --flake ${nixFlake} && ntd";
-      nhe = "nvim ${nixHost}/configuration.nix ${homeFlake}/home.nix";
-      nu = "nix flake update --flake ${nix}";
-      nd = "nvd diff $(ls -1d /nix/var/nix/profiles/system-* | sort -V | tail -n 2 | head -n 1) /run/current-system/";
-      nbd = "nvd diff /run/current-system/ $(ls -1d /nix/var/nix/profiles/system-* | sort -V | tail -n 1)";
-      ntd = "nvd diff $(ls -1d /nix/var/nix/profiles/system-* | sort -V | tail -n 1) /run/current-system/";
-      rm = "rm -I";
-      fish-reload = "source ~/.config/fish/**/*.fish";
-  };
-  programs.bash = {
-    enable = true;
-  };
-  programs.zsh = {
-    enable = true;
-  };
-  programs.fish = {
-    enable = true;
   };
 
   programs.git = {

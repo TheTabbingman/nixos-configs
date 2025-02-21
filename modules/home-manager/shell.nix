@@ -5,12 +5,6 @@
   };
 
   home.shellAliases = 
-  # let
-  #   nix = "/etc/nixos";
-  #   nixHost = "/etc/nixos/hosts/wsl";
-  #   nixFlake = "/etc/nixos#wsl";
-  #   homeFlake = "/etc/nixos";
-  # in
     {
       he = "nvim ${nixHost}/home.nix";
       hms = "home-manager switch --flake ${homeFlake} && chd";

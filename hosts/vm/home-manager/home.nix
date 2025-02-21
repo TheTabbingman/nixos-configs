@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, pkgs-stable, ... }:
 
 
 {
@@ -30,6 +30,8 @@
     pinentry-gtk2
     floorp
     github-desktop
+    nvd
+
 
     # # You can also create simple shell scripts directly inside your
     # # configuration. For example, this adds a command 'my-hello' to your
@@ -59,20 +61,35 @@
     # NIXPKGS_ALLOW_UNFREE = 1;
   };
 
-  home.shellAliases = {
-      he = "nvim /etc/nixos/hosts/vm/home-manager/home.nix";
-      hms = "home-manager switch --flake /etc/nixos/hosts/vm/home-manager/";
-      hmu = "nix flake update --flake /etc/nixos/hosts/vm/home-manager/";
+  home.shellAliases = 
+  let
+    nix = "/etc/nixos";
+    nixHost = "/etc/nixos/hosts/vm";
+    nixFlake = "/etc/nixos#vm";
+    homeFlake = "/etc/nixos/hosts/vm/home-manager";
+  in
+    {
+      he = "nvim ${homeFlake}/home.nix";
+      hne = "nvim ${homeFlake}/flake.nix";
+      hms = "home-manager switch --flake ${homeFlake} && chd";
+      hmu = "nix flake update --flake ${homeFlake}";
       hmsu = "hmu && hms";
-      ne = "nvim /etc/nixos/hosts/vm/configuration.nix";
-      fe = "nvim /etc/nixos/flake.nix";
-      nrs = "sudo nixos-rebuild switch --flake /etc/nixos#vm";
-      nrsu = "nix flake update --flake /etc/nixos && sudo nixos-rebuild switch --flake /etc/nixos#vm";
-      nrb = "sudo nixos-rebuild boot --flake /etc/nixos#vm";
-      nrbu = "nix flake update --flake /etc/nixos && sudo nixos-rebuild boot --flake /etc/nixos#vm";
-      nrt = "sudo nixos-rebuild test --flake /etc/nixos#vm";
-      nhe = "nvim /etc/nixos/hosts/vm/configuration.nix /etc/nixos/hosts/vm/home-manager/home.nix";
+      hd = "nvd diff $(home-manager generations | sed 's/.*-> //' | head -n 2 | tail -n 1) $(home-manager generations | sed 's/.*-> //' | head -n 1)";
+      sd = "home-manager generations | sed 's/.*-> //' | head -n 2 | tail -n 1 > /home/jonah/test.txt";
+      ne = "nvim ${nixHost}/configuration.nix";
+      fe = "nvim ${nix}/flake.nix";
+      nrs = "sudo nixos-rebuild switch --flake ${nixFlake} && cnd";
+      nrsu = "nu && nrs";
+      nrb = "sudo nixos-rebuild boot --flake ${nixFlake} && cnbd";
+      nrbu = "nu && nrb";
+      nrt = "sudo nixos-rebuild test --flake ${nixFlake} && ntd";
+      nhe = "nvim ${nixHost}/configuration.nix ${homeFlake}/home.nix";
+      nu = "nix flake update --flake ${nix}";
+      nd = "nvd diff $(ls -1d /nix/var/nix/profiles/system-* | sort -V | tail -n 2 | head -n 1) /run/current-system/";
+      nbd = "nvd diff /run/current-system/ $(ls -1d /nix/var/nix/profiles/system-* | sort -V | tail -n 1)";
+      ntd = "nvd diff $(ls -1d /nix/var/nix/profiles/system-* | sort -V | tail -n 1) /run/current-system/";
       rm = "rm -I";
+      fish-reload = "source ~/.config/fish/**/*.fish";
   };
   programs.bash = {
     enable = true;

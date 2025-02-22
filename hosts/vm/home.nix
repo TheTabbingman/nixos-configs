@@ -16,6 +16,7 @@
     })
     "${nhModules}/programs/git.nix"
     "${nhModules}/programs/gpg.nix"
+    "${nhModules}/programs/nh.nix"
   ];
 
   nixpkgs.config.allowUnfree = true;
@@ -43,6 +44,7 @@
     (import "${nhModules}/scripts/check-nix-diff.nix" { inherit pkgs; })
     (import "${nhModules}/scripts/check-nix-boot-diff.nix" { inherit pkgs; })
   ];
+
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;

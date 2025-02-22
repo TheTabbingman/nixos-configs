@@ -11,11 +11,12 @@
     (import "${nhModules}/programs/shell.nix" { 
       nix = "/etc/nixos";
       nixHost = "/etc/nixos/hosts/wsl";
-      nixFlake = "/etc/nixos#wsl";
-      homeFlake = "/etc/nixos";
+      nixFlake = "path:/etc/nixos#wsl";
+      homeFlake = "path:/etc/nixos";
     })
     "${nhModules}/programs/git.nix"
     "${nhModules}/programs/gpg.nix"
+    "${nhModules}/programs/nh.nix"
   ];
 
   nixpkgs.config.allowUnfree = true;

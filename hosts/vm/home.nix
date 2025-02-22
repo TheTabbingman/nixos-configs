@@ -11,8 +11,8 @@
     (import "${nhModules}/programs/shell.nix" { 
       nix = "/etc/nixos";
       nixHost = "/etc/nixos/hosts/vm";
-      nixFlake = "/etc/nixos#vm";
-      homeFlake = "/etc/nixos";
+      nixFlake = "path:/etc/nixos#vm";
+      homeFlake = "path:/etc/nixos";
     })
     "${nhModules}/programs/git.nix"
     "${nhModules}/programs/gpg.nix"

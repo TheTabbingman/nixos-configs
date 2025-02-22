@@ -117,6 +117,9 @@
   #   nerd-fonts.jetbrains-mono
   # ];
 
+  programs.fish.enable = true;
+  users.users.jonah.shell = pkgs.fish;
+
   # system.autoUpgrade.enable = true;
 
   # Some programs need SUID wrappers, can be configured further or are

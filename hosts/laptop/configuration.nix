@@ -133,6 +133,9 @@
   #   jetbrains-mono
   # ];
 
+  programs.fish.enable = true;
+  users.users.jonah.shell = pkgs.fish;
+
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;

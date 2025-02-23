@@ -1,4 +1,4 @@
-{ config, pkgs, pkgs-stable, userConfig, nhModules, ... }:
+{ config, pkgs, userConfig, nhModules, ... }:
 
 
 {

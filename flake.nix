@@ -27,8 +27,19 @@
 
     mkNixosConfiguration = username: hostname:
       nixpkgs.lib.nixosSystem {
-        specialArgs = {
-          inherit inputs outputs;
+        specialArgs = 
+          let
+            pkgs = import nixpkgs {
+              system = "x86_64-linux";
+              overlays = [
+                  (final: pre: {
+                    unstable = import nixpkgs-unstable { system = "x86_64-linux"; };
+                  })
+                ];
+              };
+          in
+          {
+          inherit inputs outputs pkgs;
           hostname = "nixos-" + hostname;
           userConfig = users.${username};
         };
@@ -37,8 +48,19 @@
 
     mkNixosWSLConfiguration = username: hostname:
       nixpkgs.lib.nixosSystem {
-        specialArgs = {
-          inherit inputs outputs;
+        specialArgs = 
+          let
+            pkgs = import nixpkgs {
+              system = "x86_64-linux";
+              overlays = [
+                  (final: pre: {
+                    unstable = import nixpkgs-unstable { system = "x86_64-linux"; };
+                  })
+                ];
+              };
+          in
+          {
+          inherit inputs outputs pkgs;
           hostname = "nixos-" + hostname;
           userConfig = users.${username};
         };
@@ -51,11 +73,17 @@
 
     mkHomeConfiguration = username: hostname:
       home-manager.lib.homeManagerConfiguration {
-        pkgs = import nixpkgs {system = "x86_64-linux";};
+        pkgs = import nixpkgs {
+          system = "x86_64-linux";
+          overlays = [
+            (final: pre: {
+              unstable = import nixpkgs-unstable { system = "x86_64-linux"; };
+            })
+          ];
+        };
         extraSpecialArgs = {
           inherit inputs outputs;
           userConfig = users.${username};
-          pkgs-unstable = import nixpkgs-unstable {system = "x86_64-linux";};
           nhModules = "${self}/modules/home-manager";
         };
         modules = [

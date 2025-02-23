@@ -1,14 +1,16 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-
-{ config, pkgs, hostname, ... }:
-
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+  config,
+  pkgs,
+  hostname,
+  ...
+}: {
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+  ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -17,7 +19,7 @@
   networking.hostName = hostname; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = ["nix-command" "flakes"];
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
@@ -58,7 +60,7 @@
   virtualisation.waydroid.enable = true;
 
   # programs.partition-manager.enable = true;
-  
+
   # programs.steam.enable = true;
   # programs.neovim.enable = true;
 
@@ -72,8 +74,8 @@
   services.printing.enable = true;
 
   # Enable sound with pipewire.
-# I think needs to be disabled to update to 24.11
-#  sound.enable = true;
+  # I think needs to be disabled to update to 24.11
+  #  sound.enable = true;
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
@@ -96,10 +98,10 @@
   users.users.jonah = {
     isNormalUser = true;
     description = "Jonah Hohlfeld";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = ["networkmanager" "wheel"];
     packages = with pkgs; [
       firefox
-    #  thunderbird
+      #  thunderbird
     ];
   };
 
@@ -109,23 +111,23 @@
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
-  
+
   security.polkit.enable = true;
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-  #  neovim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-  #  wget
-     kdePackages.kate # Also installs konsole for some reason
-     kitty
-     rofi-wayland
-     waybar
-     hyprpaper
-     mpd
-     font-awesome
-     networkmanagerapplet
-     compsize
-     prismlauncher
+    #  neovim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    #  wget
+    kdePackages.kate # Also installs konsole for some reason
+    kitty
+    rofi-wayland
+    waybar
+    hyprpaper
+    mpd
+    font-awesome
+    networkmanagerapplet
+    compsize
+    prismlauncher
   ];
 
   # fonts.packages = with pkgs; [
@@ -162,5 +164,4 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "23.11"; # Did you read the comment?
-
 }

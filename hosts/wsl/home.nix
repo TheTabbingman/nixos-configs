@@ -1,7 +1,10 @@
-{ config, pkgs, userConfig, nhModules, ... }:
-
-
 {
+  config,
+  pkgs,
+  userConfig,
+  nhModules,
+  ...
+}: {
   home.username = "${userConfig.name}";
   home.homeDirectory = "/home/${userConfig.name}";
 
@@ -16,20 +19,22 @@
 
   nixpkgs.config.allowUnfree = true;
 
-  home.packages = with pkgs; [
-    neovim
-    gnumake
-    unzip
-    gcc
-    ripgrep
-    rustc
-    cargo
-    nodePackages_latest.nodejs
-    nix-search-cli
-    gh
-    pinentry-gtk2
-    nvd
-  ] ++ import "${nhModules}/scripts" { inherit pkgs nhModules; };
+  home.packages = with pkgs;
+    [
+      neovim
+      gnumake
+      unzip
+      gcc
+      ripgrep
+      rustc
+      cargo
+      nodePackages_latest.nodejs
+      nix-search-cli
+      gh
+      pinentry-gtk2
+      nvd
+    ]
+    ++ import "${nhModules}/scripts" {inherit pkgs nhModules;};
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;

@@ -8,12 +8,7 @@
   home.stateVersion = "24.11";
 
   imports = [
-    (import "${nhModules}/programs/shell.nix" { 
-      nix = "/etc/nixos";
-      nixHost = "/etc/nixos/hosts/vm";
-      nixFlake = "path:/etc/nixos#vm";
-      homeFlake = "path:/etc/nixos";
-    })
+    "${nhModules}/programs/shell.nix"
     "${nhModules}/programs/git.nix"
     "${nhModules}/programs/gpg.nix"
     "${nhModules}/programs/nh.nix"

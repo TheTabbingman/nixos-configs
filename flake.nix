@@ -82,9 +82,10 @@
           ];
         };
         extraSpecialArgs = {
-          inherit inputs outputs;
+          inherit inputs outputs hostname;
           userConfig = users.${username};
           nhModules = "${self}/modules/home-manager";
+          flakeLocation = "/etc/nixos";
         };
         modules = [
           ./hosts/${hostname}/home.nix

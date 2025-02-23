@@ -5,7 +5,7 @@
 # NixOS-WSL specific options are documented on the NixOS-WSL repository:
 # https://github.com/nix-community/NixOS-WSL
 
-{ config, lib, pkgs, hostname,... }:
+{ config, lib, pkgs, hostname, inputs, ... }:
 
 {
   imports = [
@@ -24,10 +24,13 @@
 
   environment.systemPackages = with pkgs; [
     wget
-    nil
-    nixfmt-rfc-style
+    nixd
+    alejandra
     neovim
   ];
+
+  # nixd recommends having this for flakes
+  nix.nixPath = [ "nixpkgs=${inputs.nixpkgs}"];
 
   programs.nix-ld = {
     enable = true;

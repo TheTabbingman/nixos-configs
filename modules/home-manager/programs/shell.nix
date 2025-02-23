@@ -13,11 +13,11 @@
       hd = "nvd diff $(home-manager generations | sed 's/.*-> //' | head -n 2 | tail -n 1) $(home-manager generations | sed 's/.*-> //' | head -n 1)";
       ne = "nvim ${nixHost}/configuration.nix";
       fe = "nvim ${nix}/flake.nix";
-      nrs = "sudo nixos-rebuild switch --flake ${nixFlake} && cnd";
+      nrs = "sudo nixos-rebuild switch && cnd";
       nrsu = "nu && nrs";
-      nrb = "sudo nixos-rebuild boot --flake ${nixFlake} && cnbd";
+      nrb = "sudo nixos-rebuild boot && cnbd";
       nrbu = "nu && nrb";
-      nrt = "sudo nixos-rebuild test --flake ${nixFlake} && ntd";
+      nrt = "sudo nixos-rebuild test && ntd";
       nhe = "nvim ${nixHost}/configuration.nix ${nixHost}/home.nix";
       nu = "nix flake update --flake ${nix}";
       nd = "nvd diff $(ls -1d /nix/var/nix/profiles/system-* | sort -V | tail -n 2 | head -n 1) /run/current-system/";

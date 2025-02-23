@@ -93,9 +93,9 @@
 
   in {
     nixosConfigurations = {
-      vm = mkNixosConfiguration "jonah" "vm" ;
-      laptop = mkNixosConfiguration "jonah" "laptop";
-      wsl = mkNixosWSLConfiguration "jonah" "wsl";
+      nixos-vm = mkNixosConfiguration "jonah" "vm" ;
+      nixos-laptop = mkNixosConfiguration "jonah" "laptop";
+      nixos-wsl = mkNixosWSLConfiguration "jonah" "wsl";
     };
 
     homeConfigurations = {

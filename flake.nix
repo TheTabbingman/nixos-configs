@@ -11,8 +11,8 @@
     };
 
     home-manager = {
-      url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
+      url = "github:nix-community/home-manager/release-24.11";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
@@ -51,11 +51,11 @@
 
     mkHomeConfiguration = username: hostname:
       home-manager.lib.homeManagerConfiguration {
-        pkgs = import nixpkgs-unstable {system = "x86_64-linux";};
+        pkgs = import nixpkgs {system = "x86_64-linux";};
         extraSpecialArgs = {
           inherit inputs outputs;
           userConfig = users.${username};
-          pkgs-stable = import nixpkgs {system = "x86_64-linux";};
+          pkgs-unstable = import nixpkgs-unstable {system = "x86_64-linux";};
           nhModules = "${self}/modules/home-manager";
         };
         modules = [

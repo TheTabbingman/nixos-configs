@@ -32,10 +32,7 @@
     floorp
     github-desktop
     nvd
-    (import "${nhModules}/scripts/check-home-diff.nix" { inherit pkgs; })
-    (import "${nhModules}/scripts/check-nix-diff.nix" { inherit pkgs; })
-    (import "${nhModules}/scripts/check-nix-boot-diff.nix" { inherit pkgs; })
-  ];
+  ] ++ import "${nhModules}/scripts" { inherit pkgs nhModules; };
 
 
   # Let Home Manager install and manage itself.

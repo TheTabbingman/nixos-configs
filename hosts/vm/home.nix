@@ -32,6 +32,8 @@
     floorp
     github-desktop
     nvd
+    alejandra
+    nixd
   ] ++ import "${nhModules}/scripts" { inherit pkgs nhModules; };
 
 

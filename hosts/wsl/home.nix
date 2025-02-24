@@ -37,6 +37,20 @@
     ]
     ++ import "${nhModules}/scripts" {inherit pkgs nhModules;};
 
+  home.shellAliases = {
+    cd = ''
+      function cd
+        if test (count $argv) -eq 0
+          # If no argument, change to the default path
+          builtin cd /mnt/c/Users/gamer
+        else
+          # Else behave like normal cd
+          builtin cd $argv
+        end
+      end
+    '';
+  };
+
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 }

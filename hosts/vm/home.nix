@@ -15,20 +15,14 @@
     "${nhModules}/programs/git.nix"
     "${nhModules}/programs/gpg.nix"
     "${nhModules}/programs/nh.nix"
+    "${nhModules}/programs/neovim.nix"
   ];
 
   nixpkgs.config.allowUnfree = true;
 
   home.packages = with pkgs;
     [
-      neovim
-      gnumake
-      unzip
-      gcc
-      ripgrep
-      rustc
-      cargo
-      nodePackages_latest.nodejs
+      nodejs_23
       nix-search-cli
       gh
       vscode

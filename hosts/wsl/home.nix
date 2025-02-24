@@ -22,10 +22,12 @@
 
   home.packages = with pkgs;
     [
-      nodePackages_latest.nodejs
+      nodejs_23
       nix-search-cli
       pinentry-gtk2
       nvd
+      alejandra
+      nixd
     ]
     ++ import "${nhModules}/scripts" {inherit pkgs nhModules;};
 

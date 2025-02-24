@@ -15,23 +15,14 @@
     "${nhModules}/programs/git.nix"
     "${nhModules}/programs/gpg.nix"
     "${nhModules}/programs/nh.nix"
+    "${nhModules}/programs/neovim.nix"
   ];
 
   nixpkgs.config.allowUnfree = true;
 
-  fonts.fontconfig.enable = true;
-
   home.packages = with pkgs;
     [
-      nerd-fonts.jetbrains-mono
-      neovim
-      gnumake
-      unzip
-      gcc
-      ripgrep
-      rustc
-      cargo
-      nodePackages_latest.nodejs
+      nodejs_23
       nix-search-cli
       gh
       vscode
@@ -40,7 +31,8 @@
       github-desktop
       steam
       hyprland
-      kdePackages.partitionmanager
+      nixd
+      alejandra
     ]
     ++ import "${nhModules}/scripts" {inherit pkgs nhModules;};
 

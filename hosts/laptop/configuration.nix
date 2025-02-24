@@ -130,10 +130,9 @@
     prismlauncher
   ];
 
-  # fonts.packages = with pkgs; [
-  #   (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
-  #   jetbrains-mono
-  # ];
+  fonts.packages = with pkgs; [
+    (nerdfonts.override {fonts = ["JetBrainsMono"];})
+  ];
 
   programs.fish.enable = true;
   users.users.jonah.shell = pkgs.fish;

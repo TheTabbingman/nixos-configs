@@ -15,25 +15,17 @@
     "${nhModules}/programs/git.nix"
     "${nhModules}/programs/gpg.nix"
     "${nhModules}/programs/nh.nix"
+    "${nhModules}/programs/neovim.nix"
   ];
 
   nixpkgs.config.allowUnfree = true;
 
   home.packages = with pkgs;
     [
-      neovim
-      gnumake
-      unzip
-      gcc
-      ripgrep
-      rustc
-      cargo
       nodePackages_latest.nodejs
       nix-search-cli
       pinentry-gtk2
       nvd
-      nixd
-      alejandra
     ]
     ++ import "${nhModules}/scripts" {inherit pkgs nhModules;};
 

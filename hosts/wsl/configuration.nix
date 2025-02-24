@@ -27,7 +27,6 @@
 
   environment.systemPackages = with pkgs; [
     wget
-    neovim
   ];
 
   # nixd recommends having this for flakes

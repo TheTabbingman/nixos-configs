@@ -30,9 +30,10 @@
       cargo
       nodePackages_latest.nodejs
       nix-search-cli
-      gh
       pinentry-gtk2
       nvd
+      nixd
+      alejandra
     ]
     ++ import "${nhModules}/scripts" {inherit pkgs nhModules;};
 

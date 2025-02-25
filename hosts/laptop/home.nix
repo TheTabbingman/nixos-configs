@@ -33,8 +33,13 @@
       hyprland
       nixd
       alejandra
+      nvd
     ]
     ++ import "${nhModules}/scripts" {inherit pkgs nhModules;};
+
+  home.shellAliases = {
+    hypredit = "cd ~/.config/hypr/ && $EDITOR .";
+  };
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;

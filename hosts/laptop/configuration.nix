@@ -5,11 +5,13 @@
   config,
   pkgs,
   hostname,
+  nixosModules,
   ...
 }: {
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
+    "${nixosModules}/desktop/hyprland.nix"
   ];
 
   # Bootloader.
@@ -53,8 +55,10 @@
   # Enable the KDE Plasma Desktop Environment.
   services.displayManager.sddm.enable = true;
   services.desktopManager.plasma6.enable = true;
-  # Enable hyprland
-  # programs.hyprland.enable = true;
+
+  # Enable the Gnome Desktop Environment.
+  # services.xserver.displayManager.gdm.enable = true;
+  # services.xserver.displayManager.gnome.enable = true;
 
   # services.flatpak.enable = true;
   virtualisation.waydroid.enable = true;
@@ -119,15 +123,9 @@
     #  neovim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     #  wget
     kdePackages.kate # Also installs konsole for some reason
-    kitty
-    rofi-wayland
-    waybar
-    hyprpaper
-    mpd
-    font-awesome
-    networkmanagerapplet
     compsize
     prismlauncher
+    wl-clipboard
   ];
 
   fonts.packages = with pkgs; [

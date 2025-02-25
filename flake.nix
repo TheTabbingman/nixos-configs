@@ -14,6 +14,12 @@
       url = "github:nix-community/home-manager/release-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # Maybe change when flake is merged
+    hyprsession = {
+      url = "github:tiecia/hyprsession";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -47,6 +53,7 @@
           inherit inputs outputs pkgs;
           hostname = "nixos-" + hostname;
           userConfig = users.${username};
+          nixosModules = "${self}/modules/nixos";
         };
         modules = [./hosts/${hostname}/configuration.nix];
       };

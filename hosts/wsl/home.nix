@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  pkgs-stable,
   userConfig,
   nhModules,
   ...

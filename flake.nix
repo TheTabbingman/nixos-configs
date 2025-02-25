@@ -46,16 +46,11 @@
     mkNixosConfiguration = username: hostname:
       nixpkgs.lib.nixosSystem {
         specialArgs = let
-          pkgs = import nixpkgs {
+          pkgs-stable = import nixpkgs-stable {
             system = "x86_64-linux";
-            overlays = [
-              (final: pre: {
-                stable = import nixpkgs-stable {system = "x86_64-linux";};
-              })
-            ];
           };
         in {
-          inherit inputs outputs pkgs;
+          inherit inputs outputs pkgs-stable;
           hostname = "nixos-" + hostname;
           userConfig = users.${username};
           nixosModules = "${self}/modules/nixos";
@@ -66,16 +61,11 @@
     mkNixosWSLConfiguration = username: hostname:
       nixpkgs.lib.nixosSystem {
         specialArgs = let
-          pkgs = import nixpkgs {
+          pkgs-stable = import nixpkgs-stable {
             system = "x86_64-linux";
-            overlays = [
-              (final: pre: {
-                stable = import nixpkgs-stable {system = "x86_64-linux";};
-              })
-            ];
           };
         in {
-          inherit inputs outputs pkgs;
+          inherit inputs outputs pkgs-stable;
           hostname = "nixos-" + hostname;
           userConfig = users.${username};
         };
@@ -90,14 +80,10 @@
       home-manager.lib.homeManagerConfiguration {
         pkgs = import nixpkgs {
           system = "x86_64-linux";
-          overlays = [
-            (final: pre: {
-              stable = import nixpkgs-stable {system = "x86_64-linux";};
-            })
-          ];
         };
         extraSpecialArgs = {
           inherit inputs outputs hostname;
+          pkgs-stable = import nixpkgs-stable {system = "x86_64-linux";};
           userConfig = users.${username};
           nhModules = "${self}/modules/home-manager";
           flakeLocation = "/etc/nixos";

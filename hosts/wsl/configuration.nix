@@ -7,6 +7,7 @@
   config,
   lib,
   pkgs,
+  pkgs-stable,
   hostname,
   inputs,
   ...

@@ -3,6 +3,7 @@
   pkgs,
   userConfig,
   nhModules,
+  inputs,
   ...
 }: {
   home.username = "${userConfig.name}";
@@ -16,6 +17,7 @@
     "${nhModules}/programs/gpg.nix"
     "${nhModules}/programs/nh.nix"
     "${nhModules}/programs/neovim.nix"
+    "${nhModules}/desktop/hyprland.nix"
   ];
 
   nixpkgs.config.allowUnfree = true;
@@ -32,6 +34,8 @@
       nvd
       alejandra
       nixd
+      alacritty
+      foot
     ]
     ++ import "${nhModules}/scripts" {inherit pkgs nhModules;};
 

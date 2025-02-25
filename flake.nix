@@ -2,8 +2,8 @@
   description = "Nixos config flake";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
-    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.11";
 
     nixos-wsl = {
       url = "github:nix-community/NixOS-WSL/main";
@@ -11,10 +11,15 @@
     };
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-24.11";
+      url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    hyprland.url = "github:hyprwm/Hyprland";
+    split-monitor-workspaces = {
+      url = "github:Duckonaut/split-monitor-workspaces";
+      inputs.hyprland.follows = "hyprland";
+    };
     # Maybe change when flake is merged
     hyprsession = {
       url = "github:tiecia/hyprsession";
@@ -25,7 +30,7 @@
   outputs = {
     self,
     nixpkgs,
-    nixpkgs-unstable,
+    nixpkgs-stable,
     home-manager,
     nixos-wsl,
     ...
@@ -45,7 +50,7 @@
             system = "x86_64-linux";
             overlays = [
               (final: pre: {
-                unstable = import nixpkgs-unstable {system = "x86_64-linux";};
+                stable = import nixpkgs-stable {system = "x86_64-linux";};
               })
             ];
           };
@@ -65,7 +70,7 @@
             system = "x86_64-linux";
             overlays = [
               (final: pre: {
-                unstable = import nixpkgs-unstable {system = "x86_64-linux";};
+                stable = import nixpkgs-stable {system = "x86_64-linux";};
               })
             ];
           };
@@ -87,7 +92,7 @@
           system = "x86_64-linux";
           overlays = [
             (final: pre: {
-              unstable = import nixpkgs-unstable {system = "x86_64-linux";};
+              stable = import nixpkgs-stable {system = "x86_64-linux";};
             })
           ];
         };

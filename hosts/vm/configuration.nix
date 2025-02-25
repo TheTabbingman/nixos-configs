@@ -5,11 +5,13 @@
   config,
   pkgs,
   hostname,
+  nixosModules,
   ...
 }: {
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
+    "${nixosModules}/desktop/hyprland.nix"
   ];
 
   # Bootloader.
@@ -85,6 +87,11 @@
 
   nix.settings.experimental-features = ["nix-command" "flakes"];
 
+  nix.settings = {
+    substituters = ["https://hyprland.cachix.org"];
+    trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
+  };
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.jonah = {
     isNormalUser = true;
@@ -97,8 +104,8 @@
   };
 
   # Enable automatic login for the user.
-  services.displayManager.autoLogin.enable = true;
-  services.displayManager.autoLogin.user = "jonah";
+  # services.displayManager.autoLogin.enable = true;
+  # services.displayManager.autoLogin.user = "jonah";
 
   # Install firefox.
   programs.firefox.enable = true;
@@ -112,10 +119,11 @@
     #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     #  wget
     neovim
+    wl-clipboard
   ];
 
   fonts.packages = with pkgs; [
-    (nerdfonts.override {fonts = ["JetBrainsMono"];})
+    nerd-fonts.jetbrains-mono
   ];
 
   programs.fish.enable = true;

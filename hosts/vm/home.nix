@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  pkgs-stable,
   userConfig,
   nhModules,
   inputs,
@@ -35,6 +36,7 @@
       gh
       vscode
       pinentry-gtk2
+      firefox
       floorp
       github-desktop
       nvd

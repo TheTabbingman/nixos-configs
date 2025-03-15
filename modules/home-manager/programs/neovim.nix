@@ -8,5 +8,7 @@
     unzip
     gnumake
     ripgrep
+    wl-clipboard
+    xclip
   ];
 }

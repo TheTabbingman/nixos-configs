@@ -13,9 +13,10 @@
   in {
     # edit
     he = "nvim ${flakeLocation}/hosts/${hostname}/home.nix";
-    ne = "nvim ${flakeLocation}/hosts/${hostname}/configuration.nix";
+    nce = "nvim ${flakeLocation}/hosts/${hostname}/configuration.nix";
     fe = "nvim ${flakeLocation}/flake.nix";
     nhe = "nvim ${flakeLocation}/hosts/${hostname}/configuration.nix ${flakeLocation}/hosts/${hostname}/home.nix";
+    ne = "pushd ${flakeLocation} && nvim . && popd";
     # home-manager
     hms = "home-manager switch --flake ${pathFlakeLocation} && chd";
     # nix

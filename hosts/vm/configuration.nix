@@ -88,8 +88,20 @@
   nix.settings.experimental-features = ["nix-command" "flakes"];
 
   nix.settings = {
-    substituters = ["https://hyprland.cachix.org"];
-    trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
+    substituters = [
+      "https://hyprland.cachix.org"
+    ];
+    trusted-public-keys = [
+      "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
+    ];
+  };
+
+  nix.optimise = {
+    automatic = true;
+  };
+  nix.gc = {
+    automatic = true;
+    options = "--delete-older-than 14d";
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
@@ -128,6 +140,13 @@
 
   programs.fish.enable = true;
   users.users.jonah.shell = pkgs.fish;
+
+  zramSwap = {
+    enable = true;
+    memoryPercent = 100;
+    algorithm = "zstd";
+    priority = 100;
+  };
 
   # system.autoUpgrade.enable = true;
 

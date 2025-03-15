@@ -11,6 +11,12 @@
 
   home.stateVersion = "24.11";
 
+  nix.gc = {
+    automatic = true;
+    frequency = "03:15";
+    options = "--delete-older-than 14d";
+  };
+
   imports = [
     "${nhModules}/programs/shell.nix"
     "${nhModules}/programs/git.nix"
@@ -36,6 +42,9 @@
       nixd
       alacritty
       foot
+      tealdeer
+      nix-inspect
+      mission-center
     ]
     ++ import "${nhModules}/scripts" {inherit pkgs nhModules;};
 

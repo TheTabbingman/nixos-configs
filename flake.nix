@@ -15,6 +15,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nix-index-database = {
+      url = "github:nix-community/nix-index-database";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     hyprland.url = "github:hyprwm/Hyprland";
     split-monitor-workspaces = {
       url = "github:Duckonaut/split-monitor-workspaces";
@@ -55,7 +60,10 @@
           userConfig = users.${username};
           nixosModules = "${self}/modules/nixos";
         };
-        modules = [./hosts/${hostname}/configuration.nix];
+        modules = [
+          ./hosts/${hostname}/configuration.nix
+          inputs.nix-index-database.nixosModules.nix-index
+        ];
       };
 
     mkNixosWSLConfiguration = username: hostname:

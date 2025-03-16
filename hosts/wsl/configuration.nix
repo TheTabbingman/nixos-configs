@@ -10,11 +10,13 @@
   pkgs-stable,
   hostname,
   inputs,
+  nixosModules,
   ...
 }: {
   imports = [
     # include NixOS-WSL modules
     # <nixos-wsl/modules>
+    "${nixosModules}/programs/shell.nix"
   ];
 
   wsl.enable = true;
@@ -27,7 +29,6 @@
   nix.settings.experimental-features = ["nix-command" "flakes"];
 
   environment.systemPackages = with pkgs; [
-    wget
   ];
 
   # nixd recommends having this for flakes
@@ -37,9 +38,6 @@
     enable = true;
     package = pkgs.nix-ld;
   };
-
-  programs.fish.enable = true;
-  users.users.jonah.shell = pkgs.fish;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

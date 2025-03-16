@@ -76,6 +76,7 @@
           inherit inputs outputs pkgs-stable;
           hostname = "nixos-" + hostname;
           userConfig = users.${username};
+          nixosModules = "${self}/modules/nixos";
         };
         system = "x86_64-linux";
         modules = [

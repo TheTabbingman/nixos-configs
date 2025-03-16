@@ -13,4 +13,8 @@
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
+
+  security.sudo.extraConfig = ''
+    Defaults pwfeedback
+  '';
 }

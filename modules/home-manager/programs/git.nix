@@ -6,5 +6,6 @@
     extraConfig = {
       credential.helper = "store";
     };
+    lfs.enable = true;
   };
 }

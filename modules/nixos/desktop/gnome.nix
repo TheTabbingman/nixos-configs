@@ -1,0 +1,9 @@
+{...}: {
+  # Enable the X11 windowing system.
+  # You can disable this if you're only using the Wayland session.
+  services.xserver.enable = true;
+
+  # Enable the Gnome Desktop Environment.
+  services.xserver.displayManager.gdm.enable = true;
+  services.xserver.displayManager.gnome.enable = true;
+}

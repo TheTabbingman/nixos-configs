@@ -5,12 +5,8 @@
   userConfig,
   nhModules,
   inputs,
-  dotfilesLocation,
   ...
-}: let
-  configPath = "${dotfilesLocation}/.config";
-  configDirs = builtins.attrNames (builtins.readDir configPath);
-in {
+}: {
   home.username = "${userConfig.name}";
   home.homeDirectory = "/home/${userConfig.name}";
 
@@ -28,14 +24,6 @@ in {
 
   home.packages = with pkgs; [
   ];
-
-  home.file = builtins.listToAttrs (map (dir: {
-      name = ".config/${dir}";
-      value = {
-        source = "${configPath}/${dir}";
-      };
-    })
-    configDirs);
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;

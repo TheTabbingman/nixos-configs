@@ -96,6 +96,7 @@
           userConfig = users.${username};
           nhModules = "${self}/modules/home-manager";
           flakeLocation = "/etc/nixos";
+          dotfilesLocation = toString ./dotfiles;
         };
         modules = [
           ./hosts/${hostname}/home.nix

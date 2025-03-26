@@ -11,7 +11,7 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    "${nixosModules}/desktop/cinnamon.nix"
+    "${nixosModules}/desktop/xfce.nix"
     "${nixosModules}/system"
     "${nixosModules}/programs"
   ];

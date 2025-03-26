@@ -16,7 +16,6 @@
     "${nhModules}/default.nix"
     "${nhModules}/programs"
     "${nhModules}/programs/developer.nix"
-    "${nhModules}/desktop/hyprland.nix"
     "${nhModules}/scripts"
   ];
 

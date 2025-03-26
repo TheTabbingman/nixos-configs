@@ -7,6 +7,8 @@
     ./shell.nix
   ];
 
+  nixpkgs.config.allowUnfree = true;
+
   home.packages = with pkgs; [
     nix-search-cli
     firefox
@@ -24,5 +26,6 @@
     fastfetch
     htop
     pinentry-gtk2
+    compsize
   ];
 }

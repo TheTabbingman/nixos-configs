@@ -17,7 +17,7 @@ pkgs.writeShellApplication {
         echo "No changes"
     else
         set +o pipefail
-        current=$(home-manager generations | sed 's/.*-> //' | head -n 1)
+        current=$(home-manager generations | sed 's/.*-> //' | sed 's/ (current)//' | head -n 1)
         set -o pipefail
         nvd diff "$previous" "$current"
         echo "$previous" > ~/.config/nix/home-manager/version.txt

@@ -30,6 +30,9 @@
       url = "github:tiecia/hyprsession";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nixpkgs.follows = "nixos-cosmic/nixpkgs";
+    nixos-cosmic.url = "github:lilyinstarlight/nixos-cosmic";
   };
 
   outputs = {
@@ -63,6 +66,7 @@
         modules = [
           ./hosts/${hostname}/configuration.nix
           inputs.nix-index-database.nixosModules.nix-index
+          inputs.nixos-cosmic.nixosModules.default
         ];
       };
 

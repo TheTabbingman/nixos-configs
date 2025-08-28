@@ -5,6 +5,7 @@
     ./neovim.nix
     ./nh.nix
     ./shell.nix
+    ./flatpaks.nix
   ];
 
   nixpkgs.config.allowUnfree = true;

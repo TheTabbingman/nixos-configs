@@ -33,6 +33,8 @@
 
     nixpkgs.follows = "nixos-cosmic/nixpkgs";
     nixos-cosmic.url = "github:lilyinstarlight/nixos-cosmic";
+
+    nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
   };
 
   outputs = {
@@ -67,6 +69,7 @@
           ./hosts/${hostname}/configuration.nix
           inputs.nix-index-database.nixosModules.nix-index
           inputs.nixos-cosmic.nixosModules.default
+          inputs.nix-flatpak.nixosModules.nix-flatpak
         ];
       };
 
@@ -103,6 +106,7 @@
         };
         modules = [
           ./hosts/${hostname}/home.nix
+          inputs.nix-flatpak.homeManagerModules.nix-flatpak
         ];
       };
   in {

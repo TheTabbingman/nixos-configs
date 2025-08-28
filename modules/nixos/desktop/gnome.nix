@@ -11,15 +11,20 @@
     epiphany
   ];
 
-  environment.systemPackages = with pkgs.gnomeExtensions; [
-    appindicator
-    dash-to-dock
-    pop-shell
-    blur-my-shell
-    search-light
-    pkgs.gnome-extension-manager
-    clipboard-indicator
-    pkgs.dconf-editor
-  ];
+  environment.systemPackages = with pkgs;
+    [
+      gnome-tweaks
+    ]
+    ++ (with pkgs.gnomeExtensions; [
+      appindicator
+      dash-to-dock
+      pop-shell
+      blur-my-shell
+      search-light
+      pkgs.gnome-extension-manager
+      clipboard-indicator
+      pkgs.dconf-editor
+    ]);
+
   services.udev.packages = with pkgs; [gnome-settings-daemon];
 }

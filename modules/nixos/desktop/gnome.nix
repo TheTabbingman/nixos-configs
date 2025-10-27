@@ -1,7 +1,7 @@
 {pkgs, ...}: {
   # Enable the X11 windowing system.
   # You can disable this if you're only using the Wayland session.
-  services.xserver.enable = true;
+  # services.xserver.enable = true;
 
   # Enable the Gnome Desktop Environment.
   services.displayManager.gdm.enable = true;
@@ -27,4 +27,10 @@
     ]);
 
   services.udev.packages = with pkgs; [gnome-settings-daemon];
+
+  qt = {
+    enable = true;
+    platformTheme = "gnome";
+    style = "adwaita";
+  };
 }

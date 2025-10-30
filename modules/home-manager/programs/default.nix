@@ -13,7 +13,7 @@
   home.packages = with pkgs; [
     nix-search-cli
     firefox
-    floorp
+    floorp-bin
     gh
     github-desktop
     nvd

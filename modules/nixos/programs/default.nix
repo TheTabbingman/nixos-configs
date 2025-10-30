@@ -5,5 +5,7 @@
     ./flatpaks.nix
   ];
   environment.systemPackages = with pkgs; [
+    linux-wallpaperengine
   ];
+  programs.steam.enable = true;
 }

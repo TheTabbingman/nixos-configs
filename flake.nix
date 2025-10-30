@@ -3,7 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.11";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.05";
 
     nixos-wsl = {
       url = "github:nix-community/NixOS-WSL/main";
@@ -30,9 +30,6 @@
       url = "github:tiecia/hyprsession";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    nixpkgs.follows = "nixos-cosmic/nixpkgs";
-    nixos-cosmic.url = "github:lilyinstarlight/nixos-cosmic";
 
     nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
   };
@@ -68,7 +65,6 @@
         modules = [
           ./hosts/${hostname}/configuration.nix
           inputs.nix-index-database.nixosModules.nix-index
-          inputs.nixos-cosmic.nixosModules.default
           inputs.nix-flatpak.nixosModules.nix-flatpak
         ];
       };

@@ -24,5 +24,9 @@
     slurp
     hyprpolkitagent
     inputs.hyprsession.packages.${pkgs.system}.hyprsession
+    kdePackages.dolphin
+    brightnessctl
+    playerctl
+    ashell
   ];
 }

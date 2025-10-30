@@ -11,9 +11,9 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    "${nixosModules}/desktop/gnome.nix"
     "${nixosModules}/system"
     "${nixosModules}/programs"
+    "${nixosModules}/desktop/hyprland.nix"
   ];
 
   # Disable tpm for faster boot

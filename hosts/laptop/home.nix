@@ -16,7 +16,7 @@
     "${nhModules}/default.nix"
     "${nhModules}/programs"
     "${nhModules}/scripts"
-    "${nhModules}/desktop/gnome.nix"
+    "${nhModules}/desktop/hyprland.nix"
   ];
 
   home.packages = with pkgs; [

@@ -21,19 +21,12 @@
   environment.systemPackages = with pkgs; [
     kitty
     rofi
-    waybar
-    hyprpaper
     mpd
-    networkmanagerapplet
-    mako
-    # libnotify
     grim
     slurp
-    hyprpolkitagent
     inputs.hyprsession.packages.${pkgs.system}.hyprsession
     kdePackages.dolphin
     brightnessctl
     playerctl
-    ashell
   ];
 }

@@ -1,11 +1,13 @@
 {...}: {
   programs.git = {
     enable = true;
-    userEmail = "51281790+TheTabbingman@users.noreply.github.com";
-    userName = "TheTabbingMan";
-    extraConfig = {
+    lfs.enable = true;
+    settings = {
+      user = {
+        email = "51281790+TheTabbingman@users.noreply.github.com";
+        name = "TheTabbingMan";
+      };
       credential.helper = "store";
     };
-    lfs.enable = true;
   };
 }

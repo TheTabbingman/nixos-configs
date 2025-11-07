@@ -30,6 +30,21 @@
       url = "github:tiecia/hyprsession";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    hyprland-plugins = {
+      url = "github:hyprwm/hyprland-plugins";
+      inputs.hyprland.follows = "hyprland";
+    };
+
+    elephant.url = "github:abenz1267/elephant";
+    walker = {
+      url = "github:abenz1267/walker";
+      inputs.elephant.follows = "elephant";
+    };
+
+    stylix = {
+      url = "github:nix-community/stylix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
   };
@@ -66,6 +81,7 @@
           ./hosts/${hostname}/configuration.nix
           inputs.nix-index-database.nixosModules.nix-index
           inputs.nix-flatpak.nixosModules.nix-flatpak
+          inputs.stylix.nixosModules.stylix
         ];
       };
 
@@ -103,6 +119,7 @@
         modules = [
           ./hosts/${hostname}/home.nix
           inputs.nix-flatpak.homeManagerModules.nix-flatpak
+          inputs.stylix.homeModules.stylix
         ];
       };
   in {

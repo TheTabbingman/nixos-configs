@@ -1,4 +1,9 @@
-{config, ...}: let
+{
+  config,
+  pkgs,
+  inputs,
+  ...
+}: let
   configDirs = builtins.attrNames (builtins.readDir ../../dotfiles/.config);
 in {
   nix.gc = {
@@ -16,4 +21,10 @@ in {
     })
     configDirs
   );
+  stylix = {
+    enable = true;
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/onedark.yaml";
+    # image = "${inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland}/share/hypr/wall2.png";
+    polarity = "dark";
+  };
 }

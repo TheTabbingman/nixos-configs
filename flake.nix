@@ -25,20 +25,9 @@
       url = "github:Duckonaut/split-monitor-workspaces";
       inputs.hyprland.follows = "hyprland";
     };
-    # Maybe change when flake is merged
-    hyprsession = {
-      url = "github:tiecia/hyprsession";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     hyprland-plugins = {
       url = "github:hyprwm/hyprland-plugins";
       inputs.hyprland.follows = "hyprland";
-    };
-
-    elephant.url = "github:abenz1267/elephant";
-    walker = {
-      url = "github:abenz1267/walker";
-      inputs.elephant.follows = "elephant";
     };
 
     stylix = {

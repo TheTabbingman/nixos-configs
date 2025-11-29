@@ -29,8 +29,13 @@
   # };
   i18n.inputMethod = {
     enable = true;
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/onedark.yaml";
-    # image = "${inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland}/share/hypr/wall2.png";
-    polarity = "dark";
+    type = "fcitx5";
+    fcitx5 = {
+      waylandFrontend = true;
+      addons = with pkgs; [
+        fcitx5-mozc-ut
+        fcitx5-gtk
+      ];
+    };
   };
 }

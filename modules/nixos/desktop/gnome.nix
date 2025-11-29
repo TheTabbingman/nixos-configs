@@ -28,9 +28,9 @@
 
   services.udev.packages = with pkgs; [gnome-settings-daemon];
 
-  qt = {
-    enable = true;
-    platformTheme = "gnome";
-    style = "adwaita";
-  };
+  # qt = {
+  #   enable = true;
+  #   platformTheme = "gnome";
+  #   style = "adwaita";
+  # };
 }

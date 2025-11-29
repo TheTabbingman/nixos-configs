@@ -11,7 +11,7 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    "${nixosModules}/desktop/gnome.nix"
+    "${nixosModules}/desktop/plasma.nix"
     "${nixosModules}/system"
     "${nixosModules}/programs"
   ];

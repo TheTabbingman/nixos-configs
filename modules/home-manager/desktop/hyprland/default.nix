@@ -5,7 +5,7 @@
   ...
 }: {
   imports = [
-    inputs.walker.homeManagerModules.default
+    # inputs.walker.homeManagerModules.default
     ./hyprlock.nix
   ];
   wayland.windowManager.hyprland = {
@@ -44,7 +44,7 @@
       # Set programs that you use
       "$terminal" = "kitty";
       "$fileManager" = "dolphin";
-      "$menu" = "walker";
+      # "$menu" = "walker";
 
       #################
       ### AUTOSTART ###
@@ -56,7 +56,7 @@
       # exec-once = $terminal
       # exec-once = nm-applet &
       # exec-once = waybar & hyprpaper &
-      exec-once = "hyprsession & nwg-drawer -r &";
+      exec-once = "nwg-drawer -r &";
 
       #############################
       ### ENVIRONMENT VARIABLES ###
@@ -260,8 +260,8 @@
         "$mainMod, M, exit,"
         "$mainMod, E, exec, $fileManager"
         "$mainMod, V, togglefloating,"
-        "$mainMod, R, exec, $menu"
-        "alt, space, exec, $menu"
+        # "$mainMod, R, exec, $menu"
+        # "alt, space, exec, $menu"
         "$mainMod, P, pseudo, # dwindle"
         "$mainMod, t, togglesplit, # dwindle"
 
@@ -421,10 +421,10 @@
     };
   };
   services.mako.enable = true;
-  programs.walker = {
-    enable = true;
-    runAsService = true;
-  };
+  # programs.walker = {
+  #   enable = true;
+  #   runAsService = true;
+  # };
 
   home.packages = with pkgs; [
     kitty

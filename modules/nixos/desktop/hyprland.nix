@@ -22,7 +22,7 @@
     mpd
     grim
     slurp
-    inputs.hyprsession.packages.${pkgs.system}.hyprsession
+    # inputs.hyprsession.packages.${pkgs.stdenv.hostPlatform.system}.hyprsession
     kdePackages.dolphin
     brightnessctl
     playerctl

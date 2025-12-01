@@ -13,7 +13,7 @@
     ./hardware-configuration.nix
     "${nixosModules}/system"
     "${nixosModules}/programs"
-    "${nixosModules}/desktop/plasma.nix"
+    "${nixosModules}/desktop/hyprland.nix"
   ];
 
   # Disable tpm for faster boot

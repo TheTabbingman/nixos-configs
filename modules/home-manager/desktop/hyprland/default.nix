@@ -13,8 +13,8 @@
     package = null;
     portalPackage = null;
     plugins = [
-      # inputs.split-monitor-workspaces.packages.${pkgs.system}.split-monitor-workspaces
-      inputs.hyprland-plugins.packages.${pkgs.system}.hyprbars
+      # inputs.split-monitor-workspaces.packages.${pkgs.stdenv.hostPlatform.system}.split-monitor-workspaces
+      inputs.hyprland-plugins.packages.${pkgs.stdenv.hostPlatform.system}.hyprbars
     ];
     settings = {
       # This is an example Hyprland config file.

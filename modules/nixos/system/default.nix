@@ -16,17 +16,17 @@
     ./users.nix
     ./zram.nix
   ];
-  # stylix = {
-  #   enable = true;
-  #   base16Scheme = "${pkgs.base16-schemes}/share/themes/onedark.yaml";
-  #   # image = "${inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland}/share/hypr/wall2.png";
-  #   polarity = "dark";
-  #   # If I don't have both of these then a bunch of gnome stuff gets compiled
-  #   targets = {
-  #     gnome.enable = false;
-  #   };
-  #   overlays.enable = false;
-  # };
+  stylix = {
+    enable = true;
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/onedark.yaml";
+    # image = "${inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland}/share/hypr/wall2.png";
+    polarity = "dark";
+    # These should be enable with gnome if I don't want a bunch of stuff to be compiled
+    # targets = {
+    #   gnome.enable = false;
+    # };
+    # overlays.enable = false;
+  };
   i18n.inputMethod = {
     enable = true;
     type = "fcitx5";

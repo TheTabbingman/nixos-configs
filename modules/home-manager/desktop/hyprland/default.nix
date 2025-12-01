@@ -375,12 +375,24 @@
       # Example windowrule v2
       # windowrulev2 = float,class:^(kitty)$,title:^(kitty)$
 
-      windowrulev2 = [
+      windowrule = [
         # Ignore maximize requests from apps. You'll probably like this.
-        "suppressevent maximize, class:.*"
+        {
+          name = "supress-maximize-events";
+          "match:class" = ".*";
 
+          suppress_event = "maximize";
+        }
         # Fix some dragging issues with XWayland
-        "nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0"
+        {
+          name = "fix-xwayland-drags";
+          "match:class" = "^$";
+          "match:title" = "^$";
+          "match:xwayland" = "true";
+          "match:float" = "true";
+          "match:fullscreen" = "false";
+          "match:pin" = "false";
+        }
       ];
 
       plugin = [

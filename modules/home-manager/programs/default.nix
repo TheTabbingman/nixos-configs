@@ -28,5 +28,6 @@
     htop
     pinentry-gtk2
     compsize
+    distroshelf
   ];
 }

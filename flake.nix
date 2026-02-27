@@ -36,6 +36,8 @@
     };
 
     nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
+
+    nix-alien.url = "github:thiagokokada/nix-alien";
   };
 
   outputs = {

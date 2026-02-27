@@ -10,5 +10,6 @@
     ripgrep
     wl-clipboard
     xclip
+    nodejs
   ];
 }

@@ -13,10 +13,11 @@
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
     "${nixosModules}/system"
-    "${nixosModules}/system/nvidia-laptop.nix"
+    "${nixosModules}/system/intel_gpu.nix"
+    "${nixosModules}/system/nvidia/nvidia.nix"
+    "${nixosModules}/system/nvidia/prime.nix"
     "${nixosModules}/programs"
     "${nixosModules}/desktop/gnome.nix"
-    "${nixosModules}/system/intel_gpu.nix"
   ];
 
   environment.systemPackages = with pkgs; [
@@ -118,14 +119,24 @@
     '';
   };
 
-  # VP9 decoding not supported when using intel-media-driver
-  # https://github.com/intel/media-driver/issues/1024
-  # NixOS Wiki recommends using the legacy intel-vaapi-driver with the hybrid codec over that one for Skylake.
-  # https://wiki.nixos.org/wiki/Accelerated_Video_Playback
   hardware.intelgpu = {
+    # VP9 decoding not supported when using intel-media-driver
+    # https://github.com/intel/media-driver/issues/1024
+    # NixOS Wiki recommends using the legacy intel-vaapi-driver with the hybrid codec over that one for Skylake.
+    # https://wiki.nixos.org/wiki/Accelerated_Video_Playback
     computeRuntime = "legacy";
     vaapiDriver = "intel-vaapi-driver";
     enableHybridCodec = true;
+  };
+
+  hardware.nvidia = {
+    open = false;
+    prime = {
+      # Make sure to use the correct Bus ID values for your system!
+      intelBusId = "PCI:0:2:0";
+      nvidiaBusId = "PCI:1:0:0";
+    };
+    primeBatterySaverSpecialisation = true;
   };
 
   system.stateVersion = "23.11"; # Did you read the comment?

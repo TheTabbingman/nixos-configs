@@ -16,6 +16,7 @@
     "${nixosModules}/system/nvidia-laptop.nix"
     "${nixosModules}/programs"
     "${nixosModules}/desktop/gnome.nix"
+    "${nixosModules}/system/intel_gpu.nix"
   ];
 
   environment.systemPackages = with pkgs; [
@@ -115,6 +116,16 @@
       # # CPU cache max current (A)
       # CACHE:
     '';
+  };
+
+  # VP9 decoding not supported when using intel-media-driver
+  # https://github.com/intel/media-driver/issues/1024
+  # NixOS Wiki recommends using the legacy intel-vaapi-driver with the hybrid codec over that one for Skylake.
+  # https://wiki.nixos.org/wiki/Accelerated_Video_Playback
+  hardware.intelgpu = {
+    computeRuntime = "legacy";
+    vaapiDriver = "intel-vaapi-driver";
+    enableHybridCodec = true;
   };
 
   system.stateVersion = "23.11"; # Did you read the comment?

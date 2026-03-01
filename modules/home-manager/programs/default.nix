@@ -29,5 +29,7 @@
     pinentry-gtk2
     compsize
     distroshelf
+    ptyxis
+    mpv
   ];
 }

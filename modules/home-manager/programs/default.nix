@@ -31,5 +31,6 @@
     distroshelf
     ptyxis
     mpv
+    meld
   ];
 }

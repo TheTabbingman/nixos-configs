@@ -11,5 +11,6 @@
     wl-clipboard
     xclip
     nodejs
+    tree-sitter
   ];
 }

@@ -3,9 +3,6 @@
   inputs,
   ...
 }: {
-  # Enable hyprland
-  programs.niri.enable = true;
-
   programs.regreet.enable = true;
 
   # Keyring stuff
@@ -19,5 +16,6 @@
     kdePackages.dolphin
     brightnessctl
     playerctl
+    wl-clipboard # optional: provide complete clipboard API (used by some terminal apps)
   ];
 }

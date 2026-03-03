@@ -15,6 +15,7 @@
     ./system.nix
     ./users.nix
     ./zram.nix
+    ./power.nix
   ];
   stylix = {
     enable = true;

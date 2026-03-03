@@ -38,6 +38,14 @@
     nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
 
     nix-alien.url = "github:thiagokokada/nix-alien";
+
+    elephant.url = "github:abenz1267/elephant";
+    walker = {
+      url = "github:abenz1267/walker";
+      inputs.elephant.follows = "elephant";
+    };
+
+    niri.url = "github:sodiboo/niri-flake";
   };
 
   outputs = {
@@ -73,6 +81,7 @@
           inputs.nix-index-database.nixosModules.nix-index
           inputs.nix-flatpak.nixosModules.nix-flatpak
           inputs.stylix.nixosModules.stylix
+          inputs.niri.nixosModules.niri
         ];
       };
 
@@ -111,6 +120,7 @@
           ./hosts/${hostname}/home.nix
           inputs.nix-flatpak.homeManagerModules.nix-flatpak
           inputs.stylix.homeModules.stylix
+          inputs.niri.homeModules.niri
         ];
       };
   in {

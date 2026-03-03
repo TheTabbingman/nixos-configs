@@ -17,6 +17,7 @@
     "${nixosModules}/system/nvidia/nvidia.nix"
     "${nixosModules}/system/nvidia/prime.nix"
     "${nixosModules}/programs"
+    "${nixosModules}/desktop/wm/niri.nix"
     "${nixosModules}/desktop/gnome.nix"
   ];
 
@@ -138,6 +139,18 @@
     };
     primeBatterySaverSpecialisation = true;
   };
+
+  hardware.bluetooth.enable = true;
+
+  services.udev.extraRules = ''
+    # Intel iGPU Symlink
+    # Replace 0000:00:02.0 with your actual Intel PCI ID
+    KERNEL=="card*", SUBSYSTEM=="drm", SUBSYSTEMS=="pci", KERNELS=="0000:00:02.0", SYMLINK+="dri/intel-igpu"
+
+    # NVIDIA dGPU Symlink
+    # Replace 0000:01:00.0 with your actual NVIDIA PCI ID
+    KERNEL=="card*", SUBSYSTEM=="drm", SUBSYSTEMS=="pci", KERNELS=="0000:01:00.0", SYMLINK+="dri/nvidia-dgpu"
+  '';
 
   system.stateVersion = "23.11"; # Did you read the comment?
 }

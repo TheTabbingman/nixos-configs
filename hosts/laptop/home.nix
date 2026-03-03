@@ -16,6 +16,7 @@
     "${nhModules}/default.nix"
     "${nhModules}/programs"
     "${nhModules}/scripts"
+    "${nhModules}/desktop/wm/niri.nix"
     "${nhModules}/desktop/gnome.nix"
   ];
 

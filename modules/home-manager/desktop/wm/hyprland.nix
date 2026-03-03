@@ -5,7 +5,7 @@
   ...
 }: {
   imports = [
-    # inputs.walker.homeManagerModules.default
+    ./common.nix
     ./hyprlock.nix
   ];
   wayland.windowManager.hyprland = {
@@ -44,7 +44,7 @@
       # Set programs that you use
       "$terminal" = "kitty";
       "$fileManager" = "dolphin";
-      # "$menu" = "walker";
+      "$menu" = "walker";
 
       #################
       ### AUTOSTART ###
@@ -67,6 +67,7 @@
       env = [
         "XCURSOR_SIZE,24"
         "HYPRCURSOR_SIZE,24"
+        "AQ_DRM_DEVICES,/dev/dri/intel-igpu:/dev/dri/nvidia-dgpu"
       ];
 
       #####################
@@ -233,8 +234,9 @@
 
       # https://wiki.hyprland.org/Configuring/Variables/#gestures
       gestures = [
-        {
-        }
+        {gesture = "3, horizontal, workspace";}
+        {gesture = "3, up, dispatcher, exec, nwg-drawer";}
+        {gesture = "3, down, dispatcher, exec, pkill nwg-drawer";}
       ];
 
       # Example per-device config
@@ -260,8 +262,7 @@
         "$mainMod, M, exit,"
         "$mainMod, E, exec, $fileManager"
         "$mainMod, V, togglefloating,"
-        # "$mainMod, R, exec, $menu"
-        # "alt, space, exec, $menu"
+        "alt, space, exec, $menu"
         "$mainMod, P, pseudo, # dwindle"
         "$mainMod, t, togglesplit, # dwindle"
 
@@ -400,7 +401,8 @@
           hyprbars = [
             {
               # Set to 0 to disable hyprbars
-              bar_height = 38;
+              # bar_height = 38;
+              bar_height = 0;
               bar_color = "rgb(1e1e1e)";
               col.text = "rgb(ffffff)";
               bar_text_size = 12;
@@ -419,27 +421,4 @@
       ];
     };
   };
-
-  services.hypridle.enable = true;
-  services.hyprpolkitagent.enable = true;
-  services.network-manager-applet.enable = true;
-  programs.ashell = {
-    enable = true;
-    systemd.enable = true;
-    settings.modules = {
-      left = ["Workspaces"];
-      center = [];
-      right = ["Tray" "KeyboardLayout" "SystemInfo" ["Clock" "Privacy" "Settings"]];
-    };
-  };
-  services.mako.enable = true;
-  # programs.walker = {
-  #   enable = true;
-  #   runAsService = true;
-  # };
-
-  home.packages = with pkgs; [
-    kitty
-    nwg-drawer
-  ];
 }

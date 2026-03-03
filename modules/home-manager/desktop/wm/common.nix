@@ -15,7 +15,6 @@
     "hypridle"
     "hyprpolkitagent"
     "mako"
-    "network-manager-applet"
     "walker"
   ];
 in {
@@ -32,7 +31,6 @@ in {
   });
   services.hypridle.enable = true;
   services.hyprpolkitagent.enable = true;
-  services.network-manager-applet.enable = true;
   programs.ashell = {
     enable = true;
     systemd.enable = true;

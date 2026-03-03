@@ -1,6 +1,7 @@
 {
   flakeLocation,
   hostname,
+  config,
   ...
 }: {
   home.sessionVariables = {
@@ -38,6 +39,7 @@
   };
   programs.zsh = {
     enable = true;
+    dotDir = "${config.xdg.configHome}/zsh";
   };
   programs.fish = {
     enable = true;

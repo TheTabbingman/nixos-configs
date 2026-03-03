@@ -1,9 +1,10 @@
 {
   pkgs,
   inputs,
+  config,
   ...
 }: {
-  programs.regreet.enable = true;
+  programs.regreet.enable = !config.services.displayManager.sddm.enable && !config.services.displayManager.gdm.enable;
 
   # Keyring stuff
   services.gnome.gnome-keyring.enable = true;

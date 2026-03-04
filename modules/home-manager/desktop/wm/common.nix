@@ -41,8 +41,11 @@ in {
   });
   programs.ashell = {
     enable = true;
+    # Currently need newer package for settings layer
+    package = inputs.ashell.packages.${pkgs.stdenv.hostPlatform.system}.default;
     systemd.enable = true;
     settings = {
+      layer = "Top";
       modules = {
         left = ["Workspaces"];
         center = [];

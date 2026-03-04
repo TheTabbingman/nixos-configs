@@ -46,6 +46,8 @@
     };
 
     niri.url = "github:sodiboo/niri-flake";
+
+    ashell.url = "github:MalpenZibo/ashell";
   };
 
   outputs = {

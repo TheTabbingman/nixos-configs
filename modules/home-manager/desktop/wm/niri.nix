@@ -11,12 +11,7 @@
     bibata-cursors
   ];
   services.swayidle.enable = true;
-  nixpkgs.overlays = [
-    inputs.niri.overlays.niri
-  ];
   programs.niri = {
-    enable = true;
-    package = pkgs.niri-unstable;
     config = ''
          // This config is in the KDL format: https://kdl.dev
          // "/-" comments out the following node.

@@ -89,6 +89,24 @@
           inputs.nix-flatpak.nixosModules.nix-flatpak
           inputs.stylix.nixosModules.stylix
           inputs.niri.nixosModules.niri
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.${username} = {
+              imports = [
+                ./hosts/${hostname}/home.nix
+                inputs.nix-flatpak.homeManagerModules.nix-flatpak
+              ];
+            };
+            home-manager.extraSpecialArgs = {
+              inherit inputs outputs hostname;
+              pkgs-stable = import nixpkgs-stable {system = "x86_64-linux";};
+              userConfig = users.${username};
+              nhModules = "${self}/modules/home-manager";
+              flakeLocation = "/etc/nixos";
+            };
+          }
         ];
       };
 

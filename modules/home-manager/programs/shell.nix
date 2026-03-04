@@ -19,7 +19,7 @@
     nhe = "nvim ${flakeLocation}/hosts/${hostname}/configuration.nix ${flakeLocation}/hosts/${hostname}/home.nix";
     ne = "pushd ${flakeLocation} && nvim . && popd";
     # home-manager
-    hms = "home-manager switch --flake ${pathFlakeLocation} && chd";
+    # hms = "home-manager switch --flake ${pathFlakeLocation} && chd";
     # nix
     nrs = "sudo nixos-rebuild switch --flake ${pathFlakeLocation} && cnd";
     nrb = "sudo nixos-rebuild boot --flake ${pathFlakeLocation} && cnbd";

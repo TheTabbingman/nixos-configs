@@ -8,8 +8,6 @@
     ./flatpaks.nix
   ];
 
-  nixpkgs.config.allowUnfree = true;
-
   home.packages = with pkgs; [
     nix-search-cli
     firefox

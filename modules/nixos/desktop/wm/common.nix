@@ -2,8 +2,14 @@
   pkgs,
   inputs,
   config,
+  lib,
   ...
-}: {
+}: let
+  # Create a list of targets based on enabled WMs
+  enabledWmTargets =
+    (lib.optionals config.programs.hyprland.enable ["hyprland-session.target"])
+    ++ (lib.optionals config.programs.niri.enable ["niri.service"]);
+in {
   programs.regreet.enable = !config.services.displayManager.sddm.enable && !config.services.displayManager.gdm.enable;
 
   # Keyring stuff
@@ -19,4 +25,12 @@
     playerctl
     wl-clipboard # optional: provide complete clipboard API (used by some terminal apps)
   ];
+  programs.dms-shell = {
+    enable = true;
+    quickshell.package = inputs.quickshell.packages.${pkgs.stdenv.hostPlatform.system}.quickshell;
+  };
+  systemd.user.services.dms = {
+    wantedBy = lib.mkForce enabledWmTargets;
+    partOf = enabledWmTargets;
+  };
 }

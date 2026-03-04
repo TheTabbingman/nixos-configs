@@ -48,6 +48,11 @@
     niri.url = "github:sodiboo/niri-flake";
 
     ashell.url = "github:MalpenZibo/ashell";
+
+    quickshell = {
+      url = "git+https://git.outfoxxed.me/quickshell/quickshell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {

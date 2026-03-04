@@ -39,27 +39,27 @@ in {
       WantedBy = lib.mkForce enabledWmTargets;
     };
   });
-  programs.ashell = {
-    enable = true;
-    # Currently need newer package for settings layer
-    package = inputs.ashell.packages.${pkgs.stdenv.hostPlatform.system}.default;
-    systemd.enable = true;
-    settings = {
-      layer = "Top";
-      modules = {
-        left = ["Workspaces"];
-        center = [];
-        right = ["Tray" "KeyboardLayout" "SystemInfo" ["Clock" "Privacy" "Settings"]];
-      };
-      settings = {
-        battery_format = "IconAndPercentage";
-        peripheral_battery_format = "IconAndPercentage";
-        peripheral_indicators = "All";
-        # The default value is the following, the items are shown in this order:
-        indicators = ["IdleInhibitor" "PowerProfile" "Audio" "PeripheralBattery" "Bluetooth" "Network" "Vpn" "Battery"];
-      };
-    };
-  };
+  # programs.ashell = {
+  #   enable = true;
+  #   # Currently need newer package for settings layer
+  #   package = inputs.ashell.packages.${pkgs.stdenv.hostPlatform.system}.default;
+  #   systemd.enable = true;
+  #   settings = {
+  #     layer = "Top";
+  #     modules = {
+  #       left = ["Workspaces"];
+  #       center = [];
+  #       right = ["Tray" "KeyboardLayout" "SystemInfo" ["Clock" "Privacy" "Settings"]];
+  #     };
+  #     settings = {
+  #       battery_format = "IconAndPercentage";
+  #       peripheral_battery_format = "IconAndPercentage";
+  #       peripheral_indicators = "All";
+  #       # The default value is the following, the items are shown in this order:
+  #       indicators = ["IdleInhibitor" "PowerProfile" "Audio" "PeripheralBattery" "Bluetooth" "Network" "Vpn" "Battery"];
+  #     };
+  #   };
+  # };
   services.mako.enable = true;
   programs.walker = {
     enable = true;

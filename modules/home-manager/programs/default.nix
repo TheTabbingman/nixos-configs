@@ -32,5 +32,6 @@
     ptyxis
     mpv
     meld
+    fsearch
   ];
 }

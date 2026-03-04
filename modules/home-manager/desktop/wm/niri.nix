@@ -7,6 +7,10 @@
   imports = [
     ./common.nix
   ];
+  home.packages = with pkgs; [
+    bibata-cursors
+  ];
+  services.swayidle.enable = true;
   nixpkgs.overlays = [
     inputs.niri.overlays.niri
   ];
@@ -292,6 +296,11 @@
                // bottom 64
            }
        }
+
+       // cursor {
+       //     xcursor-theme "Bibata-Modern-Ice"
+       //     xcursor-size 24
+       // }
 
        // Add lines like this to spawn processes at startup.
        // Note that running niri as a session supports xdg-desktop-autostart,

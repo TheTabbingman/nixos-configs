@@ -9,15 +9,25 @@
   enabledWmTargets =
     (lib.optionals config.wayland.windowManager.hyprland.enable ["hyprland-session.target"])
     ++ (lib.optionals config.programs.niri.enable ["niri.service"]);
-  wmServices = [
-    "ashell"
-    "elephant"
-    "hypridle"
-    "hyprpolkitagent"
-    "mako"
-    "walker"
-  ];
+  wmServices =
+    (lib.optionals config.services.swayidle.enable ["swayidle"])
+    ++ (lib.optionals config.services.hypridle.enable ["hypridle"])
+    ++ (lib.optionals config.services.hyprpolkitagent.enable ["hyprpolkitagent"])
+    ++ [
+      "ashell"
+      "elephant"
+      "mako"
+      "walker"
+    ];
 in {
+  home.pointerCursor = {
+    enable = true;
+    gtk.enable = true;
+    x11.enable = true;
+    package = pkgs.bibata-cursors;
+    name = "Bibata-Modern-Ice";
+    size = 24;
+  };
   imports = [
     inputs.walker.homeManagerModules.default
   ];
@@ -29,8 +39,6 @@ in {
       WantedBy = lib.mkForce enabledWmTargets;
     };
   });
-  services.hypridle.enable = true;
-  services.hyprpolkitagent.enable = true;
   programs.ashell = {
     enable = true;
     systemd.enable = true;

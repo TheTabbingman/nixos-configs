@@ -8,6 +8,8 @@
     ./common.nix
     ./hyprlock.nix
   ];
+  services.hypridle.enable = true;
+  services.hyprpolkitagent.enable = true;
   wayland.windowManager.hyprland = {
     enable = true;
     package = null;

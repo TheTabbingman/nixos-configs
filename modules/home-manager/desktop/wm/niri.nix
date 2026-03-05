@@ -6,11 +6,11 @@
 }: {
   imports = [
     ./common.nix
+    ./dms.nix
   ];
   home.packages = with pkgs; [
     bibata-cursors
   ];
-  services.swayidle.enable = true;
   programs.niri = {
     config = ''
          // This config is in the KDL format: https://kdl.dev
@@ -405,7 +405,7 @@
            // Suggested binds for running programs: terminal, app launcher, screen locker.
            Mod+Q hotkey-overlay-title="Open a Terminal: alacritty" { spawn "alacritty"; }
            Alt+Space hotkey-overlay-title="Run an Application: walker" { spawn "walker"; }
-           Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
+           Super+Alt+L hotkey-overlay-title="Lock the Screen: dms lock" { spawn-sh "dms ipc call lock lock"; }
            Mod+B hotkey-overlay-title="Open a Browser: Floorp" {spawn "floorp";}
 
            // Use spawn-sh to run a shell command. Do this if you need pipes, multiple commands, etc.

@@ -38,6 +38,21 @@ in {
       WantedBy = lib.mkForce enabledWmTargets;
     };
   });
+  services.mako.enable = true;
+  programs.walker = {
+    enable = true;
+    runAsService = true;
+  };
+
+  home.packages = with pkgs; [
+    mpd
+    grim
+    slurp
+    kdePackages.dolphin
+    brightnessctl
+    playerctl
+    wl-clipboard # optional: provide complete clipboard API (used by some terminal apps)
+  ];
   programs.dank-material-shell = {
     enable = true;
     settings = lib.mapAttrs (_: lib.mkForce) {
@@ -562,19 +577,4 @@ in {
       configVersion = 5;
     };
   };
-  services.mako.enable = true;
-  programs.walker = {
-    enable = true;
-    runAsService = true;
-  };
-
-  home.packages = with pkgs; [
-    mpd
-    grim
-    slurp
-    kdePackages.dolphin
-    brightnessctl
-    playerctl
-    wl-clipboard # optional: provide complete clipboard API (used by some terminal apps)
-  ];
 }

@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  inputs,
+  ...
+}: {
   imports = [
     ./git.nix
     ./gpg.nix
@@ -31,5 +35,6 @@
     mpv
     meld
     fsearch
+    inputs.json2nix.packages.${pkgs.stdenv.hostPlatform.system}.json2nix
   ];
 }

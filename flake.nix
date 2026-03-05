@@ -49,8 +49,12 @@
 
     ashell.url = "github:MalpenZibo/ashell";
 
-    quickshell = {
-      url = "git+https://git.outfoxxed.me/quickshell/quickshell";
+    dms = {
+      url = "github:AvengeMedia/DankMaterialShell/stable";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    json2nix = {
+      url = "github:sempruijs/json2nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -90,6 +94,7 @@
           inputs.stylix.nixosModules.stylix
           inputs.niri.nixosModules.niri
           home-manager.nixosModules.home-manager
+          inputs.dms.nixosModules.dank-material-shell
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
@@ -97,6 +102,7 @@
               imports = [
                 ./hosts/${hostname}/home.nix
                 inputs.nix-flatpak.homeManagerModules.nix-flatpak
+                inputs.dms.homeModules.dank-material-shell
               ];
             };
             home-manager.extraSpecialArgs = {

@@ -24,10 +24,10 @@ in {
     brightnessctl
     playerctl
     wl-clipboard # optional: provide complete clipboard API (used by some terminal apps)
+    qt6Packages.qt6ct
   ];
   programs.dms-shell = {
     enable = true;
-    quickshell.package = inputs.quickshell.packages.${pkgs.stdenv.hostPlatform.system}.quickshell;
   };
   systemd.user.services.dms = {
     wantedBy = lib.mkForce enabledWmTargets;

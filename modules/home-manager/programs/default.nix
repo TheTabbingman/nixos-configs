@@ -21,7 +21,8 @@
     nvd
     alejandra
     nixd
-    alacritty
+    alacritty-graphics
+    chafa
     foot
     tealdeer
     nix-inspect

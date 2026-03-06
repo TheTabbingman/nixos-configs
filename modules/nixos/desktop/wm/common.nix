@@ -10,6 +10,9 @@
     (lib.optionals config.programs.hyprland.enable ["hyprland-session.target"])
     ++ (lib.optionals config.programs.niri.enable ["niri.service"]);
 in {
+  imports = [
+    ./dms.nix
+  ];
   programs.regreet.enable = !config.services.displayManager.sddm.enable && !config.services.displayManager.gdm.enable;
 
   # Keyring stuff

@@ -25,6 +25,7 @@ in {
   };
   imports = [
     inputs.walker.homeManagerModules.default
+    ./dms.nix
   ];
   systemd.user.services = lib.genAttrs wmServices (name: {
     Unit = {

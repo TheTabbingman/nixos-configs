@@ -6,7 +6,6 @@
 }: {
   imports = [
     ./common.nix
-    ./dms.nix
   ];
   home.packages = with pkgs; [
     bibata-cursors

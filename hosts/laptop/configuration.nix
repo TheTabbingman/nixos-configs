@@ -18,7 +18,6 @@
     "${nixosModules}/system/nvidia/prime.nix"
     "${nixosModules}/programs"
     "${nixosModules}/desktop/wm/niri.nix"
-    "${nixosModules}/desktop/gnome.nix"
   ];
 
   environment.systemPackages = with pkgs; [

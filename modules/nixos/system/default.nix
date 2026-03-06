@@ -23,7 +23,8 @@
     base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark.yaml";
     # image = "${inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland}/share/hypr/wall2.png";
     polarity = "dark";
-    targets.qt.platform = lib.mkForce "qtct";
+    # Maybe need if using gnome/kde at the same time as wm
+    # targets.qt.platform = lib.mkForce "qtct";
     # These should be enable with gnome if I don't want a bunch of stuff to be compiled
     # targets = {
     #   gnome.enable = false;

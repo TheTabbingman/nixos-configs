@@ -17,7 +17,6 @@
     "${nhModules}/programs"
     "${nhModules}/scripts"
     "${nhModules}/desktop/wm/niri.nix"
-    "${nhModules}/desktop/gnome.nix"
   ];
 
   home.packages = with pkgs; [

@@ -53,6 +53,10 @@
       url = "github:AvengeMedia/DankMaterialShell/stable";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    dms-plugin-registry = {
+      url = "github:AvengeMedia/dms-plugin-registry";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     json2nix = {
       url = "github:sempruijs/json2nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -103,6 +107,8 @@
                 ./hosts/${hostname}/home.nix
                 inputs.nix-flatpak.homeManagerModules.nix-flatpak
                 inputs.dms.homeModules.dank-material-shell
+                inputs.dms.homeModules.niri
+                inputs.dms-plugin-registry.modules.default
               ];
             };
             home-manager.extraSpecialArgs = {

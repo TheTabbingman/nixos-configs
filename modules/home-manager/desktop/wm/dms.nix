@@ -438,6 +438,8 @@
               enabled = true;
               showSwap = true;
             }
+            "cpuUsage"
+            "cpuTemp"
             "notificationButton"
             "battery"
             "controlCenterButton"

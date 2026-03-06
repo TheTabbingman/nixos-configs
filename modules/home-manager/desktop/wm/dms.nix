@@ -23,7 +23,6 @@
     };
     plugins = {
       linuxWallpaperEngine.enable = true;
-      nixMonitor.enable = true;
       powerUsagePlugin.enable = true;
       nvidiaGpuMonitor.enable = true;
     };
@@ -452,7 +451,6 @@
           rightWidgets = [
             "systemTray"
             "clipboard"
-            "nixMonitor"
             "powerUsagePlugin"
             {
               id = "memUsage";

@@ -7,8 +7,8 @@
   programs.dank-material-shell = {
     enable = true;
     settings = lib.mapAttrs (_: lib.mkForce) {
-      currentThemeName = "orange";
-      currentThemeCategory = "generic";
+      # currentThemeName = "orange";
+      # currentThemeCategory = "generic";
       registryThemeVariants = {};
       matugenScheme = "scheme-tonal-spot";
       runUserMatugenTemplates = true;
@@ -431,8 +431,6 @@
           rightWidgets = [
             "systemTray"
             "clipboard"
-            "cpuTemp"
-            "cpuUsage"
             {
               id = "memUsage";
               enabled = true;

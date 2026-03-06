@@ -20,7 +20,7 @@
   ];
   stylix = {
     enable = true;
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/onedark.yaml";
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark.yaml";
     # image = "${inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland}/share/hypr/wall2.png";
     polarity = "dark";
     targets.qt.platform = lib.mkForce "qtct";

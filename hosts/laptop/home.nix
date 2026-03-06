@@ -15,6 +15,7 @@
   imports = [
     "${nhModules}/default.nix"
     "${nhModules}/programs"
+    "${nhModules}/programs/gaming"
     "${nhModules}/scripts"
     "${nhModules}/desktop/wm/niri.nix"
   ];

@@ -17,6 +17,7 @@
     "${nixosModules}/system/nvidia/nvidia.nix"
     "${nixosModules}/system/nvidia/prime.nix"
     "${nixosModules}/programs"
+    "${nixosModules}/programs/gaming"
     "${nixosModules}/desktop/wm/niri.nix"
   ];
 

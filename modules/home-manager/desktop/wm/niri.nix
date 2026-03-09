@@ -8,9 +8,6 @@
   imports = [
     ./common.nix
   ];
-  home.packages = with pkgs; [
-    bibata-cursors
-  ];
   programs.niri = {
     config = ''
          // This config is in the KDL format: https://kdl.dev
@@ -296,10 +293,10 @@
            }
        }
 
-       // cursor {
-       //     xcursor-theme "Bibata-Modern-Ice"
-       //     xcursor-size 24
-       // }
+       cursor {
+           xcursor-theme "${config.stylix.cursor.name}"
+           xcursor-size ${toString config.stylix.cursor.size}
+       }
 
        // Add lines like this to spawn processes at startup.
        // Note that running niri as a session supports xdg-desktop-autostart,

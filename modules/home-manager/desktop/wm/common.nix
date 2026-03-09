@@ -15,14 +15,6 @@
     "walker"
   ];
 in {
-  home.pointerCursor = {
-    enable = true;
-    gtk.enable = true;
-    x11.enable = true;
-    package = pkgs.bibata-cursors;
-    name = "Bibata-Modern-Ice";
-    size = 24;
-  };
   imports = [
     inputs.walker.homeManagerModules.default
     ./dms.nix

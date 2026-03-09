@@ -10,12 +10,12 @@
     ./nh.nix
     ./shell.nix
     ./flatpaks.nix
+    ./firefox.nix
   ];
 
   home.packages = with pkgs; [
     nix-search-cli
     firefox
-    floorp-bin
     gh
     github-desktop
     nvd
@@ -37,5 +37,6 @@
     meld
     fsearch
     inputs.json2nix.packages.${pkgs.stdenv.hostPlatform.system}.json2nix
+    libreoffice-fresh
   ];
 }

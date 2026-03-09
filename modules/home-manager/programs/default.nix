@@ -23,7 +23,6 @@
     nixd
     alacritty-graphics
     chafa
-    foot
     tealdeer
     nix-inspect
     mission-center

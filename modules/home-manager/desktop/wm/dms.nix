@@ -4,6 +4,8 @@
   lib,
   ...
 }: {
+  # Needed to disable the border otherwise dms enables it
+  programs.niri.settings.layout.border.enable = false;
   programs.dank-material-shell = {
     enable = true;
     niri.includes = {

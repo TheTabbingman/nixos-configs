@@ -2,6 +2,7 @@
   pkgs,
   inputs,
   lib,
+  config,
   ...
 }: {
   imports = [
@@ -195,13 +196,15 @@
                // - CSS-like notation: "rgb(255, 127, 0)", rgba(), hsl() and a few others.
 
                // Color of the ring on the active monitor.
-               active-color "#7fc8ff"
+               // active-color "#7fc8ff"
+               active-color "${config.lib.stylix.colors.withHashtag.base0D}"
 
                // Color of the ring on inactive monitors.
                //
                // The focus ring only draws around the active window, so the only place
                // where you can see its inactive-color is on other monitors.
-               inactive-color "#505050"
+               // inactive-color "#505050"
+               inactive-color "${config.lib.stylix.colors.withHashtag.base03}"
 
                // You can also use gradients. They take precedence over solid colors.
                // Gradients are rendered the same as CSS linear-gradient(angle, from, to).
@@ -227,8 +230,10 @@
                off
 
                width 4
-               active-color "#ffc87f"
-               inactive-color "#505050"
+               // active-color "#ffc87f"
+               active-color "${config.lib.stylix.colors.withHashtag.base0D}"
+               // inactive-color "#505050"
+               inactive-color "${config.lib.stylix.colors.withHashtag.base03}"
 
                // Color of the border around windows that request your attention.
                urgent-color "#9b0000"

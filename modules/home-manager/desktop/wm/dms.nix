@@ -27,6 +27,7 @@
       linuxWallpaperEngine.enable = true;
       powerUsagePlugin.enable = true;
       nvidiaGpuMonitor.enable = true;
+      tailscale.enable = true;
     };
     settings = lib.mapAttrs (_: lib.mkForce) {
       # currentThemeName = "orange";
@@ -463,6 +464,8 @@
             "cpuTemp"
             "notificationButton"
             "battery"
+            "tailscale"
+            "vpn"
             "controlCenterButton"
           ];
           spacing = 4;

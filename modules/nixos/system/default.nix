@@ -18,6 +18,7 @@
     ./zram.nix
     ./power.nix
   ];
+  services.tailscale.enable = true;
   stylix = {
     enable = true;
     base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark.yaml";

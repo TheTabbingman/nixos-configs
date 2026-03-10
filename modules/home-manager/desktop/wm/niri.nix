@@ -8,6 +8,19 @@
   imports = [
     ./common.nix
   ];
+  systemd.user.services.xwayland-satellite = {
+    Unit = {
+      Description = "xwayland-satellite";
+      After = ["graphical-session.target"];
+    };
+    Service = {
+      ExecStart = "${pkgs.xwayland-satellite}/bin/xwayland-satellite";
+      Restart = "on-failure";
+    };
+    Install = {
+      WantedBy = ["niri.service"];
+    };
+  };
   programs.niri = {
     config = ''
          // This config is in the KDL format: https://kdl.dev
@@ -29,7 +42,6 @@
          DISPLAY ":0"; // important for xwayland-satellite
          // QT_QPA_PLATFORM "wayland"; // optional: force QT apps to always use wayland
        }       // https://niri-wm.github.io/niri/Configuration:-Input
-       spawn-at-startup "xwayland-satellite"
 
        input {
            keyboard {

@@ -31,6 +31,9 @@ in {
   programs.walker = {
     enable = true;
     runAsService = true;
+    config = {
+      resume_last_query = true;
+    };
   };
 
   home.packages = with pkgs; [

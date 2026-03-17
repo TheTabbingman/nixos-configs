@@ -3,7 +3,7 @@
   users.users.jonah = {
     isNormalUser = true;
     description = "Jonah";
-    extraGroups = ["networkmanager" "wheel"];
+    extraGroups = ["networkmanager" "wheel" "gamemode"];
   };
 
   # Enable automatic login for the user.

@@ -5,5 +5,13 @@
 }: {
   home.packages = with pkgs; [
     osu-lazer-bin
+    protontricks
+    (heroic.override {
+      extraPkgs = pkgs':
+        with pkgs'; [
+          gamescope
+          gamemode
+        ];
+    })
   ];
 }

@@ -162,12 +162,14 @@
       };
   in {
     nixosConfigurations = {
+      nixos-gamer = mkNixosConfiguration "jonah" "gamer;";
       nixos-vm = mkNixosConfiguration "jonah" "vm";
       nixos-laptop = mkNixosConfiguration "jonah" "laptop";
       nixos-wsl = mkNixosWSLConfiguration "jonah" "wsl";
     };
 
     homeConfigurations = {
+      "jonah@nixos-gamer" = mkHomeConfiguration "jonah" "gamer";
       "jonah@nixos-vm" = mkHomeConfiguration "jonah" "vm";
       "jonah@nixos-laptop" = mkHomeConfiguration "jonah" "laptop";
       "jonah@nixos-wsl" = mkHomeConfiguration "jonah" "wsl";

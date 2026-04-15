@@ -11,6 +11,7 @@
     ./shell.nix
     ./flatpaks.nix
     ./firefox
+    ./owocr.nix
   ];
 
   home.packages = with pkgs; [
@@ -40,7 +41,6 @@
     remmina
     chatterino2
     ungoogled-chromium
-    owocr
     mokuro
   ];
   xdg.desktopEntries.fat-boy = {

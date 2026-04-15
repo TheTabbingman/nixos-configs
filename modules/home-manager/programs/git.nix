@@ -9,5 +9,6 @@
       };
       credential.helper = "store";
     };
+    signing.format = null;
   };
 }

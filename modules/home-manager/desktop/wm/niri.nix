@@ -84,7 +84,7 @@
                // off
                // natural-scroll
                // accel-speed 0.2
-               // accel-profile "flat"
+               accel-profile "flat"
                // scroll-method "no-scroll"
            }
 
@@ -639,6 +639,7 @@
            // This bind corresponds to normal window maximizing,
            // e.g. by double-clicking on the titlebar.
            Mod+M { maximize-window-to-edges; }
+           Mod+Alt+F { maximize-window-to-edges; }
 
            // Expand the focused column to space not taken up by other fully visible columns.
            // Makes the column "fill the rest of the space".

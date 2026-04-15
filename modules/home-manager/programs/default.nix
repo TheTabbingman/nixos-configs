@@ -37,5 +37,6 @@
     inputs.json2nix.packages.${pkgs.stdenv.hostPlatform.system}.json2nix
     libreoffice-fresh
     anki-bin
+    chatterino2
   ];
 }

@@ -4,7 +4,7 @@
   ...
 }: let
   # Define your share names here
-  shares = ["6X6" "3X4" "256GB NVME" "Ramdisk" "SSD" "Family"];
+  shares = ["6X6" "3X4" "Ramdisk" "SSD" "Family"];
 
   commonOptions = [
     "x-systemd.automount"
@@ -12,7 +12,7 @@
     "x-systemd.idle-timeout=60"
     "x-systemd.device-timeout=5s"
     "x-systemd.mount-timeout=5s"
-    "credentials=/home/jonah/smb-secrets"
+    "credentials=/home/jonah/.config/smb-secrets"
   ];
 in {
   # Enable networking

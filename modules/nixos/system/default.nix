@@ -50,4 +50,9 @@
   };
   hardware.keyboard.qmk.enable = true;
   hardware.keyboard.qmk.keychronSupport = true;
+
+  hardware.uinput.enable = true;
+  boot.kernelModules = ["uinput"];
+  hardware.opentabletdriver.enable = true;
+  hardware.opentabletdriver.daemon.enable = true;
 }

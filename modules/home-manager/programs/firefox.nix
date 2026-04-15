@@ -19,7 +19,6 @@
     "@contain-facebook" # Facebook Container
     "FirefoxColor@mozilla.com" # Firefox Color
     "{aa00d7f9-cf31-4dd6-a6d0-ca2c2793368b}" # FlipTube
-    "fdm_ffext2@freedownloadmanager.org" # Free Download Manager
     "{a2503cd4-4083-4c2f-bef2-37767a569867}" # Furiganaize
     "goodreads-easy-search@jamiebrynes.com" # Goodreads Easy Search
     "holo-schedule@holo.dev" # HoloSchedule
@@ -91,19 +90,259 @@
     };
   };
 in {
-  programs.floorp = {
+  programs.firefox = {
     enable = true;
     profiles.default = {
       extensions.force = true;
       settings = {
         "extensions.autoDisableScopes" = 0; # Don't disable extensions automatically
+        /**
+         **************************************************************************************
+        * Smoothfox                                                                            *
+        * "Faber est suae quisque fortunae"                                                    *
+        * priority: better scrolling                                                           *
+        * version: 137                                                                       *
+        * url: https://github.com/yokoffing/Betterfox                                          *
+        **************************************************************************************
+        */
+        /**
+          **************************************************************************************
+         * OPTION: NATURAL SMOOTH SCROLLING V3 [MODIFIED]                                      *
+        ***************************************************************************************
+        */
+        # credit: https://github.com/AveYo/fox/blob/cf56d1194f4e5958169f9cf335cd175daa48d349/Natural%20Smooth%20Scrolling%20for%20user.js
+        # recommended for 120hz+ displays
+        # largely matches Chrome flags: Windows Scrolling Personality and Smooth Scrolling
+        "apz.overscroll.enabled" = true; # DEFAULT NON-LINUX
+        "general.smoothScroll" = true; # DEFAULT
+        "general.smoothScroll.msdPhysics.continuousMotionMaxDeltaMS" = 12;
+        "general.smoothScroll.msdPhysics.enabled" = true;
+        "general.smoothScroll.msdPhysics.motionBeginSpringConstant" = 600;
+        "general.smoothScroll.msdPhysics.regularSpringConstant" = 650;
+        "general.smoothScroll.msdPhysics.slowdownMinDeltaMS" = 25;
+        "general.smoothScroll.msdPhysics.slowdownMinDeltaRatio" = "2";
+        "general.smoothScroll.msdPhysics.slowdownSpringConstant" = 250;
+        "general.smoothScroll.currentVelocityWeighting" = "1";
+        "general.smoothScroll.stopDecelerationWeighting" = "1";
+        "mousewheel.default.delta_multiplier_y" = 300; # 250-400; adjust this number to your liking
       };
+      userChrome = ''
+                                        /* Source file https://github.com/MrOtherGuy/firefox-csshacks/tree/master/chrome/autohide_sidebar.css made available under Mozilla Public License v. 2.0
+                                See the above repository for updates as well as full license text. */
+
+                                /* Show sidebar only when the cursor is over it.
+                                   The border controlling sidebar width will be removed so you'll need to modify
+                                   these values to change width.
+                                   By default the internal layout of sidebar changes when hovered, but this can
+                                   be changed by setting pref "userchrome.autohide-sidebar.static-layout.enabled" to true
+                                 */
+
+                                /* Note: If you want only *some* sidebar to be auto-hidden, then you can use [sidebarcommand] attribute selector.
+                                   For example, to only affect Sidebery's sidebar replace all instances of #sidebar-box with
+                                   #sidebar-box[sidebarcommand="_3c078156-979c-498b-8990-85f7987dd929_-sidebar-action"].
+                                   To find the sidebarcommand value for any other sidebar, open that sidebar and use Browser Toolbox to inspect it.
+                                   See: https://firefox-source-docs.mozilla.org/devtools-user/browser_toolbox/index.html
+                                */
+                                :where(#main-window) #browser{
+                                  --uc-sidebar-width: 40px;
+                                  --uc-sidebar-hover-width: 210px;
+                                }
+                                #main-window[sizemode="fullscreen"] #browser{
+                                  --uc-sidebar-width: 1px;
+                                }
+                                #sidebar-box{
+                                  --uc-autohide-sidebar-delay: 600ms; /* Wait 0.6s before hiding sidebar */
+                                  --uc-autohide-transition-duration: 115ms;
+                                  --uc-autohide-transition-type: linear;
+                                  --browser-area-z-index-sidebar: 3;
+                                  position: relative;
+                                  min-width: var(--uc-sidebar-width) !important;
+                                  width: var(--uc-sidebar-width) !important;
+                                  max-width: var(--uc-sidebar-width) !important;
+                                  z-index: var(--browser-area-z-index-sidebar,3);
+                                  background-color: inherit;
+                                  /* This directionality flipper is played so that sidebar "grows" into the right direction */
+                                  direction: ltr;
+                                  &:is([positionend],[sidebar-positionend]):not(:-moz-locale-dir(rtl)){
+                                    direction: rtl;
+                                  }
+                                }
+                                .sidebar-browser-stack{
+                                  background: inherit;
+                                }
+                                #main-window[sizemode="fullscreen"] #browser{ --uc-sidebar-width: 1px; }
+
+                                #sidebar-splitter{ display: none }
+
+                                #sidebar-header{
+                                  overflow: hidden;
+                                  color: var(--chrome-color, inherit) !important;
+                                  padding-inline: 0 !important;
+                                }
+
+                                #sidebar-header::before,
+                                #sidebar-header::after{
+                                  content: "";
+                                  display: flex;
+                                  padding-left: 8px;
+                                }
+
+                                #sidebar-header,
+                                #sidebar{
+                                  transition: min-width var(--uc-autohide-transition-duration) var(--uc-autohide-transition-type) var(--uc-autohide-sidebar-delay) !important;
+                                  min-width: var(--uc-sidebar-width) !important;
+                                  will-change: min-width;
+                                  direction: ltr;
+                                  &:-moz-locale-dir(rtl){
+                                    direction: rtl;
+                                  }
+                                }
+                                #sidebar-box:hover > #sidebar-header,
+                                #sidebar-box:hover > #sidebar,
+                                #sidebar-box:hover > .sidebar-browser-stack > #sidebar{
+                                  min-width: var(--uc-sidebar-hover-width) !important;
+                                  transition-delay: 0ms !important;
+                                }
+
+                                .sidebar-panel{
+                                  background-color: transparent !important;
+                                  color: var(--newtab-text-primary-color) !important;
+                                }
+
+                                .sidebar-panel #search-box{
+                                  -moz-appearance: none !important;
+                                  background-color: rgba(249,249,250,0.1) !important;
+                                  color: inherit !important;
+                                }
+
+                                /* Add sidebar divider and give it background */
+
+                                #sidebar,
+                                #sidebar-header{
+                                  background-color: inherit !important;
+                                  border-inline: 1px solid rgb(80,80,80);
+                                  border-inline-width: 0px 1px;
+                                }
+
+                                #sidebar-box:not([positionend],[sidebar-positionend]) > :-moz-locale-dir(rtl),
+                                #sidebar-box:is([positionend],[sidebar-positionend]) > *{
+                                  border-inline-width: 1px 0px;
+                                }
+                                @media -moz-pref("sidebar.revamp") {
+                                  #sidebar, #sidebar-header{ border-style: none }
+                                  #sidebar-box{ padding: 0 !important; }
+                                }
+                                /* Move statuspanel to the other side when sidebar is hovered so it doesn't get covered by sidebar */
+
+                                #sidebar-box:not([positionend],[sidebar-positionend]):hover ~ #appcontent #statuspanel{
+                                  inset-inline: auto 0px !important;
+                                }
+                                #sidebar-box:not([positionend],[sidebar-positionend]):hover ~ #appcontent #statuspanel-label{
+                                  margin-inline: 0px !important;
+                                  border-left-style: solid !important;
+                                }
+                                @media -moz-pref("userchrome.autohide-sidebar.static-layout.enabled"){
+                                  #sidebar-box{
+                                    min-width: var(--uc-sidebar-width) !important;
+                                    contain: size;
+                                    box-shadow: var(--content-area-shadow);
+                                  }
+                                  #sidebar{
+                                    min-width: var(--uc-sidebar-hover-width) !important;
+                                  }
+                                  .sidebar-browser-stack{
+                                    overflow: hidden;
+                                    width: 100%;
+                                    transition: width var(--uc-autohide-transition-duration) var(--uc-autohide-transition-type) var(--uc-autohide-sidebar-delay);
+                                    direction: ltr;
+                                    &:hover{
+                                      transition-delay: 0ms;
+                                      width: var(--uc-sidebar-hover-width);
+                                    }
+                                    &:-moz-locale-dir(rtl){
+                                      transition-property: transform,width !important;
+                                    }
+                                  }
+                                  #sidebar-box[sidebar-positionend]:hover :is(#sidebar-header,#sidebar):-moz-locale-dir(ltr){
+                                    transform: translateX(0);
+                                    transition-delay: 0ms !important;
+                                  }
+                                  #sidebar-box:not([sidebar-positionend]):hover .sidebar-browser-stack:-moz-locale-dir(rtl){
+                                    transform: translateX(calc(-1 * var(--uc-sidebar-hover-width) + var(--uc-sidebar-width)));
+                                  }
+                                  #sidebar-box[sidebar-positionend]:hover > .sidebar-browser-stack:-moz-locale-dir(rtl){
+                                    transform: translateX(calc(var(--uc-sidebar-hover-width) - var(--uc-sidebar-width)));
+                                    transition-delay: 0ms !important;
+                                  }
+                                }
+                                        #sidebar-box{
+                                          --uc-sidebar-width: 60px;
+                                          --uc-sidebar-hover-width: 300px;
+                                          --uc-autohide-sidebar-delay: 0ms; /* Wait 0.6s before hiding sidebar */
+                                        }
+
+                        /* Source file https://github.com/MrOtherGuy/firefox-csshacks/tree/master/chrome/hide_tabs_toolbar_v2.css made available under Mozilla Public License v. 2.0
+                        See the above repository for updates as well as full license text. */
+
+                        /* This requires Firefox 133+ to work */
+
+                        @media -moz-pref("sidebar.verticalTabs"){
+                          #sidebar-launcher-splitter,
+                          #sidebar-main{
+                            visibility: collapse;
+                          }
+                        }
+                        @media -moz-pref("userchrome.force-window-controls-on-left.enabled"){
+                          #nav-bar > .titlebar-buttonbox-container{
+                            order: -1 !important;
+                            > .titlebar-buttonbox{
+                              flex-direction: row-reverse;
+                            }
+                          }
+                        }
+                        @media not -moz-pref("sidebar.verticalTabs"){
+                          #TabsToolbar:not([customizing]){
+                            visibility: collapse;
+                          }
+                          :root[sizemode="fullscreen"] #nav-bar > .titlebar-buttonbox-container{
+                            display: flex !important;
+                          }
+                          :root[customtitlebar] #toolbar-menubar:is([autohide=""],[autohide="true"]) ~ #nav-bar{
+                            > .titlebar-buttonbox-container{
+                              display: flex !important;
+                            }
+                            :root[sizemode="normal"] & {
+                              > .titlebar-spacer{
+                                display: flex !important;
+                              }
+                            }
+                            :root[sizemode="maximized"] & {
+                              > .titlebar-spacer[type="post-tabs"]{
+                                display: flex !important;
+                              }
+                              @media -moz-pref("userchrome.force-window-controls-on-left.enabled"),
+                                (-moz-gtk-csd-reversed-placement),
+                                (-moz-platform: macos){
+                                > .titlebar-spacer[type="post-tabs"]{
+                                  display: none !important;
+                                }
+                                > .titlebar-spacer[type="pre-tabs"]{
+                                  display: flex !important;
+                                }
+                              }
+                            }
+                          }
+                        }
+        #sidebar-header {
+          display: none !important;
+        }
+      '';
     };
     policies = {
       ExtensionSettings = builtins.listToAttrs (map mkExtension extensionIds);
     };
   };
-  stylix.targets.floorp = {
+  stylix.targets.firefox = {
     profileNames = ["default"];
     colorTheme.enable = true;
   };

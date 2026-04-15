@@ -15,7 +15,6 @@
 
   home.packages = with pkgs; [
     nix-search-cli
-    firefox
     gh
     github-desktop
     nvd

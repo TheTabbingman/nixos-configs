@@ -421,7 +421,7 @@
            Mod+Shift+E hotkey-overlay-title="Open a File Manager: dolphin" { spawn "dolphin"; }
            Alt+Space hotkey-overlay-title="Run an Application: walker" { spawn "walker"; }
            Super+Alt+L hotkey-overlay-title="Lock the Screen: dms lock" { spawn-sh "dms ipc call lock lock"; }
-           Mod+B hotkey-overlay-title="Open a Browser: Floorp" {spawn "floorp";}
+           Mod+B hotkey-overlay-title="Open a Browser: Firefox" {spawn "firefox";}
 
            // Use spawn-sh to run a shell command. Do this if you need pipes, multiple commands, etc.
            // Note: the entire command goes as a single argument. It's passed verbatim to `sh -c`.

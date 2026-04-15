@@ -37,6 +37,16 @@
     inputs.json2nix.packages.${pkgs.stdenv.hostPlatform.system}.json2nix
     libreoffice-fresh
     anki-bin
+    remmina
     chatterino2
   ];
+  xdg.desktopEntries.fat-boy = {
+    name = "Connect to fat-boy";
+    comment = "Remote Desktop to fat-boy";
+    exec = "remmina -c /home/jonah/.local/share/remmina/group_rdp_fat-boy_fat-boy.remmina";
+    terminal = false;
+    type = "Application";
+    icon = "org.remmina.Remmina";
+    categories = ["Network" "RemoteAccess"];
+  };
 }

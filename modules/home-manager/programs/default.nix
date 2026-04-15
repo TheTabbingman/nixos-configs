@@ -41,6 +41,7 @@
     chatterino2
     ungoogled-chromium
     owocr
+    mokuro
   ];
   xdg.desktopEntries.fat-boy = {
     name = "Connect to fat-boy";

@@ -40,6 +40,7 @@
     remmina
     chatterino2
     ungoogled-chromium
+    owocr
   ];
   xdg.desktopEntries.fat-boy = {
     name = "Connect to fat-boy";

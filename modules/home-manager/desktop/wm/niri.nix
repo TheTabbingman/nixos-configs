@@ -683,6 +683,7 @@
            // Mod+Shift+Space { switch-layout "prev"; }
 
            Print { screenshot; }
+           Alt+a { screenshot; }
            Ctrl+Print { screenshot-screen; }
            Alt+Print { screenshot-window; }
            Mod+Alt+Print { screenshot-window; }

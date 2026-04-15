@@ -21,9 +21,9 @@
     # home-manager
     # hms = "home-manager switch --flake ${pathFlakeLocation} && chd";
     # nix
-    nrs = "sudo nixos-rebuild switch --flake ${pathFlakeLocation} && cnd";
+    nrs = "sudo nixos-rebuild switch --flake ${pathFlakeLocation} && cnd && systemctl --user restart elephant";
     nrb = "sudo nixos-rebuild boot --flake ${pathFlakeLocation} && cnbd";
-    nrt = "sudo nixos-rebuild test --flake ${pathFlakeLocation} && ntd";
+    nrt = "sudo nixos-rebuild test --flake ${pathFlakeLocation} && ntd && systemctl --user restart elephant";
     nu = "nix flake update --flake ${pathFlakeLocation}";
     # diff
     hd = "nvd diff $(home-manager generations | sed 's/.*-> //' | head -n 2 | tail -n 1) $(home-manager generations | sed 's/.*-> //' | sed 's/ (current)//' | head -n 1)";

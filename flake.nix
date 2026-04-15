@@ -162,7 +162,7 @@
       };
   in {
     nixosConfigurations = {
-      nixos-gamer = mkNixosConfiguration "jonah" "gamer;";
+      nixos-gamer = mkNixosConfiguration "jonah" "gamer";
       nixos-vm = mkNixosConfiguration "jonah" "vm";
       nixos-laptop = mkNixosConfiguration "jonah" "laptop";
       nixos-wsl = mkNixosWSLConfiguration "jonah" "wsl";

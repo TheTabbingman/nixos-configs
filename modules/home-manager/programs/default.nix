@@ -10,7 +10,7 @@
     ./nh.nix
     ./shell.nix
     ./flatpaks.nix
-    ./firefox.nix
+    ./firefox
   ];
 
   home.packages = with pkgs; [

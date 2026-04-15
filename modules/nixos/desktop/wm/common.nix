@@ -29,6 +29,7 @@ in {
     wl-clipboard # optional: provide complete clipboard API (used by some terminal apps)
     qt6Packages.qt6ct
   ];
+  services.udisks2.enable = true;
   programs.dms-shell = {
     enable = true;
     package = inputs.dms.packages.${pkgs.stdenv.hostPlatform.system}.default;

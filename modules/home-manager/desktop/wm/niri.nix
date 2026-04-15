@@ -495,6 +495,9 @@
            Mod+Ctrl+J     { focus-monitor-down; }
            Mod+Ctrl+K     { focus-monitor-up; }
            Mod+Ctrl+L     { focus-monitor-right; }
+           Mod+Ctrl+1     { focus-monitor "DP-2"; }
+           Mod+Ctrl+2     { focus-monitor "DP-3"; }
+           Mod+Ctrl+3     { focus-monitor "HDMI-A-1"; }
 
            Mod+Shift+Ctrl+Left  { move-column-to-monitor-left; }
            Mod+Shift+Ctrl+Down  { move-column-to-monitor-down; }
@@ -504,6 +507,9 @@
            Mod+Shift+Ctrl+J     { move-column-to-monitor-down; }
            Mod+Shift+Ctrl+K     { move-column-to-monitor-up; }
            Mod+Shift+Ctrl+L     { move-column-to-monitor-right; }
+           Mod+Shift+Ctrl+1     { move-column-to-monitor "DP-2"; }
+           Mod+Shift+Ctrl+2     { move-column-to-monitor "DP-3"; }
+           Mod+Shift+Ctrl+3     { move-column-to-monitor "HDMI-A-1"; }
 
            // Alternatively, there are commands to move just a single window:
            // Mod+Shift+Ctrl+Left  { move-window-to-monitor-left; }

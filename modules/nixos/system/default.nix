@@ -48,4 +48,6 @@
       ];
     };
   };
+  hardware.keyboard.qmk.enable = true;
+  hardware.keyboard.qmk.keychronSupport = true;
 }

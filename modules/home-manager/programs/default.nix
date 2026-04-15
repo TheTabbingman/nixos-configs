@@ -39,6 +39,7 @@
     anki-bin
     remmina
     chatterino2
+    chromium
   ];
   xdg.desktopEntries.fat-boy = {
     name = "Connect to fat-boy";

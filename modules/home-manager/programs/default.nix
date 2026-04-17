@@ -42,6 +42,11 @@
     chatterino2
     ungoogled-chromium
     koreader
+    plex-desktop
+    plex-mpv-shim
+    plexamp
+    jellyfin-desktop
+    jellyfin-mpv-shim
   ];
   xdg.desktopEntries.fat-boy = {
     name = "Connect to fat-boy";

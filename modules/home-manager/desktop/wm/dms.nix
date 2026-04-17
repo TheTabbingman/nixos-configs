@@ -266,8 +266,8 @@
       launcherLogoBrightness = 0.5;
       launcherLogoContrast = 1;
       launcherLogoSizeOffset = 0;
-      fontFamily = "DejaVu Sans";
-      monoFontFamily = "DejaVu Sans Mono";
+      fontFamily = "Inter";
+      monoFontFamily = "JetBrainsMono Nerd Font";
       fontWeight = 400;
       fontScale = 1;
       notepadUseMonospace = true;

@@ -47,6 +47,7 @@
     plexamp
     jellyfin-desktop
     jellyfin-mpv-shim
+    gimp
   ];
   xdg.desktopEntries.fat-boy = {
     name = "Connect to fat-boy";

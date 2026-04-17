@@ -553,10 +553,10 @@
            // To avoid scrolling through workspaces really fast, you can use
            // the cooldown-ms property. The bind will be rate-limited to this value.
            // You can set a cooldown on any bind, but it's most useful for the wheel.
-           Mod+Ctrl+WheelScrollDown      cooldown-ms=150 { focus-workspace-down; }
-           Mod+Ctrl+WheelScrollUp        cooldown-ms=150 { focus-workspace-up; }
-           Mod+Ctrl+Shift+WheelScrollDown cooldown-ms=150 { move-column-to-workspace-down; }
-           Mod+Ctrl+Shift+WheelScrollUp   cooldown-ms=150 { move-column-to-workspace-up; }
+           Mod+WheelScrollDown      cooldown-ms=150 { focus-workspace-down; }
+           Mod+WheelScrollUp        cooldown-ms=150 { focus-workspace-up; }
+           Mod+Shift+WheelScrollDown cooldown-ms=150 { move-column-to-workspace-down; }
+           Mod+Shift+WheelScrollUp   cooldown-ms=150 { move-column-to-workspace-up; }
 
            Mod+WheelScrollRight      { focus-column-right; }
            Mod+WheelScrollLeft       { focus-column-left; }
@@ -565,10 +565,10 @@
 
            // Usually scrolling up and down with Shift in applications results in
            // horizontal scrolling; these binds replicate that.
-           Mod+WheelScrollDown      { focus-column-right; }
-           Mod+WheelScrollUp        { focus-column-left; }
-           Mod+Shift+WheelScrollDown { move-column-right; }
-           Mod+Shift+WheelScrollUp   { move-column-left; }
+           // Mod+WheelScrollDown      { focus-column-right; }
+           // Mod+WheelScrollUp        { focus-column-left; }
+           // Mod+Shift+WheelScrollDown { move-column-right; }
+           // Mod+Shift+WheelScrollUp   { move-column-left; }
 
            // Similarly, you can bind touchpad scroll "ticks".
            // Touchpad scrolling is continuous, so for these binds it is split into

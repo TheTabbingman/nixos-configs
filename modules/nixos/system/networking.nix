@@ -13,6 +13,8 @@
     "x-systemd.device-timeout=5s"
     "x-systemd.mount-timeout=5s"
     "credentials=/home/jonah/.config/smb-secrets"
+    "uid=1000"
+    "gid=100"
   ];
 in {
   # Enable networking

@@ -57,4 +57,8 @@
     icon = "org.remmina.Remmina";
     categories = ["Network" "RemoteAccess"];
   };
+  services.ollama = {
+    enable = true;
+    package = pkgs.ollama-cuda;
+  };
 }

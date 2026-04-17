@@ -26,7 +26,7 @@
     plugins = {
       linuxWallpaperEngine.enable = true;
       powerUsagePlugin.enable = true;
-      nvidiaGpuMonitor.enable = true;
+      # nvidiaGpuMonitor.enable = true; # Disabled because I currently need to make manual changes to fix it
       tailscale.enable = true;
     };
     settings = lib.mapAttrs (_: lib.mkForce) {
@@ -455,6 +455,7 @@
             "systemTray"
             "clipboard"
             "powerUsagePlugin"
+            "nvidiaGpuMonitor"
             {
               id = "memUsage";
               enabled = true;

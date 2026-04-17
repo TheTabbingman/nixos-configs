@@ -40,4 +40,5 @@
     # Optionally, you may need to select the appropriate driver version for your specific GPU.
     package = lib.mkDefault config.boot.kernelPackages.nvidiaPackages.stable;
   };
+  nixpkgs.config.cudaSupport = true;
 }

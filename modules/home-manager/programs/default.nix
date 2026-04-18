@@ -27,12 +27,7 @@
     tealdeer
     nix-inspect
     mission-center
-    fastfetch
-    htop
     pinentry-gtk2
-    compsize
-    distroshelf
-    ptyxis
     meld
     fsearch
     inputs.json2nix.packages.${pkgs.stdenv.hostPlatform.system}.json2nix

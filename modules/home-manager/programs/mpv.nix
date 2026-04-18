@@ -139,7 +139,8 @@ in {
       # Doesn't work for some reason
       # ctrl+f no-osd change-list glsl-shaders set "~~/shaders/FSRCNNX_x2_8-0-4-1.glsl"; show-text "Enabled FSRCNNX"
 
-      "CTRL+f" = "vf toggle @rife:vapoursynth=\"~~/rife.vpy\":4:4";
+      # Hard to get working on nixos
+      # "CTRL+f" = "vf toggle @rife:vapoursynth=\"~~/rife.vpy\":4:4";
 
       "RIGHT" = "seek 5";
       "LEFT" = "seek -5";

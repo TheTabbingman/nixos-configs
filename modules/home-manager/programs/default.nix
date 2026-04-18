@@ -12,6 +12,7 @@
     ./flatpaks.nix
     ./firefox
     ./owocr.nix
+    ./mpv.nix
   ];
 
   home.packages = with pkgs; [
@@ -32,7 +33,6 @@
     compsize
     distroshelf
     ptyxis
-    mpv
     meld
     fsearch
     inputs.json2nix.packages.${pkgs.stdenv.hostPlatform.system}.json2nix
@@ -48,6 +48,7 @@
     jellyfin-desktop
     jellyfin-mpv-shim
     gimp
+    ffmpeg
   ];
   xdg.desktopEntries.fat-boy = {
     name = "Connect to fat-boy";

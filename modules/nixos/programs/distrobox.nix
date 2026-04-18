@@ -9,10 +9,10 @@
   };
 
   hardware.nvidia-container-toolkit.enable = true;
-  # Have to run this command too
+  # Might have to run this command too
   # sudo nvidia-ctk cdi generate --output=/etc/cdi/nvidia.yaml
   # Example distrobox
-  # distrobox create --name bazzite-arch \
-  #   --image ghcr.io/ublue-os/bazzite-arch:latest \
+  # distrobox create --name steambox \
+  #   --image ghcr.io/ublue-os/steambox:latest \
   #   --additional-flags "--device nvidia.com/gpu=all --security-opt=label=disable"
 }

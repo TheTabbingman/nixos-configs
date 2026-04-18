@@ -44,6 +44,7 @@
     jellyfin-mpv-shim
     gimp
     ffmpeg
+    ncdu
   ];
   xdg.desktopEntries.fat-boy = {
     name = "Connect to fat-boy";

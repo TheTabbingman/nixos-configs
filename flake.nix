@@ -61,6 +61,8 @@
       url = "github:sempruijs/json2nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    dolphin-overlay.url = "github:rumboon/dolphin-overlay";
   };
 
   outputs = {
@@ -99,6 +101,9 @@
           inputs.niri.nixosModules.niri
           home-manager.nixosModules.home-manager
           inputs.dms.nixosModules.dank-material-shell
+          {
+            nixpkgs.overlays = [inputs.dolphin-overlay.overlays.default];
+          }
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;

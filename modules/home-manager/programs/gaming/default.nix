@@ -13,5 +13,7 @@
           gamemode
         ];
     })
+    ryubing
+    eden
   ];
 }

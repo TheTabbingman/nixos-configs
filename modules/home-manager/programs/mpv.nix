@@ -109,6 +109,21 @@
       cp trim.lua $out
     '';
   };
+  fsrcnnx = let
+    version = "1.1";
+  in
+    pkgs.stdenv.mkDerivation {
+      name = "fsrcnnx";
+      src = pkgs.fetchurl {
+        url = "https://github.com/igv/FSRCNN-TensorFlow/releases/download/${version}/FSRCNNX_x2_8-0-4-1.glsl";
+        hash = "sha256-6ADbxcHJUYXMgiFsWXckUz/18ogBefJW7vYA8D6Nwq4=";
+      };
+      dontUnpack = true;
+      installPhase = ''
+        mkdir -p $out
+        cp $src $out/FSRCNNX_x2_8-0-4-1.glsl
+      '';
+    };
 in {
   programs.mpv = {
     enable = true;
@@ -419,7 +434,7 @@ in {
       "CTRL+0" = "no-osd change-list glsl-shaders clr \"\"; set vf \"\"; show-text \"GLSL shaders and video filters cleared\"";
 
       # Doesn't work for some reason
-      # ctrl+f no-osd change-list glsl-shaders set "~~/shaders/FSRCNNX_x2_8-0-4-1.glsl"; show-text "Enabled FSRCNNX"
+      "ctrl+f" = "no-osd change-list glsl-shaders set \"~~/shaders/FSRCNNX_x2_8-0-4-1.glsl\"; show-text \"Enabled FSRCNNX\"";
 
       # Hard to get working on nixos
       # "CTRL+f" = "vf toggle @rife:vapoursynth=\"~~/rife.vpy\":4:4";
@@ -556,6 +571,7 @@ in {
       paths = [
         "${pkgs.anime4k}"
         "${anime4k-360p-esrgan}"
+        "${fsrcnnx}"
       ];
     };
     recursive = true;

@@ -119,6 +119,7 @@ in {
       hr-seek = true;
       volume-max = 200;
       save-position-on-quit = true;
+      vo = "gpu-next";
     };
     bindings = {
       # Optimized shaders for higher-end GPU

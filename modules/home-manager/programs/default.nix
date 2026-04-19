@@ -45,6 +45,7 @@
     gimp
     ffmpeg
     ncdu
+    z-library-desktop
   ];
   xdg.desktopEntries.fat-boy = {
     name = "Connect to fat-boy";

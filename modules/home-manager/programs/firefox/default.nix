@@ -90,6 +90,7 @@
     };
   };
 in {
+  home.packages = with pkgs; [open-in-mpv];
   programs.firefox = {
     enable = true;
     profiles.default = {

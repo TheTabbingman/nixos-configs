@@ -42,20 +42,6 @@
       cp mpv/scripts/run_websocket_server.lua $out
     '';
   };
-  anime4k = let
-    version = "4.0.1";
-  in
-    pkgs.stdenv.mkDerivation {
-      name = "anime4k";
-      src = pkgs.fetchurl {
-        url = "https://github.com/Tama47/Anime4K/releases/download/v${version}/GLSL_Mac_Linux_High-end.zip";
-        hash = "";
-      };
-      installPhase = ''
-        mkdir -p $out
-        cp shaders/ $out/shaders
-      '';
-    };
   anime4k-360p-esrgan = pkgs.stdenv.mkDerivation {
     name = "anime4k";
     src = pkgs.fetchFromGitHub {

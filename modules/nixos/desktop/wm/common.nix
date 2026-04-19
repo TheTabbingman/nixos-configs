@@ -25,6 +25,8 @@ in {
     slurp
     kdePackages.dolphin
     kdePackages.ark
+    loupe
+    identity
     unzip
     unrar
     brightnessctl

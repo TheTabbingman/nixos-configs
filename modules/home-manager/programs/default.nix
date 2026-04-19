@@ -78,6 +78,7 @@
       "application/x-rar" = "ark.desktop";
       "video/x-matroska" = "mpv.desktop";
       "video/mp4" = "mpv.desktop";
+      "image/jpeg" = "org.gnome.Loupe.desktop";
     };
   };
 }

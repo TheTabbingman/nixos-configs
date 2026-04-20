@@ -46,6 +46,7 @@
     ffmpeg
     ncdu
     z-library-desktop
+    soundconverter
   ];
   xdg.desktopEntries.fat-boy = {
     name = "Connect to fat-boy";

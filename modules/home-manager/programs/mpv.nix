@@ -110,6 +110,30 @@
         cp $src $out/FSRCNNX_x2_8-0-4-1.glsl
       '';
     };
+  SSimSuperRes = pkgs.stdenv.mkDerivation {
+    name = "SSimSuperRes";
+    src = pkgs.fetchurl {
+      url = "https://gist.github.com/igv/2364ffa6e81540f29cb7ab4c9bc05b6b/raw/15d93440d0a24fc4b8770070be6a9fa2af6f200b/SSimSuperRes.glsl";
+      hash = "sha256-qLJxFYQMYARSUEEbN14BiAACFyWK13butRckyXgVRg8=";
+    };
+    dontUnpack = true;
+    installPhase = ''
+      mkdir -p $out
+      cp $src $out/SSimSuperRes.glsl
+    '';
+  };
+  adaptive-sharpen = pkgs.stdenv.mkDerivation {
+    name = "adaptive-sharpen";
+    src = pkgs.fetchurl {
+      url = "https://gist.github.com/igv/8a77e4eb8276753b54bb94c1c50c317e/raw/572f59099cd0e3eb5e321a6da0a3d90a7382e2dc/adaptive-sharpen.glsl";
+      hash = "sha256-gn+z1mKsmpG0B16RF/5uHbwcBthZWbpxnNuVTft/uOQ=";
+    };
+    dontUnpack = true;
+    installPhase = ''
+      mkdir -p $out
+      cp $src $out/adaptive-sharpen.glsl
+    '';
+  };
 in {
   programs.mpv = {
     enable = true;
@@ -131,6 +155,8 @@ in {
       "CTRL+6" = "no-osd change-list glsl-shaders set \"~~/shaders/Anime4K_Clamp_Highlights.glsl:~~/shaders/Anime4K_Upscale_Denoise_CNN_x2_VL.glsl:~~/shaders/Anime4K_AutoDownscalePre_x2.glsl:~~/shaders/Anime4K_AutoDownscalePre_x4.glsl:~~/shaders/Anime4K_Restore_CNN_M.glsl:~~/shaders/Anime4K_Upscale_CNN_x2_M.glsl\"; show-text \"Anime4K: Mode C+A (HQ)\"";
       "CTRL+7" = "no-osd change-list glsl-shaders set \"~~/shaders/Anime4K_Restore_GAN_UUL.glsl:~~/shaders/Anime4K_Upscale_GAN_x4_UUL.glsl:~~/shaders/Anime4K_Restore_CNN_Soft_M.glsl:~~/shaders/Anime4K_Upscale_CNN_x2_M.glsl\"; show-text \"Experimental: 360p to 4k SRGAN shaders\"";
       "CTRL+8" = "script-binding toggle-anime4k-jbgyampcwu";
+      "CTRL+9" = ''no-osd change-list glsl-shaders set "~~/shaders/SSimSuperRes.glsl:~~/shaders/adaptive-sharpen.glsl"; show-text "SSimSuperRes + Adaptive Sharpen"'';
+      "CTRL+s" = ''no-osd change-list glsl-shaders set "~~/shaders/adaptive-sharpen.glsl"; show-text "adaptive-sharpen"'';
 
       # CTRL+7  set vf "@vsr:d3d11vpp=scale=2:scaling-mode=nvidia:format=nv12"; show-text "NVIDIA VSR Enabled"
       # CTRL+9 script-binding enable-vsr
@@ -138,8 +164,7 @@ in {
 
       "CTRL+0" = "no-osd change-list glsl-shaders clr \"\"; set vf \"\"; show-text \"GLSL shaders and video filters cleared\"";
 
-      # Doesn't work for some reason
-      "ctrl+f" = "no-osd change-list glsl-shaders set \"~~/shaders/FSRCNNX_x2_8-0-4-1.glsl\"; show-text \"Enabled FSRCNNX\"";
+      "CTRL+f" = ''no-osd change-list glsl-shaders set "~~/shaders/FSRCNNX_x2_8-0-4-1.glsl:~~/shaders/adaptive-sharpen.glsl"; show-text "FSRCNNX + Adaptive Sharpen"'';
 
       # Hard to get working on nixos
       # "CTRL+f" = "vf toggle @rife:vapoursynth=\"~~/rife.vpy\":4:4";
@@ -162,6 +187,8 @@ in {
         "${pkgs.anime4k}"
         "${anime4k-360p-esrgan}"
         "${fsrcnnx}"
+        "${SSimSuperRes}"
+        "${adaptive-sharpen}"
       ];
     };
     recursive = true;

@@ -101,13 +101,13 @@
     pkgs.stdenv.mkDerivation {
       name = "fsrcnnx";
       src = pkgs.fetchurl {
-        url = "https://github.com/igv/FSRCNN-TensorFlow/releases/download/${version}/FSRCNNX_x2_8-0-4-1.glsl";
-        hash = "sha256-6ADbxcHJUYXMgiFsWXckUz/18ogBefJW7vYA8D6Nwq4=";
+        url = "https://github.com/igv/FSRCNN-TensorFlow/releases/download/${version}/FSRCNNX_x2_16-0-4-1.glsl";
+        hash = "sha256-1aJKJx5dmj9/egU7FQxGCkTCWzz393CFfVfMOi4cmWU=";
       };
       dontUnpack = true;
       installPhase = ''
         mkdir -p $out
-        cp $src $out/FSRCNNX_x2_8-0-4-1.glsl
+        cp $src $out/FSRCNNX_x2_16-0-4-1.glsl
       '';
     };
   SSimSuperRes = pkgs.stdenv.mkDerivation {
@@ -144,6 +144,12 @@ in {
       volume-max = 200;
       save-position-on-quit = true;
       vo = "gpu-next";
+      ytdl-raw-options = "cookies-from-browser=firefox";
+      deband = true;
+      deband-iterations = 2;
+      deband-threshold = 35;
+      deband-range = 16;
+      deband-grain = 4;
     };
     bindings = {
       # Optimized shaders for higher-end GPU
@@ -157,14 +163,13 @@ in {
       "CTRL+8" = "script-binding toggle-anime4k-jbgyampcwu";
       "CTRL+9" = ''no-osd change-list glsl-shaders set "~~/shaders/SSimSuperRes.glsl:~~/shaders/adaptive-sharpen.glsl"; show-text "SSimSuperRes + Adaptive Sharpen"'';
       "CTRL+s" = ''no-osd change-list glsl-shaders set "~~/shaders/adaptive-sharpen.glsl"; show-text "adaptive-sharpen"'';
+      "CTRL+f" = ''no-osd change-list glsl-shaders set "~~/shaders/FSRCNNX_x2_16-0-4-1.glsl:~~/shaders/adaptive-sharpen.glsl"; show-text "FSRCNNX + Adaptive Sharpen"'';
 
       # CTRL+7  set vf "@vsr:d3d11vpp=scale=2:scaling-mode=nvidia:format=nv12"; show-text "NVIDIA VSR Enabled"
       # CTRL+9 script-binding enable-vsr
       # CTRL+h change-list vf toggle "d3d11vpp=nvidia-true-hd"; show-text "NVIDIA HDR Enabled"
 
-      "CTRL+0" = "no-osd change-list glsl-shaders clr \"\"; set vf \"\"; show-text \"GLSL shaders and video filters cleared\"";
-
-      "CTRL+f" = ''no-osd change-list glsl-shaders set "~~/shaders/FSRCNNX_x2_8-0-4-1.glsl:~~/shaders/adaptive-sharpen.glsl"; show-text "FSRCNNX + Adaptive Sharpen"'';
+      "CTRL+0" = ''no-osd change-list glsl-shaders clr ""; set vf ""; show-text "GLSL shaders and video filters cleared"'';
 
       # Hard to get working on nixos
       # "CTRL+f" = "vf toggle @rife:vapoursynth=\"~~/rife.vpy\":4:4";

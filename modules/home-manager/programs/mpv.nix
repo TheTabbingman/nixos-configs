@@ -177,6 +177,9 @@ in {
       deband-threshold = 35;
       deband-range = 16;
       deband-grain = 4;
+
+      keepaspect-window = false;
+      auto-window-resize = false;
     };
     bindings = {
       # Optimized shaders for higher-end GPU

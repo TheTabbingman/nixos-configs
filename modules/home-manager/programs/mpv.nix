@@ -1,4 +1,21 @@
 {pkgs, ...}: let
+  vsrife = pkgs.python3Packages.callPackage ./vsrife.nix {};
+  vsrifePythonEnv = pkgs.python3.withPackages (ps: [
+    ps.vapoursynth
+    vsrife
+  ]);
+  mpv-with-vs = pkgs.mpv.override {
+    mpv-unwrapped = pkgs.mpv-unwrapped.override {
+      vapoursynthSupport = true;
+    };
+    extraMakeWrapperArgs = [
+      "--prefix"
+      "PYTHONPATH"
+      ":"
+      "${vsrifePythonEnv}/${pkgs.python3.sitePackages}"
+    ];
+  };
+
   thumbfast-osc = pkgs.stdenv.mkDerivation {
     name = "thumbfast";
     src = pkgs.fetchFromGitHub {
@@ -137,6 +154,7 @@
 in {
   programs.mpv = {
     enable = true;
+    package = mpv-with-vs;
     config = {
       input-ipc-server = "/tmp/mpv-socket";
       hwdec = "auto";
@@ -172,12 +190,11 @@ in {
       "CTRL+0" = ''no-osd change-list glsl-shaders clr ""; set vf ""; show-text "GLSL shaders and video filters cleared"'';
 
       # Hard to get working on nixos
-      # "CTRL+f" = ''vf toggle @rife:vapoursynth="~~/rife.vpy":4:4'';
+      "CTRL+r" = ''vf toggle @rife:vapoursynth="~~/rife.vpy":4:4'';
 
       "RIGHT" = "seek 5";
       "LEFT" = "seek -5";
     };
-    scripts = [pkgs.mpvScripts.thumbfast];
   };
   xdg.configFile."mpv/scripts/osc.lua".source = "${thumbfast-osc}/osc.lua";
   xdg.configFile."mpv/mpv_websocket".source = "${mpv-websocket}/mpv_websocket";
@@ -185,6 +202,7 @@ in {
   xdg.configFile."mpv/scripts/AnimeAnyK.lua".source = "${animeanyk}/AnimeAnyK.lua";
   xdg.configFile."mpv/scripts/SmartCopyPaste.lua".source = "${smartCopyPaste}/SmartCopyPaste.lua";
   xdg.configFile."mpv/scripts/trim.lua".source = "${trim}/trim.lua";
+  xdg.configFile."mpv/scripts/thumbfast.lua".source = "${pkgs.mpvScripts.thumbfast}/share/mpv/scripts/thumbfast.lua";
   xdg.configFile."mpv/shaders" = {
     source = pkgs.symlinkJoin {
       name = "mpv-shaders";

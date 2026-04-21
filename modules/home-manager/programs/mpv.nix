@@ -163,6 +163,15 @@ in {
       save-position-on-quit = true;
       vo = "gpu-next";
       ytdl-raw-options = "cookies-from-browser=firefox";
+
+      # Debanding reduces banding artifacts from low-quality or compressed sources.
+      # iterations: number of passes (1-4). Higher = stronger but more GPU cost.
+      #   2 is a good balance; 4 is maximum with diminishing returns above 2.
+      # threshold: filter strength (0-4096). Higher removes more banding but risks
+      #   blurring fine detail. 35 is a reasonable default.
+      # range: how far the filter samples (1-64). 16 is standard.
+      # grain: adds dynamic noise to mask residual banding (0 = off).
+      #   Set to 0 if using a static grain shader instead.
       deband = true;
       deband-iterations = 2;
       deband-threshold = 35;

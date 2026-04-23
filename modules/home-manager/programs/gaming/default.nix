@@ -15,5 +15,6 @@
     })
     ryubing
     eden
+    cartridges
   ];
 }

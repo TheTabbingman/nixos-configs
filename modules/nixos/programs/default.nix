@@ -8,4 +8,5 @@
   environment.systemPackages = with pkgs; [
     linux-wallpaperengine
   ];
+  programs.nix-index-database.comma.enable = true;
 }

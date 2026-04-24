@@ -417,8 +417,8 @@
 
            // Suggested binds for running programs: terminal, app launcher, screen locker.
            Mod+Q hotkey-overlay-title="Open a Terminal: alacritty" { spawn "alacritty"; }
-           Mod+E hotkey-overlay-title="Open a File Manager: yazi" { spawn-sh "alacritty -e fish -i -c yazi"; }
-           Mod+Shift+E hotkey-overlay-title="Open a File Manager: dolphin" { spawn "dolphin"; }
+           Mod+E hotkey-overlay-title="Open a File Manager: dolphin" { spawn "dolphin"; }
+           Mod+Shift+E hotkey-overlay-title="Open a File Manager: yazi" { spawn-sh "alacritty -e fish -i -c yazi"; }
            Alt+Space hotkey-overlay-title="Run an Application: walker" { spawn "walker"; }
            Super+Alt+L hotkey-overlay-title="Lock the Screen: dms lock" { spawn-sh "dms ipc call lock lock"; }
            Mod+B hotkey-overlay-title="Open a Browser: Firefox" {spawn "firefox";}

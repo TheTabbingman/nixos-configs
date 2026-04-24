@@ -37,6 +37,7 @@
     chatterino2
     ungoogled-chromium
     koreader
+    calibre
     plex-desktop
     plex-mpv-shim
     plexamp
@@ -47,6 +48,7 @@
     ncdu
     z-library-desktop
     soundconverter
+    qbittorrent
   ];
   xdg.desktopEntries.fat-boy = {
     name = "Connect to fat-boy";
@@ -83,6 +85,8 @@
       "audio/x-wav" = "mpv.desktop";
       "audio/flac" = "mpv.desktop";
       "image/jpeg" = "org.gnome.Loupe.desktop";
+      "image/webp" = "org.gnome.Loupe.desktop";
+      "application/vnd.comicbook+zip" = "calibre-ebook-viewer.desktop";
     };
   };
 }

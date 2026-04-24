@@ -16,6 +16,7 @@
     "${nhModules}/default.nix"
     "${nhModules}/programs"
     "${nhModules}/programs/gaming"
+    "${nhModules}/programs/developer.nix"
     "${nhModules}/scripts"
     "${nhModules}/desktop/wm/niri.nix"
   ];

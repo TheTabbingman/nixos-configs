@@ -17,21 +17,21 @@
     name = "flownet_v4.25.pkl";
   };
 in
-  buildPythonPackage rec {
+  buildPythonPackage (finalAttrs: {
     pname = "vs-rife";
     version = "5.7.0";
-
     pyproject = true;
-    build-system = [hatchling];
 
     src = fetchFromGitHub {
       owner = "HolyWu";
       repo = "vs-rife";
-      rev = "v${version}";
+      rev = "v${finalAttrs.version}";
       hash = "sha256-uP18+IDEvTTFaYyhC4pMOTbR/yhiLUqn3/9TQw5BSDM=";
     };
 
-    propagatedBuildInputs =
+    build-system = [hatchling];
+
+    dependencies =
       [
         vapoursynth
         numpy
@@ -53,4 +53,4 @@ in
       license = licenses.mit;
       maintainers = [];
     };
-  }
+  })

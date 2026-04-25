@@ -33,6 +33,8 @@
     # other
     rm = "rm -I";
     fish-reload = "source ~/.config/fish/**/*.fish";
+    wsu = "sudo systemctl start wg-quick-wg0";
+    wsd = "sudo systemctl stop wg-quick-wg0";
   };
   programs.bash = {
     enable = true;

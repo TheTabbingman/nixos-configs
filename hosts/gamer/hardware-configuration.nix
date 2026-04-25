@@ -38,7 +38,7 @@
   fileSystems."/mnt/evo1700" = {
     device = "/dev/disk/by-uuid/34af9db7-0145-4365-b9b8-b337ac5509e8";
     fsType = "btrfs";
-    options = ["compress-force=zstd"];
+    options = ["subvol=@data" "compress-force=zstd"];
   };
 
   swapDevices = [];

@@ -18,7 +18,7 @@
   home.packages = with pkgs; [
     nix-search-cli
     gh
-    github-desktop
+    lazygit
     nvd
     alejandra
     nixd

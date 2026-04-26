@@ -73,4 +73,7 @@
   boot.kernelModules = ["uinput"];
   hardware.opentabletdriver.enable = true;
   hardware.opentabletdriver.daemon.enable = true;
+
+  services.btrfs.autoScrub.enable = true;
+  boot.loader.timeout = 0;
 }

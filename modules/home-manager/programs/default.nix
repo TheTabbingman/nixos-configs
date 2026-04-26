@@ -86,7 +86,9 @@
       "audio/flac" = "mpv.desktop";
       "image/jpeg" = "org.gnome.Loupe.desktop";
       "image/webp" = "org.gnome.Loupe.desktop";
+      "image/png" = "org.gnome.Loupe.desktop";
       "application/vnd.comicbook+zip" = "calibre-ebook-viewer.desktop";
+      "text/plain" = "nvim.desktop";
     };
   };
 }

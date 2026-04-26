@@ -18,7 +18,6 @@
   home.packages = with pkgs; [
     nix-search-cli
     gh
-    lazygit
     nvd
     alejandra
     nixd
@@ -64,6 +63,7 @@
     enable = true;
     package = pkgs.ollama-cuda;
   };
+  programs.lazygit.enable = true;
   xdg.mimeApps = {
     enable = true;
     defaultApplications = {

@@ -2,6 +2,7 @@
   flakeLocation,
   hostname,
   config,
+  pkgs,
   ...
 }: {
   home.sessionVariables = {
@@ -31,7 +32,9 @@
     nbd = "nvd diff /run/current-system/ $(ls -1d /nix/var/nix/profiles/system-* | sort -V | tail -n 1)";
     ntd = "nvd diff $(ls -1d /nix/var/nix/profiles/system-* | sort -V | tail -n 1) /run/current-system/";
     # other
-    rm = "rm -I";
+    # rm = "rm -I";
+    rm = ''echo "This is not the command you are looking for. Use tp. Or \rm (command rm on fish) if you REALLY need it."; false'';
+    tp = "${pkgs.trashy}/bin/trash put";
     fish-reload = "source ~/.config/fish/**/*.fish";
     wsu = "sudo systemctl start wg-quick-wg0";
     wsd = "sudo systemctl stop wg-quick-wg0";
@@ -47,4 +50,7 @@
     enable = true;
   };
   programs.nix-index.enable = true;
+  home.packages = with pkgs; [
+    trashy
+  ];
 }

@@ -66,4 +66,7 @@ in {
   #     autoStart = true;
   #   };
   # };
+
+  # Needed for plex-mpv-shim
+  networking.firewall.allowedTCPPorts = [3000];
 }

@@ -228,4 +228,7 @@ in {
     };
     recursive = true;
   };
+  services.plex-mpv-shim = {
+    enable = true;
+  };
 }

@@ -39,7 +39,6 @@
     koreader
     calibre
     plex-desktop
-    plex-mpv-shim
     plexamp
     jellyfin-desktop
     jellyfin-mpv-shim

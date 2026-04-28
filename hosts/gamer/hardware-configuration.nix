@@ -41,6 +41,18 @@
     options = ["subvol=@data" "compress-force=zstd"];
   };
 
+  fileSystems."/mnt/ssd" = {
+    device = "/dev/disk/by-uuid/93785aad-aa85-4ad1-8ee0-72d226decbbf";
+    fsType = "btrfs";
+    options = ["subvol=@data" "compress-force=zstd"];
+  };
+
+  fileSystems."/mnt/extra" = {
+    device = "/dev/disk/by-uuid/d473a985-d1d5-4c47-8ab7-d6556c08696e";
+    fsType = "btrfs";
+    options = ["subvol=@data" "compress-force=zstd"];
+  };
+
   swapDevices = [];
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";

@@ -22,4 +22,9 @@ in {
     configDirs
   );
   gtk.gtk4.theme = config.gtk.theme;
+
+  # Temporarily needed to fix qt6(?) applications https://github.com/NixOS/nixpkgs/issues/508998
+  home.sessionVariables = {
+    QTWEBENGINE_FORCE_USE_GBM = 0;
+  };
 }

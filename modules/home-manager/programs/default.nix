@@ -44,7 +44,7 @@
     jellyfin-mpv-shim
     gimp
     ffmpeg
-    ncdu
+    btdu
     z-library-desktop
     soundconverter
     qbittorrent

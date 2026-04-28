@@ -45,6 +45,7 @@
     gimp
     ffmpeg
     btdu
+    qdirstat
     z-library-desktop
     soundconverter
     qbittorrent

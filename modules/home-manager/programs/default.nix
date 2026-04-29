@@ -90,6 +90,7 @@
       "image/png" = "org.gnome.Loupe.desktop";
       "application/vnd.comicbook+zip" = "calibre-ebook-viewer.desktop";
       "text/plain" = "nvim.desktop";
+      "application/vnd.microsoft.portable-executable" = "protontricks-launch.desktop";
     };
   };
 }

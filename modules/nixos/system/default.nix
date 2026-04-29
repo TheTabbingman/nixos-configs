@@ -54,6 +54,7 @@
         name = "Noto Color Emoji";
       };
     };
+    targets.plymouth.enable = false;
   };
   i18n.inputMethod = {
     enable = true;
@@ -75,5 +76,4 @@
   hardware.opentabletdriver.daemon.enable = true;
 
   services.btrfs.autoScrub.enable = true;
-  boot.loader.timeout = 0;
 }

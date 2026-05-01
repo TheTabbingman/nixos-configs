@@ -13,8 +13,9 @@
           gamemode
         ];
     })
+    bottles
+    cartridges
     ryubing
     eden
-    cartridges
   ];
 }

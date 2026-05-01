@@ -7,7 +7,6 @@
 }: {
   home.sessionVariables = {
     EDITOR = "nvim";
-    # NIXPKGS_ALLOW_UNFREE = 1;
   };
 
   home.shellAliases = let

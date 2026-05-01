@@ -50,6 +50,14 @@
     "media.av1.enabled" = true;
   };
 
+  hardware.keyboard.qmk.enable = true;
+  hardware.keyboard.qmk.keychronSupport = true;
+
+  hardware.uinput.enable = true;
+  boot.kernelModules = ["uinput"];
+  hardware.opentabletdriver.enable = true;
+  hardware.opentabletdriver.daemon.enable = true;
+
   boot.tmp.useTmpfs = true;
 
   system.stateVersion = "23.11"; # Did you read the comment?

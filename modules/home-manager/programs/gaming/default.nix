@@ -17,5 +17,6 @@
     cartridges
     ryubing
     eden
+    prismlauncher
   ];
 }

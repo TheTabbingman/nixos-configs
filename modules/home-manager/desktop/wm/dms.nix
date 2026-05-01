@@ -8,6 +8,8 @@
   programs.niri.settings.layout.border.enable = false;
   programs.dank-material-shell = {
     enable = true;
+    systemd.target = "niri.service";
+    systemd.restartIfChanged = true;
     niri.includes = {
       enable = true; # Enable config includes hack. Enabled by default.
 

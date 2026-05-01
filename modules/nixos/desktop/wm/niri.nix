@@ -6,10 +6,8 @@
   imports = [
     ./common.nix
   ];
-  nixpkgs.overlays = [
-    inputs.niri.overlays.niri
-  ];
 
+  nixpkgs.overlays = [inputs.niri.overlays.niri];
   programs.niri = {
     enable = true;
     package = pkgs.niri-unstable;

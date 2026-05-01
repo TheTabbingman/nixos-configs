@@ -4,7 +4,7 @@
   ...
 }: let
   # Define your share names here
-  shares = ["6X6" "3X4" "Ramdisk" "SSD" "Family"];
+  shares = ["6X6" "3X4" "Ramdisk" "SSD" "Family" "Randy"];
 
   commonOptions = [
     "x-systemd.automount"
@@ -15,6 +15,7 @@
     "credentials=/home/jonah/.config/smb-secrets"
     "uid=1000"
     "gid=100"
+    "soft"
   ];
 in {
   # Enable networking

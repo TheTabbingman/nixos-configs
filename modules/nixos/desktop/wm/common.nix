@@ -36,13 +36,4 @@ in {
   ];
   # Needed for dolphin disk discovery
   services.udisks2.enable = true;
-
-  programs.dms-shell = {
-    enable = true;
-    package = inputs.dms.packages.${pkgs.stdenv.hostPlatform.system}.default;
-  };
-  systemd.user.services.dms = {
-    wantedBy = lib.mkForce enabledWmTargets;
-    partOf = enabledWmTargets;
-  };
 }

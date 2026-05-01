@@ -13,7 +13,7 @@
           gamemode
         ];
     })
-    bottles
+    (pkgs.bottles.override {removeWarningPopup = true;})
     cartridges
     ryubing
     eden

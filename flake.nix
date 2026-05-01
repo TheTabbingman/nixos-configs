@@ -47,8 +47,6 @@
 
     niri.url = "github:sodiboo/niri-flake";
 
-    # ashell.url = "github:MalpenZibo/ashell";
-
     dms = {
       url = "github:AvengeMedia/DankMaterialShell/stable";
       inputs.nixpkgs.follows = "nixpkgs";

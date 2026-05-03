@@ -50,6 +50,7 @@
     soundconverter
     qbittorrent
   ];
+  services.syncthing.enable = true;
   xdg.desktopEntries.fat-boy = {
     name = "Connect to fat-boy";
     comment = "Remote Desktop to fat-boy";

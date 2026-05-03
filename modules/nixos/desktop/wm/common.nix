@@ -33,6 +33,7 @@ in {
     playerctl
     wl-clipboard # optional: provide complete clipboard API (used by some terminal apps)
     qt6Packages.qt6ct
+    ulauncher6
   ];
   # Needed for dolphin disk discovery
   services.udisks2.enable = true;

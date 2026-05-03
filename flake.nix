@@ -61,6 +61,11 @@
     };
 
     dolphin-overlay.url = "github:rumboon/dolphin-overlay";
+
+    ulauncher = {
+      url = "github:Ulauncher/Ulauncher";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -100,7 +105,7 @@
           home-manager.nixosModules.home-manager
           inputs.dms.nixosModules.dank-material-shell
           {
-            nixpkgs.overlays = [inputs.dolphin-overlay.overlays.default];
+            nixpkgs.overlays = [inputs.dolphin-overlay.overlays.default inputs.ulauncher.overlays.default];
           }
           {
             home-manager.useGlobalPkgs = true;

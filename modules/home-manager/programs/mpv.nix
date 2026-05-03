@@ -208,25 +208,27 @@ in {
       "LEFT" = "seek -5";
     };
   };
-  xdg.configFile."mpv/scripts/osc.lua".source = "${thumbfast-osc}/osc.lua";
-  xdg.configFile."mpv/mpv_websocket".source = "${mpv-websocket}/mpv_websocket";
-  xdg.configFile."mpv/scripts/run_websocket_server.lua".source = "${mpv-websocket-script}/run_websocket_server.lua";
-  xdg.configFile."mpv/scripts/AnimeAnyK.lua".source = "${animeanyk}/AnimeAnyK.lua";
-  xdg.configFile."mpv/scripts/SmartCopyPaste.lua".source = "${smartCopyPaste}/SmartCopyPaste.lua";
-  xdg.configFile."mpv/scripts/trim.lua".source = "${trim}/trim.lua";
-  xdg.configFile."mpv/scripts/thumbfast.lua".source = "${pkgs.mpvScripts.thumbfast}/share/mpv/scripts/thumbfast.lua";
-  xdg.configFile."mpv/shaders" = {
-    source = pkgs.symlinkJoin {
-      name = "mpv-shaders";
-      paths = [
-        "${pkgs.anime4k}"
-        "${anime4k-360p-esrgan}"
-        "${fsrcnnx}"
-        "${SSimSuperRes}"
-        "${adaptive-sharpen}"
-      ];
+  xdg.configFile = {
+    "mpv/scripts/osc.lua".source = "${thumbfast-osc}/osc.lua";
+    "mpv/mpv_websocket".source = "${mpv-websocket}/mpv_websocket";
+    "mpv/scripts/run_websocket_server.lua".source = "${mpv-websocket-script}/run_websocket_server.lua";
+    "mpv/scripts/AnimeAnyK.lua".source = "${animeanyk}/AnimeAnyK.lua";
+    "mpv/scripts/SmartCopyPaste.lua".source = "${smartCopyPaste}/SmartCopyPaste.lua";
+    "mpv/scripts/trim.lua".source = "${trim}/trim.lua";
+    "mpv/scripts/thumbfast.lua".source = "${pkgs.mpvScripts.thumbfast}/share/mpv/scripts/thumbfast.lua";
+    "mpv/shaders" = {
+      source = pkgs.symlinkJoin {
+        name = "mpv-shaders";
+        paths = [
+          "${pkgs.anime4k}"
+          "${anime4k-360p-esrgan}"
+          "${fsrcnnx}"
+          "${SSimSuperRes}"
+          "${adaptive-sharpen}"
+        ];
+      };
+      recursive = true;
     };
-    recursive = true;
   };
   services.plex-mpv-shim = {
     enable = true;

@@ -15,6 +15,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     nix-index-database = {
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -104,6 +109,7 @@
           inputs.niri.nixosModules.niri
           home-manager.nixosModules.home-manager
           inputs.dms.nixosModules.dank-material-shell
+          inputs.sops-nix.nixosModules.sops
           {
             nixpkgs.overlays = [inputs.dolphin-overlay.overlays.default inputs.ulauncher.overlays.default];
           }
@@ -118,6 +124,7 @@
                 inputs.dms.homeModules.niri
                 inputs.dms-plugin-registry.modules.default
                 inputs.nix-index-database.homeModules.default
+                inputs.sops-nix.homeManagerModules.sops
               ];
             };
             home-manager.extraSpecialArgs = {

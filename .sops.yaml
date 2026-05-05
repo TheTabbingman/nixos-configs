@@ -1,0 +1,9 @@
+keys:
+  - &admin_jonah age1szj0877c99k4wztvqsdwzz9xn483npz4acsljhxj7h4n6e9cluzqwpcprt
+  - &host_gamer age1nym8urx6ejzsmqrhw3hgysc5etgmh6p4utrupcywxw73el4nq4jqke6wye
+creation_rules:
+  - path_regex: secrets/[^/]+\.(yaml|json|env|ini)$
+    key_groups:
+    - age:
+      - *admin_jonah
+      - *host_gamer

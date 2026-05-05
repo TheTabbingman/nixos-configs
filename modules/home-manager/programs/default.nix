@@ -13,6 +13,7 @@
     ./firefox
     ./owocr.nix
     ./mpv.nix
+    ./sops-nix.nix
   ];
 
   home.packages = with pkgs; [

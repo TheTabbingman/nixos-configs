@@ -44,6 +44,22 @@
             command = "/run/current-system/sw/bin/systemctl stop wg-quick-wg1";
             options = ["NOPASSWD"];
           }
+          {
+            command = "/run/current-system/sw/bin/systemctl start openvpn-chicago";
+            options = ["NOPASSWD"];
+          }
+          {
+            command = "/run/current-system/sw/bin/systemctl stop openvpn-chicago";
+            options = ["NOPASSWD"];
+          }
+          {
+            command = "/run/current-system/sw/bin/systemctl start openvpn-portugal";
+            options = ["NOPASSWD"];
+          }
+          {
+            command = "/run/current-system/sw/bin/systemctl stop openvpn-portugal";
+            options = ["NOPASSWD"];
+          }
         ];
       }
     ];

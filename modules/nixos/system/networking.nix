@@ -7,9 +7,9 @@
   # Enable networking
   networking.networkmanager = {
     enable = true;
-    # plugins = with pkgs; [
-    #   networkmanager-openvpn
-    # ];
+    plugins = with pkgs; [
+      networkmanager-openvpn
+    ];
   };
 
   services.tailscale.enable = true;
@@ -87,13 +87,20 @@
     };
   };
 
-  # services.openvpn.servers = {
-  #   windscribe = {
-  #     config = ''config /home/jonah/openvpn/Windscribe-Chicago-Wrigley.ovpn'';
-  #     authUserPass = "/home/jonah/openvpn/credentials";
-  #     autoStart = true;
-  #   };
-  # };
+  services.openvpn.servers = {
+    chicago = {
+      config = ''config /home/jonah/openvpn/Windscribe-Chicago-Wrigley.ovpn'';
+      authUserPass = "/home/jonah/openvpn/credentials";
+      autoStart = false;
+      updateResolvConf = true;
+    };
+    portugal = {
+      config = ''config /home/jonah/openvpn/Windscribe-Lisbon-Bairro.ovpn'';
+      authUserPass = "/home/jonah/openvpn/credentials";
+      autoStart = false;
+      updateResolvConf = true;
+    };
+  };
 
   # Needed for plex-mpv-shim
   networking.firewall.allowedTCPPorts = [3000];

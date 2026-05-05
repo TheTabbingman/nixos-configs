@@ -36,12 +36,20 @@
       rm = ''echo "This is not the command you are looking for. Use tp. Or \rm (command rm on fish) if you REALLY need it."; false'';
       tp = "${pkgs.trashy}/bin/trash put";
       fish-reload = "source ~/.config/fish/**/*.fish";
+      # Stop all vpn
+      vpnoff = "wcd && wpd && ocd && opd";
       # Windscribe chicago
-      wcu = "sudo systemctl start wg-quick-wg0";
+      wcu = "vpnoff && sudo systemctl start wg-quick-wg0";
       wcd = "sudo systemctl stop wg-quick-wg0";
       # Windscribe portugal
-      wpu = "sudo systemctl start wg-quick-wg1";
+      wpu = "vpnoff && sudo systemctl start wg-quick-wg1";
       wpd = "sudo systemctl stop wg-quick-wg1";
+      # Openvpn chicago
+      ocu = "vpnoff && sudo systemctl start openvpn-chicago";
+      ocd = "sudo systemctl stop openvpn-chicago";
+      # Openvpn portugal
+      opu = "vpnoff && sudo systemctl start openvpn-portugal";
+      opd = "sudo systemctl stop openvpn-portugal";
     };
     packages = with pkgs; [
       trashy

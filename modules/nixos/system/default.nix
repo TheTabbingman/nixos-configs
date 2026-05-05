@@ -17,6 +17,7 @@
     ./users.nix
     ./zram.nix
     ./power.nix
+    ./ssh.nix
   ];
   services.tailscale.enable = true;
   stylix = {

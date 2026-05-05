@@ -3,22 +3,7 @@
   lib,
   config,
   ...
-}: let
-  # Define your share names here
-  shares = ["6X6" "3X4" "Ramdisk" "SSD" "Family" "Randy"];
-
-  commonOptions = [
-    "x-systemd.automount"
-    "noauto"
-    "x-systemd.idle-timeout=60"
-    "x-systemd.device-timeout=5s"
-    "x-systemd.mount-timeout=5s"
-    "credentials=/home/jonah/.config/smb-secrets"
-    "uid=1000"
-    "gid=100"
-    "soft"
-  ];
-in {
+}: {
   # Enable networking
   networking.networkmanager = {
     enable = true;
@@ -37,11 +22,27 @@ in {
   services.resolved.enable = true;
 
   # This generates a fileSystems block for every share in the list
-  fileSystems = lib.genAttrs (map (share: "/mnt/share/fat-boy/${share}") shares) (mountPoint: {
-    device = "//fat-boy/${lib.last (lib.splitString "/" mountPoint)}";
-    fsType = "cifs";
-    options = commonOptions;
-  });
+  fileSystems = let
+    # Define your share names here
+    shares = ["6X6" "3X4" "Ramdisk" "SSD" "Family" "Randy"];
+
+    commonOptions = [
+      "x-systemd.automount"
+      "noauto"
+      "x-systemd.idle-timeout=60"
+      "x-systemd.device-timeout=5s"
+      "x-systemd.mount-timeout=5s"
+      "credentials=/home/jonah/.config/smb-secrets"
+      "uid=1000"
+      "gid=100"
+      "soft"
+    ];
+  in
+    lib.genAttrs (map (share: "/mnt/share/fat-boy/${share}") shares) (mountPoint: {
+      device = "//fat-boy/${lib.last (lib.splitString "/" mountPoint)}";
+      fsType = "cifs";
+      options = commonOptions;
+    });
 
   sops.secrets."windscribe/chicago/private-key" = {};
   sops.secrets."windscribe/chicago/preshared-key" = {};

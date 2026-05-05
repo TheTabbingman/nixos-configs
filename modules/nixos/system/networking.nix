@@ -1,6 +1,7 @@
 {
   pkgs,
   lib,
+  config,
   ...
 }: let
   # Define your share names here
@@ -42,16 +43,18 @@ in {
     options = commonOptions;
   });
 
+  sops.secrets."windscribe/chicago/private-key" = {};
+  sops.secrets."windscribe/chicago/preshared-key" = {};
   networking.wg-quick.interfaces = {
     wg0 = {
       autostart = false;
       address = ["100.127.13.215/32"];
       dns = ["10.255.255.3"];
-      privateKeyFile = "/home/jonah/wireguard-keys/private.key";
+      privateKeyFile = config.sops.secrets."windscribe/chicago/private-key".path;
       peers = [
         {
           publicKey = "5LYbbr320XMoXPrLsZex+2cDAMUOnzX5Htpcgb4Uc1c=";
-          presharedKeyFile = "/home/jonah/wireguard-keys/preshared.key";
+          presharedKeyFile = config.sops.secrets."windscribe/chicago/preshared-key".path;
           allowedIPs = ["0.0.0.0/0"];
           endpoint = "ord-323-wg.whiskergalaxy.com:443";
           persistentKeepalive = 25;

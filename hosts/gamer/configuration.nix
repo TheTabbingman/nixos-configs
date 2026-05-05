@@ -18,6 +18,7 @@
     "${nixosModules}/programs"
     "${nixosModules}/programs/gaming"
     "${nixosModules}/desktop/wm/niri.nix"
+    "${nixosModules}/desktop/wm/hyprland.nix"
   ];
 
   environment.systemPackages = with pkgs; [

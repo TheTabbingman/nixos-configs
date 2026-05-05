@@ -20,15 +20,15 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # hyprland.url = "github:hyprwm/Hyprland";
+    hyprland.url = "github:hyprwm/Hyprland";
     # split-monitor-workspaces = {
     #   url = "github:Duckonaut/split-monitor-workspaces";
     #   inputs.hyprland.follows = "hyprland";
     # };
-    # hyprland-plugins = {
-    #   url = "github:hyprwm/hyprland-plugins";
-    #   inputs.hyprland.follows = "hyprland";
-    # };
+    hyprland-plugins = {
+      url = "github:hyprwm/hyprland-plugins";
+      inputs.hyprland.follows = "hyprland";
+    };
 
     stylix = {
       url = "github:nix-community/stylix";
@@ -39,11 +39,11 @@
 
     nix-alien.url = "github:thiagokokada/nix-alien";
 
-    elephant.url = "github:abenz1267/elephant";
-    walker = {
-      url = "github:abenz1267/walker";
-      inputs.elephant.follows = "elephant";
-    };
+    # elephant.url = "github:abenz1267/elephant";
+    # walker = {
+    #   url = "github:abenz1267/walker";
+    #   inputs.elephant.follows = "elephant";
+    # };
 
     niri.url = "github:sodiboo/niri-flake";
 

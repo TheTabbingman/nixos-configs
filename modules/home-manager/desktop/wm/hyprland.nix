@@ -6,10 +6,10 @@
 }: {
   imports = [
     ./common.nix
-    ./hyprlock.nix
+    # ./hyprlock.nix
   ];
-  services.hypridle.enable = true;
-  services.hyprpolkitagent.enable = true;
+  # services.hypridle.enable = true;
+  # services.hyprpolkitagent.enable = true;
   wayland.windowManager.hyprland = {
     enable = true;
     package = null;
@@ -19,6 +19,7 @@
       inputs.hyprland-plugins.packages.${pkgs.stdenv.hostPlatform.system}.hyprbars
     ];
     settings = {
+      source = "~/.config/hypr/dms/outputs.conf";
       # This is an example Hyprland config file.
       # Refer to the wiki for more information.
       # https://wiki.hyprland.org/Configuring/
@@ -35,7 +36,9 @@
       ################
 
       # See https://wiki.hyprland.org/Configuring/Monitors/
-      monitor = ",preferred,auto,1";
+      # monitor = ",preferred,auto,1";
+
+      "workspace" = "1, monitor:desc:AOC Q27G3XMN 1APQBJA000941";
 
       ###################
       ### MY PROGRAMS ###
@@ -44,7 +47,7 @@
       # See https://wiki.hyprland.org/Configuring/Keywords/
 
       # Set programs that you use
-      "$terminal" = "kitty";
+      "$terminal" = "alacritty";
       "$fileManager" = "dolphin";
       "$menu" = "ulauncher-toggle";
 
@@ -69,7 +72,9 @@
       env = [
         "XCURSOR_SIZE,24"
         "HYPRCURSOR_SIZE,24"
-        "AQ_DRM_DEVICES,/dev/dri/intel-igpu:/dev/dri/nvidia-dgpu"
+        # "AQ_DRM_DEVICES,/dev/dri/intel-igpu:/dev/dri/nvidia-dgpu"
+        "LIBVA_DRIVER_NAME,nvidia"
+        "__GLX_VENDOR_LIBRARY_NAME,nvidia"
       ];
 
       #####################
@@ -180,7 +185,7 @@
       # See https://wiki.hyprland.org/Configuring/Dwindle-Layout/ for more
       dwindle = [
         {
-          pseudotile = true; # Master switch for pseudotiling. Enabling is bound to mainMod + P in the keybinds section below
+          # pseudotile = true; # Master switch for pseudotiling. Enabling is bound to mainMod + P in the keybinds section below
           preserve_split = true; # You probably want this
         }
       ];
@@ -225,6 +230,7 @@
           follow_mouse = 1;
 
           sensitivity = 0; # -1.0 - 1.0, 0 means no modification.
+          accel_profile = "flat";
 
           touchpad = [
             {
@@ -266,7 +272,7 @@
         "$mainMod, V, togglefloating,"
         "alt, space, exec, $menu"
         "$mainMod, P, pseudo, # dwindle"
-        "$mainMod, t, togglesplit, # dwindle"
+        # "$mainMod, t, togglesplit, # dwindle"
 
         # Move focus with mainMod + arrow keys
         "$mainMod, left, movefocus, l"

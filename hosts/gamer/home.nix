@@ -19,6 +19,7 @@
     "${nhModules}/programs/developer.nix"
     "${nhModules}/scripts"
     "${nhModules}/desktop/wm/niri.nix"
+    "${nhModules}/desktop/wm/hyprland.nix"
   ];
 
   home.packages = with pkgs; [

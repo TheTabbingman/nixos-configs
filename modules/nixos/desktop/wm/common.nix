@@ -4,12 +4,7 @@
   config,
   lib,
   ...
-}: let
-  # Create a list of targets based on enabled WMs
-  enabledWmTargets =
-    (lib.optionals config.programs.hyprland.enable ["hyprland-session.target"])
-    ++ (lib.optionals config.programs.niri.enable ["niri.service"]);
-in {
+}: {
   imports = [
     ./dms.nix
   ];

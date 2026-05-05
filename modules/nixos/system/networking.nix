@@ -21,6 +21,12 @@
   ];
   services.resolved.enable = true;
 
+  sops.secrets."fat-boy-smb-credentials/username" = {};
+  sops.secrets."fat-boy-smb-credentials/password" = {};
+  sops.templates."smb-secrets".content = ''
+    username=${config.sops.placeholder."fat-boy-smb-credentials/username"}
+    password=${config.sops.placeholder."fat-boy-smb-credentials/password"}
+  '';
   # This generates a fileSystems block for every share in the list
   fileSystems = let
     # Define your share names here
@@ -32,7 +38,7 @@
       "x-systemd.idle-timeout=60"
       "x-systemd.device-timeout=5s"
       "x-systemd.mount-timeout=5s"
-      "credentials=/home/jonah/.config/smb-secrets"
+      "credentials=${config.sops.templates."smb-secrets".path}"
       "uid=1000"
       "gid=100"
       "soft"

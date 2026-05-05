@@ -1,4 +1,8 @@
-{hostname, ...}: {
+{
+  hostname,
+  pkgs,
+  ...
+}: {
   networking.hostName = hostname; # Define your hostname.
 
   nix = {
@@ -16,7 +20,32 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-  security.sudo.extraConfig = ''
-    Defaults pwfeedback
-  '';
+  security.sudo = {
+    extraConfig = ''
+      Defaults pwfeedback
+    '';
+    extraRules = [
+      {
+        groups = ["wheel"];
+        commands = [
+          {
+            command = "/run/current-system/sw/bin/systemctl start wg-quick-wg0";
+            options = ["NOPASSWD"];
+          }
+          {
+            command = "/run/current-system/sw/bin/systemctl stop wg-quick-wg0";
+            options = ["NOPASSWD"];
+          }
+          {
+            command = "/run/current-system/sw/bin/systemctl start wg-quick-wg1";
+            options = ["NOPASSWD"];
+          }
+          {
+            command = "/run/current-system/sw/bin/systemctl stop wg-quick-wg1";
+            options = ["NOPASSWD"];
+          }
+        ];
+      }
+    ];
+  };
 }

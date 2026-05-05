@@ -36,8 +36,12 @@
       rm = ''echo "This is not the command you are looking for. Use tp. Or \rm (command rm on fish) if you REALLY need it."; false'';
       tp = "${pkgs.trashy}/bin/trash put";
       fish-reload = "source ~/.config/fish/**/*.fish";
-      wsu = "sudo systemctl start wg-quick-wg0";
-      wsd = "sudo systemctl stop wg-quick-wg0";
+      # Windscribe chicago
+      wcu = "sudo systemctl start wg-quick-wg0";
+      wcd = "sudo systemctl stop wg-quick-wg0";
+      # Windscribe portugal
+      wpu = "sudo systemctl start wg-quick-wg1";
+      wpd = "sudo systemctl stop wg-quick-wg1";
     };
     packages = with pkgs; [
       trashy

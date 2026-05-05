@@ -4,7 +4,7 @@
     isNormalUser = true;
     hashedPasswordFile = config.sops.secrets.jonah-password.path;
     description = "Jonah";
-    extraGroups = ["networkmanager" "wheel" "gamemode" "i2c"];
+    extraGroups = ["networkmanager" "wheel" "gamemode"];
   };
 
   # Enable automatic login for the user.

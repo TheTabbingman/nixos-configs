@@ -1,6 +1,7 @@
 {
   pkgs,
   inputs,
+  config,
   ...
 }: let
   extensionIds = [
@@ -93,6 +94,7 @@ in {
   home.packages = with pkgs; [open-in-mpv];
   programs.firefox = {
     enable = true;
+    configPath = "${config.xdg.configHome}/mozilla/firefox";
     profiles.default = {
       extensions.force = true;
       settings = {

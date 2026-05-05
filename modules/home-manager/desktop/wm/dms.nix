@@ -30,6 +30,7 @@
       powerUsagePlugin.enable = true;
       # nvidiaGpuMonitor.enable = true; # Disabled because I currently need to make manual changes to fix it
       tailscale.enable = true;
+      dankDesktopWeather.enable = true;
     };
     settings = lib.mapAttrs (_: lib.mkForce) {
       # currentThemeName = "orange";
@@ -497,7 +498,7 @@
       ];
       desktopClockEnabled = false;
       desktopClockStyle = "analog";
-      desktopClockTransparency = 0.8;
+      desktopClockTransparency = 0.0;
       desktopClockColorMode = "primary";
       desktopClockCustomColor = {
         r = 1;
@@ -513,8 +514,8 @@
       desktopClockShowDate = true;
       desktopClockShowAnalogNumbers = false;
       desktopClockShowAnalogSeconds = true;
-      sktopClockWidth = 280;
-      desktopClockHeight = 180;
+      desktopClockWidth = 400;
+      desktopClockHeight = 240;
       desktopClockDisplayPreferences = [
         "all"
       ];
@@ -556,7 +557,38 @@
       systemMonitorVariants = [];
       desktopWidgetPositions = {};
       desktopWidgetGridSettings = {};
-      desktopWidgetInstances = [];
+      desktopWidgetInstances = [
+        {
+          id = "dw_1777944613495_yqji19lui";
+          widgetType = "desktopClock";
+          name = "Desktop Clock";
+          enabled = true;
+          config = {
+            style = "digital";
+            transparency = 0;
+            colorMode = "primary";
+            customColor = "#ffffff";
+            showDate = true;
+            showAnalogNumbers = false;
+            showAnalogSeconds = true;
+            displayPreferences = [
+              "all"
+            ];
+            showOnOverview = false;
+            showDigitalSeconds = true;
+            showOnOverlay = false;
+            syncPositionAcrossScreens = true;
+          };
+          positions = {
+            _synced = {
+              width = 400;
+              height = 240;
+              x = 0.421875;
+              y = 0.5277778;
+            };
+          };
+        }
+      ];
       desktopWidgetGroups = [];
       builtInPluginSettings = {
         dms_settings_search = {

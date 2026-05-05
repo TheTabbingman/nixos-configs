@@ -46,7 +46,7 @@
       # Set programs that you use
       "$terminal" = "kitty";
       "$fileManager" = "dolphin";
-      "$menu" = "walker";
+      "$menu" = "ulauncher-toggle";
 
       #################
       ### AUTOSTART ###

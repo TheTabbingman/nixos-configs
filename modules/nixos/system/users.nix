@@ -1,9 +1,10 @@
-{...}: {
-  # Define a user account. Don't forget to set a password with ‘passwd’.
+{config, ...}: {
+  sops.secrets.jonah-password.neededForUsers = true;
   users.users.jonah = {
     isNormalUser = true;
+    hashedPasswordFile = config.sops.secrets.jonah-password.path;
     description = "Jonah";
-    extraGroups = ["networkmanager" "wheel" "gamemode"];
+    extraGroups = ["networkmanager" "wheel" "gamemode" "i2c"];
   };
 
   # Enable automatic login for the user.

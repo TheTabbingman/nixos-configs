@@ -12,9 +12,9 @@
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
-  boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" ];
+  boot.initrd.availableKernelModules = ["xhci_pci" "ahci" "nvme" "usb_storage" "sd_mod" "rtsx_pci_sdmmc"];
   boot.initrd.kernelModules = [];
-  boot.kernelModules = [ "kvm-intel" ];
+  boot.kernelModules = ["kvm-intel"];
   boot.extraModulePackages = [];
 
   fileSystems."/" = {
@@ -22,11 +22,17 @@
     fsType = "btrfs";
     options = ["subvol=@" "compress-force=zstd"];
   };
-  
-  fileSystems."/home" = { 
+
+  fileSystems."/nix" = {
     device = "/dev/disk/by-uuid/22e530c7-a48f-40e8-a474-0c2ca3a91825";
     fsType = "btrfs";
-    options = [ "subvol=@home" "compress-force=zstd" ];
+    options = ["subvol=@nix" "compress-force=zstd"];
+  };
+
+  fileSystems."/home" = {
+    device = "/dev/disk/by-uuid/22e530c7-a48f-40e8-a474-0c2ca3a91825";
+    fsType = "btrfs";
+    options = ["subvol=@home" "compress-force=zstd"];
   };
 
   fileSystems."/boot" = {

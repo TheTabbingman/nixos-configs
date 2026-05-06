@@ -15,6 +15,7 @@
       "/var/lib/nixos"
       "/var/lib/systemd/coredump"
       "/etc/NetworkManager/system-connections"
+      "/var/db/sudo/lectured"
       {
         directory = "/var/lib/colord";
         user = "colord";

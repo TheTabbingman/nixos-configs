@@ -16,6 +16,11 @@
       "/var/lib/systemd/coredump"
       "/etc/NetworkManager/system-connections"
       "/var/db/sudo/lectured"
+      "/var/lib/tailscale"
+      "/var/lib/btrfs"
+      "/var/lib/regreet/state.toml"
+      "/var/lib/upower"
+      "/var/lib/waydroid"
       {
         directory = "/var/lib/colord";
         user = "colord";

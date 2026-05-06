@@ -109,13 +109,13 @@
         modules = [
           ./hosts/${hostname}/configuration.nix
           inputs.impermanence.nixosModules.impermanence
+          inputs.sops-nix.nixosModules.sops
+          home-manager.nixosModules.home-manager
           inputs.nix-index-database.nixosModules.nix-index
           inputs.nix-flatpak.nixosModules.nix-flatpak
           inputs.stylix.nixosModules.stylix
           inputs.niri.nixosModules.niri
-          home-manager.nixosModules.home-manager
           inputs.dms.nixosModules.dank-material-shell
-          inputs.sops-nix.nixosModules.sops
           {
             nixpkgs.overlays = [inputs.dolphin-overlay.overlays.default inputs.ulauncher.overlays.default];
           }
@@ -125,12 +125,12 @@
             home-manager.users.${username} = {
               imports = [
                 ./hosts/${hostname}/home.nix
+                inputs.sops-nix.homeManagerModules.sops
                 inputs.nix-flatpak.homeManagerModules.nix-flatpak
-                inputs.dms.homeModules.dank-material-shell
                 inputs.dms.homeModules.niri
+                inputs.dms.homeModules.dank-material-shell
                 inputs.dms-plugin-registry.modules.default
                 inputs.nix-index-database.homeModules.default
-                inputs.sops-nix.homeManagerModules.sops
               ];
             };
             home-manager.extraSpecialArgs = {

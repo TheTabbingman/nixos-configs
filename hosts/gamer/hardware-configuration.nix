@@ -42,6 +42,12 @@
     options = ["subvol=@home" "compress-force=zstd"];
   };
 
+  fileSystems."/home/jonah/.cache" = {
+    device = "/dev/disk/by-uuid/a0a31b91-438b-46f9-bbaf-3c15bbc390e5";
+    fsType = "btrfs";
+    options = ["subvol=@jonahcache" "compress-force=zstd"];
+  };
+
   fileSystems."/boot" = {
     device = "/dev/disk/by-uuid/125C-922E";
     fsType = "vfat";

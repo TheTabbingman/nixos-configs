@@ -14,6 +14,7 @@
 
   imports = [
     "${nhModules}/default.nix"
+    "${nhModules}/system"
     "${nhModules}/programs"
     "${nhModules}/programs/gaming"
     "${nhModules}/programs/developer.nix"

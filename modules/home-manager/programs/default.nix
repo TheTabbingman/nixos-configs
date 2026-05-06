@@ -13,7 +13,6 @@
     ./firefox
     ./owocr.nix
     ./mpv.nix
-    ./sops-nix.nix
     ./ssh.nix
   ];
 

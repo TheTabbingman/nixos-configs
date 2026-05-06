@@ -19,7 +19,6 @@
 
   home.packages = with pkgs; [
     nix-search-cli
-    gh
     nvd
     alejandra
     nixd

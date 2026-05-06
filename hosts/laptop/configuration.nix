@@ -132,6 +132,7 @@
 
   hardware.nvidia = {
     open = false;
+    package = config.boot.kernelPackages.nvidiaPackages.legacy_580;
     prime = {
       # Make sure to use the correct Bus ID values for your system!
       intelBusId = "PCI:0:2:0";

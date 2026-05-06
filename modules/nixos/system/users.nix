@@ -1,4 +1,5 @@
 {config, ...}: {
+  users.mutableUsers = false;
   sops.secrets.jonah-password.neededForUsers = true;
   users.users.jonah = {
     isNormalUser = true;

@@ -18,7 +18,7 @@
       "/var/db/sudo/lectured"
       "/var/lib/tailscale"
       "/var/lib/btrfs"
-      "/var/lib/regreet/state.toml"
+      "/var/lib/regreet"
       "/var/lib/upower"
       "/var/lib/waydroid"
       {

@@ -14,6 +14,7 @@
     ./owocr.nix
     ./mpv.nix
     ./sops-nix.nix
+    ./ssh.nix
   ];
 
   home.packages = with pkgs; [

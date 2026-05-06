@@ -18,7 +18,6 @@
       "/var/db/sudo/lectured"
       "/var/lib/tailscale"
       "/var/lib/btrfs"
-      "/var/lib/regreet"
       "/var/lib/upower"
       "/var/lib/waydroid"
       {
@@ -30,6 +29,7 @@
     ];
     files = [
       "/etc/machine-id"
+      "/var/lib/regreet/state.toml"
       # {
       #   file = "/var/keys/secret_file";
       #   parentDirectory = {mode = "u=rwx,g=,o=";};

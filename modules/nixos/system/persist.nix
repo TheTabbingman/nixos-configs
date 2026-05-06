@@ -3,7 +3,12 @@
     enable = true; # NB: Defaults to true, not needed
     hideMounts = true;
     directories = [
-      "/etc/nixos"
+      {
+        directory = "/etc/nixos";
+        user = "jonah";
+        group = "users";
+        mode = "u=rwx,g=r,o=";
+      }
       "/etc/ssh"
       "/var/log"
       "/var/lib/bluetooth"

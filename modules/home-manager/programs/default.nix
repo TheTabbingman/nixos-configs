@@ -33,7 +33,7 @@
     fsearch
     inputs.json2nix.packages.${pkgs.stdenv.hostPlatform.system}.json2nix
     libreoffice-fresh
-    anki-bin
+    anki
     remmina
     chatterino2
     ungoogled-chromium

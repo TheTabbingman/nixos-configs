@@ -29,6 +29,13 @@
     options = ["subvol=@nix" "compress-force=zstd"];
   };
 
+  fileSystems."/persist" = {
+    device = "/dev/disk/by-uuid/a0a31b91-438b-46f9-bbaf-3c15bbc390e5";
+    neededForBoot = true;
+    fsType = "btrfs";
+    options = ["subvol=@persist" "compress-force=zstd"];
+  };
+
   fileSystems."/home" = {
     device = "/dev/disk/by-uuid/a0a31b91-438b-46f9-bbaf-3c15bbc390e5";
     fsType = "btrfs";

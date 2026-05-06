@@ -19,6 +19,7 @@
     ./power.nix
     ./ssh.nix
     ./sops-nix.nix
+    ./persist.nix
   ];
   services.tailscale.enable = true;
   stylix = {

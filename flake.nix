@@ -4,6 +4,11 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.11";
+    impermanence = {
+      url = "github:nix-community/impermanence";
+      inputs.nixpkgs.follows = "";
+      inputs.home-manager.follows = "";
+    };
 
     # nixos-wsl = {
     #   url = "github:nix-community/NixOS-WSL/main";
@@ -103,6 +108,7 @@
         };
         modules = [
           ./hosts/${hostname}/configuration.nix
+          inputs.impermanence.nixosModules.impermanence
           inputs.nix-index-database.nixosModules.nix-index
           inputs.nix-flatpak.nixosModules.nix-flatpak
           inputs.stylix.nixosModules.stylix

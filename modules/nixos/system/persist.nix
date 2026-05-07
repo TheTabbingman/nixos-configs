@@ -20,6 +20,7 @@
       "/var/lib/btrfs"
       "/var/lib/upower"
       "/var/lib/waydroid"
+      "/root/.cache/nix" # Needed so it doesn't reclone repos on every boot
       {
         directory = "/var/lib/colord";
         user = "colord";

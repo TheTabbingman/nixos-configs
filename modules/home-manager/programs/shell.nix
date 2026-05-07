@@ -34,7 +34,7 @@
       # other
       # rm = "rm -I";
       rm = ''echo "This is not the command you are looking for. Use tp. Or \rm (command rm on fish) if you REALLY need it."; false'';
-      tp = "${pkgs.trashy}/bin/trash put";
+      tp = "${pkgs.trash-cli}/bin/trash-put";
       fish-reload = "source ~/.config/fish/**/*.fish";
       # Stop all vpn
       vpnoff = "wcd && wpd && ocd && opd";
@@ -52,7 +52,7 @@
       opd = "sudo systemctl stop openvpn-portugal";
     };
     packages = with pkgs; [
-      trashy
+      trash-cli
     ];
   };
   programs = {

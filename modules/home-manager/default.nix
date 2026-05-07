@@ -2,6 +2,7 @@
   config,
   pkgs,
   inputs,
+  flakeLocation,
   ...
 }: let
   configDirs = builtins.attrNames (builtins.readDir ../../dotfiles/.config);
@@ -16,7 +17,7 @@ in {
     map (dir: {
       name = ".config/${dir}";
       value = {
-        source = config.lib.file.mkOutOfStoreSymlink "/etc/nixos/dotfiles/.config/${dir}";
+        source = config.lib.file.mkOutOfStoreSymlink "${flakeLocation}/dotfiles/.config/${dir}";
       };
     })
     configDirs

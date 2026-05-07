@@ -13,6 +13,10 @@ in {
         "openvpn"
         "persist"
         ".local/state"
+        ".mozilla/native-messaging-hosts"
+        ".ollama"
+        ".steam"
+        ".var/app/org.flybywiresim.installer"
         {
           directory = ".gnupg";
           mode = "0700";
@@ -90,6 +94,8 @@ in {
       ];
     files =
       [
+        ".bash_history"
+        ".lazygit/newdir"
       ]
       ++ mkPaths ".local/share" [
         "recently-used.xbel"

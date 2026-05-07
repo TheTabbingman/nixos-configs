@@ -8,6 +8,12 @@
   imports = [
     ./common.nix
   ];
+  home.sessionVariables = {
+    # These need to be here so that the stuff started by systemd has them
+    ELECTRON_OZONE_PLATFORM_HINT = "auto";
+    NIXOS_OZONE_WL = "1"; # support electron and chromium based apps
+    DISPLAY = ":0"; # important for xwayland-satellite
+  };
   systemd.user.services.xwayland-satellite = {
     Unit = {
       Description = "xwayland-satellite";

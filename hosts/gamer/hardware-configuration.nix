@@ -38,6 +38,7 @@
 
   fileSystems."/home" = {
     device = "/dev/disk/by-uuid/a0a31b91-438b-46f9-bbaf-3c15bbc390e5";
+    neededForBoot = true;
     fsType = "btrfs";
     options = ["subvol=@home" "compress-force=zstd"];
   };

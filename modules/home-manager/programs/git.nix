@@ -7,7 +7,7 @@
         email = "51281790+TheTabbingman@users.noreply.github.com";
         name = "TheTabbingMan";
       };
-      credential.helper = "store";
+      credential.helper = "cache --timeout 3600";
     };
     signing.format = null;
   };

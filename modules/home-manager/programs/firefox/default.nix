@@ -129,6 +129,7 @@ in {
         "browser.download.useDownloadDir" = true;
         "full-screen-api.warning.timeout" = 0;
         "browser.startup.page" = 3;
+        "browser.tabs.warnOnClose" = true;
 
         # For hw decoding
         "media.ffmpeg.vaapi.enabled" = lib.versionOlder ffVersion "137.0.0";

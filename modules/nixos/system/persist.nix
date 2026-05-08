@@ -2,6 +2,7 @@
   environment.persistence."/persist" = {
     enable = true; # NB: Defaults to true, not needed
     hideMounts = true;
+    allowTrash = true;
     directories = [
       {
         directory = "/etc/nixos";

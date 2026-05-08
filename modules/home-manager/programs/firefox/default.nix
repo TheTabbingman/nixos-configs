@@ -26,6 +26,7 @@
     "holo-schedule@holo.dev" # HoloSchedule
     "jid1-93CWPmRbVPjRQA@jetpack" # Honey
     "{61dff19a-4460-42de-9825-1ed4f0813091}" # jisho-pitcher
+    "hoombieeljmmljlkjmnheibnpciblicm@CWS_CRXInstaller" # Language Reactor
     "{86632d71-fe71-4a7b-8eab-3bff42d33f0d}" # Lap Clipboard Inserter
     "{ae865fed-3ca7-4701-bb86-f129e77deef5}" # LiveTL - Translation Filter for Streams
     "{c84d89d9-a826-4015-957b-affebd9eb603}" # MAL-Sync
@@ -34,6 +35,7 @@
     "{1b84391e-7c49-4ff3-abab-07bd0a4523e4}" # Multiselect for YouTube™
     "{c2691771-8d07-4c8e-90d5-162a61747d67}" # No Playlist Autoplay For YouTube
     "{e844d8ad-7f10-4de7-ad36-13c95d10aae4}" # oii
+    "{d66c8515-1e0d-408f-82ee-2682f2362726}" # Open In mpv
     "cavitedev@gmail.com" # osu! subdivide nations
     "{6e3f516b-0653-4d26-87c5-bc71749229ee}" # pp calculator
     "{db722c0c-d10e-4e23-af56-bbb6c3b62cc5}" # QR Code (Generator and Reader)

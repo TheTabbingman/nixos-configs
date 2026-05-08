@@ -57,10 +57,6 @@
   };
   programs = {
     bash.enable = true;
-    zsh = {
-      enable = true;
-      dotDir = "${config.xdg.configHome}/zsh";
-    };
     fish.enable = true;
     nix-index.enable = true;
   };

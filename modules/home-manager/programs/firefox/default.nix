@@ -190,6 +190,71 @@ in {
           display: none !important;
         }
       '';
+      search = {
+        default = "ddg";
+        privateDefault = "ddg";
+        engines = {
+          nix-packages = {
+            name = "Nix Packages";
+            urls = [
+              {
+                template = "https://search.nixos.org/packages";
+                params = [
+                  {
+                    name = "channel";
+                    value = "unstable";
+                  }
+                  {
+                    name = "query";
+                    value = "{searchTerms}";
+                  }
+                ];
+              }
+            ];
+            icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+            definedAliases = ["@nix"];
+          };
+          brave-search = {
+            name = "Brave Search";
+            urls = [
+              {
+                template = "https://search.brave.com/search";
+                params = [
+                  {
+                    name = "q";
+                    value = "{searchTerms}";
+                  }
+                ];
+              }
+            ];
+            icon = "${pkgs.gruvbox-material-gtk-theme}/share/icons/Gruvbox-Material-Dark/64x64/apps/brave.svg";
+            definedAliases = ["@brave"];
+          };
+          brave-ai = {
+            name = "Brave AI";
+            urls = [
+              {
+                template = "https://search.brave.com/ask";
+                params = [
+                  {
+                    name = "q";
+                    value = "{searchTerms}";
+                  }
+                ];
+              }
+            ];
+            icon = "${pkgs.gruvbox-material-gtk-theme}/share/icons/Gruvbox-Material-Dark/64x64/apps/brave.svg";
+            definedAliases = ["@bai"];
+          };
+          bing.metaData.hidden = true;
+          google.metaData.hidden = true;
+          perplexity.metaData.hidden = true;
+          "policy-DuckDuckGo Lite".metaData.hidden = true;
+          "policy-Searx Belgium".metaData.hidden = true;
+          "policy-MetaGer".metaData.hidden = true;
+          "policy-Mojeek".metaData.hidden = true;
+        };
+      };
     };
     policies = {
       ExtensionSettings = builtins.listToAttrs (map mkExtension extensionIds);

@@ -17,6 +17,7 @@ in {
         ".ollama"
         ".steam"
         ".var/app/org.flybywiresim.installer"
+        ".librewolf"
         {
           directory = ".gnupg";
           mode = "0700";

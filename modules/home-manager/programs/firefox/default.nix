@@ -95,6 +95,115 @@
   };
 in {
   home.packages = with pkgs; [open-in-mpv];
+  programs.librewolf = {
+    enable = true;
+    # configPath = "${config.xdg.configHome}/mozilla/firefox";
+    settings = {
+      "identity.fxaccounts.enabled" = true;
+      # Explicitly setting what to sync doesn't seem to work. Just gets overridden by whatever has been sunc in the past
+      "services.sync.engine.history" = true;
+      "services.sync.engine.bookmarks" = true;
+      "services.sync.engine.tabs" = true;
+      "services.sync.engine.addons" = false;
+      "services.sync.engine.prefs" = false;
+      "services.sync.engine.addresses" = false;
+      "services.sync.engine.creditcards" = false;
+      "services.sync.engine.passwords" = false;
+
+      "privacy.resistFingerprinting" = false;
+      "privacy.fingerprintingProtection" = true;
+      "privacy.fingerprintingProtection.overrides" = "+AllTargets,-CSSPrefersColorScheme";
+      "middlemouse.paste" = false;
+      "general.autoScroll" = true;
+    };
+    profiles.default = {
+      extensions.force = true;
+      settings = let
+        ffVersion = config.programs.librewolf.package.version;
+      in {
+        "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
+        "xpinstall.signatures.required" = false;
+        "browser.search.suggest.enabled" = true;
+        "browser.urlbar.suggest.searches" = true;
+        "browser.download.dir" = "${config.home.homeDirectory}/Downloads";
+        "browser.download.useDownloadDir" = true;
+        "full-screen-api.warning.timeout" = 0;
+
+        # For hw decoding
+        "media.ffmpeg.vaapi.enabled" = lib.versionOlder ffVersion "137.0.0";
+        "media.hardware-video-decoding.force-enabled" = lib.versionAtLeast ffVersion "137.0.0";
+        "media.rdd-ffmpeg.enabled" = lib.versionOlder ffVersion "97.0.0";
+
+        "gfx.x11-egl.force-enabled" = true;
+        "widget.dmabuf.force-enabled" = true;
+
+        # Set this to true if your GPU supports AV1.
+        #
+        # This can be determined by reading the output of the
+        # `vainfo` command, after the driver is enabled with
+        # the environment variable.
+        "media.av1.enabled" = true;
+
+        "extensions.autoDisableScopes" = 0; # Don't disable extensions automatically
+
+        /**
+         **************************************************************************************
+        * Smoothfox                                                                            *
+        * "Faber est suae quisque fortunae"                                                    *
+        * priority: better scrolling                                                           *
+        * version: 137                                                                       *
+        * url: https://github.com/yokoffing/Betterfox                                          *
+        **************************************************************************************
+        */
+        /**
+          **************************************************************************************
+         * OPTION: NATURAL SMOOTH SCROLLING V3 [MODIFIED]                                      *
+        ***************************************************************************************
+        */
+        # credit: https://github.com/AveYo/fox/blob/cf56d1194f4e5958169f9cf335cd175daa48d349/Natural%20Smooth%20Scrolling%20for%20user.js
+        # recommended for 120hz+ displays
+        # largely matches Chrome flags: Windows Scrolling Personality and Smooth Scrolling
+        "apz.overscroll.enabled" = true; # DEFAULT NON-LINUX
+        "general.smoothScroll" = true; # DEFAULT
+        "general.smoothScroll.msdPhysics.continuousMotionMaxDeltaMS" = 12;
+        "general.smoothScroll.msdPhysics.enabled" = true;
+        "general.smoothScroll.msdPhysics.motionBeginSpringConstant" = 600;
+        "general.smoothScroll.msdPhysics.regularSpringConstant" = 650;
+        "general.smoothScroll.msdPhysics.slowdownMinDeltaMS" = 25;
+        "general.smoothScroll.msdPhysics.slowdownMinDeltaRatio" = "2";
+        "general.smoothScroll.msdPhysics.slowdownSpringConstant" = 250;
+        "general.smoothScroll.currentVelocityWeighting" = "1";
+        "general.smoothScroll.stopDecelerationWeighting" = "1";
+        "mousewheel.default.delta_multiplier_y" = 300; # 250-400; adjust this number to your liking
+      };
+      search = {
+        force = true;
+        # Can Find id with ", mozlz4a -d ~/.librewolf/default/search.json.mozlz4 | , jq ." When I don't have it defined.
+        default = "policy-Startpage";
+        privateDefault = "policy-Startpage";
+      };
+      userChrome = ''
+        ${builtins.readFile ./autohide_sidebar.css}
+        ${builtins.readFile ./hide_tabs_toolbar_v2.css}
+        #sidebar-box{
+          --uc-sidebar-width: 60px;
+          --uc-autohide-sidebar-delay: 0ms; /* Wait 0.6s before hiding sidebar */
+        }
+
+        #sidebar-header {
+          display: none !important;
+        }
+      '';
+    };
+    policies = {
+      ExtensionSettings = builtins.listToAttrs (map mkExtension extensionIds);
+    };
+  };
+  stylix.targets.librewolf = {
+    profileNames = ["default"];
+    colorTheme.enable = true;
+  };
+
   programs.firefox = {
     enable = true;
     configPath = "${config.xdg.configHome}/mozilla/firefox";

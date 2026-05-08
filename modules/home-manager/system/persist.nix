@@ -4,95 +4,95 @@ in {
   home.persistence."/persist" = {
     directories =
       [
-        "Downloads"
-        "Pictures"
-        "Documents"
-        "Videos"
-        "Calibre Library"
-        "Games"
-        "openvpn"
-        "persist"
+        ".librewolf"
         ".local/state"
         ".mozilla/native-messaging-hosts"
         ".ollama"
         ".steam"
         ".var/app/org.flybywiresim.installer"
-        ".librewolf"
+        "Calibre Library"
+        "Documents"
+        "Downloads"
+        "Games"
+        "openvpn"
+        "persist"
+        "Pictures"
+        "Videos"
         {
           directory = ".gnupg";
-          mode = "0700";
-        }
-        {
-          directory = ".ssh";
           mode = "0700";
         }
         {
           directory = ".local/share/keyrings";
           mode = "0700";
         }
+        {
+          directory = ".ssh";
+          mode = "0700";
+        }
       ]
       ++ mkPaths ".local/share" [
-        "direnv"
-        "Steam"
-        "containers"
-        "bottles"
         "Anki2"
-        "flatpak"
-        "waydroid"
+        "Plexamp"
         "PrismLauncher"
-        "eden"
-        "umu"
-        "nvim"
-        "Trash"
-        "fsearch"
+        "Steam"
         "Tabletop Simulator"
+        "Trash"
+        "ark"
+        "bottles"
         "cartridges"
         "chatterino"
-        "fish"
-        "jellyfin-desktop"
-        "osu"
-        "plex"
-        "Plexamp"
-        "qBittorrent"
-        "ark"
+        "containers"
+        "direnv"
         "dolphin"
+        "eden"
+        "fish"
+        "flatpak"
+        "fsearch"
         "gwenview"
         "icons"
+        "jellyfin-desktop"
+        "nvim"
+        "osu"
+        "plex"
+        "qBittorrent"
         "remmina"
+        "umu"
+        "waydroid"
         "xdg-desktop-portal" # Has some icons from bottles
       ]
       ++ mkPaths ".config" [
-        "nix"
         "DankMaterialShell"
         "GIMP"
         "OpenTabletDriver"
         "Plexamp"
+        "QDirStat"
         "Ryujinx"
         "Z-Library"
-        "eden"
-        "fsearch"
-        "heroic"
-        "koreader"
-        "libreoffice"
-        "mozc"
-        "fcitx5"
-        "mozilla"
-        "qBittorrent"
-        "screen_ai"
-        "unity3d"
-        "hypr/dms"
-        "niri/dms"
         "bcompare5"
         "calibre"
         "chromium"
+        "eden"
+        "fcitx5"
+        "freerdp/server" # Required to remember remmina certificates
+        "fsearch"
+        "heroic"
+        "hypr/dms"
+        "koreader"
+        "libreoffice"
+        "mozc"
+        "mozilla"
+        "niri/dms"
+        "nix"
         "nixpkgs"
         "plex-mpv-shim"
-        "QDirStat"
+        "qBittorrent"
         "remmina"
+        "screen_ai"
         "solaar"
         "sops" # Very important
         "ulauncher"
-        "freerdp/server" # Required to remember remmina certificates
+        "unity3d"
       ];
     files =
       [

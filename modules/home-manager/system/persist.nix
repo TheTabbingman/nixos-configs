@@ -92,6 +92,7 @@ in {
         "solaar"
         "sops" # Very important
         "ulauncher"
+        "freerdp/server" # Required to remember remmina certificates
       ];
     files =
       [

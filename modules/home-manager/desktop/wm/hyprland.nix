@@ -16,7 +16,7 @@
     portalPackage = null;
     plugins = [
       # inputs.split-monitor-workspaces.packages.${pkgs.stdenv.hostPlatform.system}.split-monitor-workspaces
-      inputs.hyprland-plugins.packages.${pkgs.stdenv.hostPlatform.system}.hyprbars
+      # inputs.hyprland-plugins.packages.${pkgs.stdenv.hostPlatform.system}.hyprbars
     ];
     settings = {
       source = "~/.config/hypr/dms/outputs.conf";
@@ -406,25 +406,25 @@
 
       plugin = [
         {
-          hyprbars = [
-            {
-              # Set to 0 to disable hyprbars
-              # bar_height = 38;
-              bar_height = 0;
-              bar_color = "rgb(1e1e1e)";
-              col.text = "rgb(ffffff)";
-              bar_text_size = 12;
-              bar_text_font = "Jetbrains Mono Nerd Font Mono Bold";
-              bar_button_padding = 12;
-              bar_padding = 10;
-              bar_precedence_over_border = true;
-              hyprbars-button = [
-                "rgb(ff0000), 20, , hyprctl dispatch killactive"
-                "rgb(00ff00), 20, , hyprctl dispatch fullscreen 2"
-                "rgb(0000ff), 20, , hyprctl dispatch togglefloating"
-              ];
-            }
-          ];
+          # hyprbars = [
+          #   {
+          #     # Set to 0 to disable hyprbars
+          #     # bar_height = 38;
+          #     bar_height = 0;
+          #     bar_color = "rgb(1e1e1e)";
+          #     col.text = "rgb(ffffff)";
+          #     bar_text_size = 12;
+          #     bar_text_font = "Jetbrains Mono Nerd Font Mono Bold";
+          #     bar_button_padding = 12;
+          #     bar_padding = 10;
+          #     bar_precedence_over_border = true;
+          #     hyprbars-button = [
+          #       "rgb(ff0000), 20, , hyprctl dispatch killactive"
+          #       "rgb(00ff00), 20, , hyprctl dispatch fullscreen 2"
+          #       "rgb(0000ff), 20, , hyprctl dispatch togglefloating"
+          #     ];
+          #   }
+          # ];
         }
       ];
     };

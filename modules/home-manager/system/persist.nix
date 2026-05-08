@@ -14,7 +14,7 @@ in {
         "Documents"
         "Downloads"
         "Games"
-        "openvpn"
+        "openvpn" # TODO: Make this sops-nix
         "persist"
         "Pictures"
         "Videos"
@@ -25,19 +25,16 @@ in {
       ]
       ++ mkPaths ".local/share" [
         "Anki2"
-        "ark"
         "bottles"
         "cartridges"
         "chatterino"
         "containers"
-        "direnv"
-        "dolphin"
+        "direnv/allow"
+        "dolphin/view_properties"
         "eden"
-        "fish"
         "flatpak"
-        "fsearch"
-        "gwenview"
-        "icons"
+        "gwenview/recentfolders"
+        "icons" # The icons for distrobox-export stuff is here
         "jellyfin-desktop"
         "nvim"
         "osu"
@@ -50,28 +47,26 @@ in {
         "Tabletop Simulator"
         "Trash"
         "umu"
-        "waydroid"
+        "waydroid/data"
         "xdg-desktop-portal" # Has some icons from bottles
       ]
       ++ mkPaths ".config" [
         "bcompare5"
         "calibre"
         "chromium"
-        "DankMaterialShell"
+        "DankMaterialShell/plugins/nvidiaGpuMonitor"
         "eden"
         "fcitx5"
         "freerdp/server" # Required to remember remmina certificates
-        "fsearch"
         "GIMP"
         "heroic"
         "hypr/dms"
         "koreader"
         "libreoffice"
         "mozc"
-        "mozilla"
+        "mozilla" # TODO: Should remove when I feel satisfied with librewolf
         "niri/dms"
         "nix"
-        "nixpkgs"
         "OpenTabletDriver"
         "plex-mpv-shim"
         "Plexamp"
@@ -81,9 +76,8 @@ in {
         "Ryujinx"
         "screen_ai"
         "solaar"
-        "sops" # Very important
         "ulauncher"
-        "unity3d"
+        "unity3d/Berserk Games/Tabletop Simulator"
         "Z-Library"
       ];
     files =
@@ -96,12 +90,19 @@ in {
         }
       ]
       ++ mkPaths ".local/share" [
+        "ark/ark_recentfiles"
+        "fish/fish_history"
+        "fsearch/fsearch.db"
         "recently-used.xbel"
         "user-places.xbel"
       ]
       ++ mkPaths ".config" [
+        "DankMaterialShell/plugin_settings.json"
         "dolphinrc"
+        "fsearch/fsearch.conf"
         "gwenviewrc"
+        "nixpkgs/config.nix"
+        "sops/age/keys.txt" # Very important
       ];
   };
 }

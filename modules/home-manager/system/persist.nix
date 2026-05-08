@@ -25,11 +25,6 @@ in {
       ]
       ++ mkPaths ".local/share" [
         "Anki2"
-        "Plexamp"
-        "PrismLauncher"
-        "Steam"
-        "Tabletop Simulator"
-        "Trash"
         "ark"
         "bottles"
         "cartridges"
@@ -47,27 +42,27 @@ in {
         "nvim"
         "osu"
         "plex"
+        "Plexamp"
+        "PrismLauncher"
         "qBittorrent"
         "remmina"
+        "Steam"
+        "Tabletop Simulator"
+        "Trash"
         "umu"
         "waydroid"
         "xdg-desktop-portal" # Has some icons from bottles
       ]
       ++ mkPaths ".config" [
-        "DankMaterialShell"
-        "GIMP"
-        "OpenTabletDriver"
-        "Plexamp"
-        "QDirStat"
-        "Ryujinx"
-        "Z-Library"
         "bcompare5"
         "calibre"
         "chromium"
+        "DankMaterialShell"
         "eden"
         "fcitx5"
         "freerdp/server" # Required to remember remmina certificates
         "fsearch"
+        "GIMP"
         "heroic"
         "hypr/dms"
         "koreader"
@@ -77,14 +72,19 @@ in {
         "niri/dms"
         "nix"
         "nixpkgs"
+        "OpenTabletDriver"
         "plex-mpv-shim"
+        "Plexamp"
         "qBittorrent"
+        "QDirStat"
         "remmina"
+        "Ryujinx"
         "screen_ai"
         "solaar"
         "sops" # Very important
         "ulauncher"
         "unity3d"
+        "Z-Library"
       ];
     files =
       [

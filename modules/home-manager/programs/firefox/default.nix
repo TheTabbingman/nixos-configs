@@ -177,12 +177,6 @@ in {
         "general.smoothScroll.stopDecelerationWeighting" = "1";
         "mousewheel.default.delta_multiplier_y" = 300; # 250-400; adjust this number to your liking
       };
-      search = {
-        force = true;
-        # Can Find id with ", mozlz4a -d ~/.librewolf/default/search.json.mozlz4 | , jq ." When I don't have it defined.
-        default = "policy-Startpage";
-        privateDefault = "policy-Startpage";
-      };
       userChrome = ''
         ${builtins.readFile ./autohide_sidebar.css}
         ${builtins.readFile ./hide_tabs_toolbar_v2.css}

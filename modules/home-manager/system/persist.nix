@@ -22,10 +22,6 @@ in {
           directory = ".local/share/keyrings";
           mode = "0700";
         }
-        {
-          directory = ".ssh";
-          mode = "0700";
-        }
       ]
       ++ mkPaths ".local/share" [
         "Anki2"
@@ -94,6 +90,10 @@ in {
       [
         ".bash_history"
         ".lazygit/newdir"
+        {
+          file = ".ssh/known_hosts";
+          parentDirectory.mode = "0700";
+        }
       ]
       ++ mkPaths ".local/share" [
         "recently-used.xbel"

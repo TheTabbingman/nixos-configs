@@ -260,6 +260,8 @@ in {
       ExtensionSettings = builtins.listToAttrs (map mkExtension extensionIds);
     };
   };
+  # This is required because otherwise it is just constantly making me delete the file because clobbered
+  home.file.".librewolf/default/search.json.mozlz4".force = lib.mkForce true;
   stylix.targets.librewolf = {
     profileNames = ["default"];
     colorTheme.enable = true;

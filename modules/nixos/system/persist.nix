@@ -1,6 +1,6 @@
-{...}: {
+{lib, ...}: {
   environment.persistence."/persist" = {
-    enable = true; # NB: Defaults to true, not needed
+    enable = lib.mkDefault true; # NB: Defaults to true, not needed
     hideMounts = true;
     allowTrash = true;
     directories = [

@@ -30,9 +30,6 @@
 
   environment.variables.LIBVA_DRIVER_NAME = "nvidia";
 
-  # If used with Firefox
-  environment.variables.MOZ_DISABLE_RDD_SANDBOX = "1";
-
   hardware.keyboard.qmk.enable = true;
   hardware.keyboard.qmk.keychronSupport = true;
 

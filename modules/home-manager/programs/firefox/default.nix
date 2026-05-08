@@ -199,6 +199,9 @@ in {
     colorTheme.enable = true;
   };
 
+  # If used with Firefox
+  home.sessionVariables.MOZ_DISABLE_RDD_SANDBOX = "1";
+
   programs.firefox = {
     enable = true;
     configPath = "${config.xdg.configHome}/mozilla/firefox";

@@ -5,7 +5,6 @@
 }: {
   imports = [
     ./git.nix
-    ./gpg.nix
     ./neovim.nix
     ./nh.nix
     ./shell.nix

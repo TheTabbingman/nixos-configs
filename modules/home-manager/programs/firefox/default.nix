@@ -191,7 +191,8 @@ in {
         }
       '';
       search = {
-        default = "ddg";
+        force = true;
+        default = "brave-search";
         privateDefault = "ddg";
         engines = {
           nix-packages = {
@@ -246,6 +247,7 @@ in {
             icon = "${pkgs.gruvbox-material-gtk-theme}/share/icons/Gruvbox-Material-Dark/64x64/apps/brave.svg";
             definedAliases = ["@bai"];
           };
+          "policy-Startpage".metaData.alias = "@sp";
           bing.metaData.hidden = true;
           google.metaData.hidden = true;
           perplexity.metaData.hidden = true;
@@ -260,8 +262,6 @@ in {
       ExtensionSettings = builtins.listToAttrs (map mkExtension extensionIds);
     };
   };
-  # This is required because otherwise it is just constantly making me delete the file because clobbered
-  home.file.".librewolf/default/search.json.mozlz4".force = lib.mkForce true;
   stylix.targets.librewolf = {
     profileNames = ["default"];
     colorTheme.enable = true;

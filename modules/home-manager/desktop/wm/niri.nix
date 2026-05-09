@@ -58,7 +58,7 @@
                    // For example:
                    // layout "us,ru"
                    // options "grp:win_space_toggle,compose:ralt,ctrl:nocaps"
-                   options "caps:escape"
+                   // options "caps:escape" # TODO: Make this per device somehow
 
                    // If this section is empty, niri will fetch xkb settings
                    // from org.freedesktop.locale1. You can control these using
@@ -422,39 +422,39 @@
            Mod+Shift+Slash { show-hotkey-overlay; }
 
            // Suggested binds for running programs: terminal, app launcher, screen locker.
-           Mod+Q hotkey-overlay-title="Open a Terminal: alacritty" { spawn "alacritty"; }
-           Mod+E hotkey-overlay-title="Open a File Manager: dolphin" { spawn "dolphin"; }
-           Mod+Shift+E hotkey-overlay-title="Open a File Manager: yazi" { spawn-sh "alacritty -e fish -i -c yazi"; }
+           Mod+Q hotkey-overlay-title="Open a Terminal: alacritty" { spawn "${lib.getExe pkgs.alacritty}"; }
+           Mod+E hotkey-overlay-title="Open a File Manager: dolphin" { spawn "${lib.getExe' pkgs.kdePackages.dolphin "dolphin"}"; }
+           Mod+Shift+E hotkey-overlay-title="Open a File Manager: yazi" { spawn-sh "${lib.getExe pkgs.alacritty} -e ${lib.getExe pkgs.fish} -i -c ${lib.getExe pkgs.yazi}"; }
            Alt+Space hotkey-overlay-title="Run an Application: ulauncher" { spawn-sh "gapplication action io.ulauncher.Ulauncher toggle-window"; }
            Super+Alt+L hotkey-overlay-title="Lock the Screen: dms lock" { spawn-sh "dms ipc call lock lock"; }
-           Mod+B hotkey-overlay-title="Open a Browser: Librewolf" {spawn "librewolf";}
+           Mod+B hotkey-overlay-title="Open a Browser: Librewolf" {spawn "${lib.getExe pkgs.librewolf}";}
 
            // Use spawn-sh to run a shell command. Do this if you need pipes, multiple commands, etc.
            // Note: the entire command goes as a single argument. It's passed verbatim to `sh -c`.
            // For example, this is a standard bind to toggle the screen reader (orca).
-           Super+Alt+S allow-when-locked=true hotkey-overlay-title=null { spawn-sh "pkill orca || exec orca"; }
+           // Super+Alt+S allow-when-locked=true hotkey-overlay-title=null { spawn-sh "pkill orca || exec orca"; }
 
            // Example volume keys mappings for PipeWire & WirePlumber.
            // The allow-when-locked=true property makes them work even when the session is locked.
            // Using spawn-sh allows to pass multiple arguments together with the command.
            // "-l 1.0" limits the volume to 100%.
-           XF86AudioRaiseVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.02+ -l 1.0"; }
-           XF86AudioLowerVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.02-"; }
-           XF86AudioMute        allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"; }
-           XF86AudioMicMute     allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"; }
+           XF86AudioRaiseVolume allow-when-locked=true { spawn-sh "${lib.getExe' pkgs.wireplumber "wpctl"} set-volume @DEFAULT_AUDIO_SINK@ 0.02+ -l 1.0"; }
+           XF86AudioLowerVolume allow-when-locked=true { spawn-sh "${lib.getExe' pkgs.wireplumber "wpctl"} set-volume @DEFAULT_AUDIO_SINK@ 0.02-"; }
+           XF86AudioMute        allow-when-locked=true { spawn-sh "${lib.getExe' pkgs.wireplumber "wpctl"} set-mute @DEFAULT_AUDIO_SINK@ toggle"; }
+           XF86AudioMicMute     allow-when-locked=true { spawn-sh "${lib.getExe' pkgs.wireplumber "wpctl"} set-mute @DEFAULT_AUDIO_SOURCE@ toggle"; }
 
            // Example media keys mapping using playerctl.
            // This will work with any MPRIS-enabled media player.
-           XF86AudioPlay        allow-when-locked=true { spawn-sh "playerctl play-pause"; }
-           XF86AudioStop        allow-when-locked=true { spawn-sh "playerctl stop"; }
-           XF86AudioPrev        allow-when-locked=true { spawn-sh "playerctl previous"; }
-           XF86AudioNext        allow-when-locked=true { spawn-sh "playerctl next"; }
+           XF86AudioPlay        allow-when-locked=true { spawn-sh "${lib.getExe pkgs.playerctl} play-pause"; }
+           XF86AudioStop        allow-when-locked=true { spawn-sh "${lib.getExe pkgs.playerctl} stop"; }
+           XF86AudioPrev        allow-when-locked=true { spawn-sh "${lib.getExe pkgs.playerctl} previous"; }
+           XF86AudioNext        allow-when-locked=true { spawn-sh "${lib.getExe pkgs.playerctl} next"; }
 
            // Example brightness key mappings for brightnessctl.
            // You can use regular spawn with multiple arguments too (to avoid going through "sh"),
            // but you need to manually put each argument in separate "" quotes.
-           XF86MonBrightnessUp allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "+10%"; }
-           XF86MonBrightnessDown allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "10%-"; }
+           XF86MonBrightnessUp allow-when-locked=true { spawn "${lib.getExe pkgs.brightnessctl}" "--class=backlight" "set" "+10%"; }
+           XF86MonBrightnessDown allow-when-locked=true { spawn "${lib.getExe pkgs.brightnessctl}" "--class=backlight" "set" "10%-"; }
 
            // Open/close the Overview: a zoomed-out view of workspaces and windows.
            // You can also move the mouse into the top-left hot corner,

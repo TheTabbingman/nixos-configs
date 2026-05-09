@@ -10,11 +10,6 @@
       inputs.home-manager.follows = "";
     };
 
-    # nixos-wsl = {
-    #   url = "github:nix-community/NixOS-WSL/main";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
-
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -83,7 +78,6 @@
     nixpkgs,
     nixpkgs-stable,
     home-manager,
-    # nixos-wsl,
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -144,25 +138,6 @@
         ];
       };
 
-    # mkNixosWSLConfiguration = username: hostname:
-    #   nixpkgs.lib.nixosSystem {
-    #     specialArgs = let
-    #       pkgs-stable = import nixpkgs-stable {
-    #         system = "x86_64-linux";
-    #       };
-    #     in {
-    #       inherit inputs outputs pkgs-stable;
-    #       hostname = "nixos-" + hostname;
-    #       userConfig = users.${username};
-    #       nixosModules = "${self}/modules/nixos";
-    #     };
-    #     system = "x86_64-linux";
-    #     modules = [
-    #       nixos-wsl.nixosModules.default
-    #       ./hosts/${hostname}/configuration.nix
-    #     ];
-    #   };
-
     mkHomeConfiguration = username: hostname:
       home-manager.lib.homeManagerConfiguration {
         pkgs = import nixpkgs {
@@ -187,14 +162,12 @@
       nixos-gamer = mkNixosConfiguration "jonah" "gamer";
       nixos-vm = mkNixosConfiguration "jonah" "vm";
       nixos-laptop = mkNixosConfiguration "jonah" "laptop";
-      # nixos-wsl = mkNixosWSLConfiguration "jonah" "wsl";
     };
 
     homeConfigurations = {
       "jonah@nixos-gamer" = mkHomeConfiguration "jonah" "gamer";
       "jonah@nixos-vm" = mkHomeConfiguration "jonah" "vm";
       "jonah@nixos-laptop" = mkHomeConfiguration "jonah" "laptop";
-      # "jonah@nixos-wsl" = mkHomeConfiguration "jonah" "wsl";
     };
   };
 }

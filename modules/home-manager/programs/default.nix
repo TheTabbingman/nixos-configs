@@ -17,15 +17,11 @@
 
   home.packages = with pkgs; [
     nix-search-cli
-    nvd
-    alejandra
-    nixd
     alacritty-graphics
     chafa
     tealdeer
     nix-inspect
     mission-center
-    pinentry-gtk2
     meld
     kdiff3
     fsearch

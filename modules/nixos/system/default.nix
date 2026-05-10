@@ -1,4 +1,6 @@
-{...}: {
+{inputs, ...}: {
+  imports = [inputs.flake-parts.flakeModules.modules];
+  systems = ["x86_64-linux"];
   flake.nixosModules.system = {pkgs, ...}: {
     services.tailscale.enable = true;
     i18n.inputMethod = {

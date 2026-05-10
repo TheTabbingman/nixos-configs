@@ -2,6 +2,7 @@
   flakeLocation,
   hostname,
   config,
+  lib,
   pkgs,
   ...
 }: {
@@ -27,10 +28,10 @@
       nrt = "sudo nixos-rebuild test --flake ${pathFlakeLocation} && ntd";
       nu = "nix flake update --flake ${pathFlakeLocation}";
       # diff
-      hd = "nvd diff $(home-manager generations | sed 's/.*-> //' | head -n 2 | tail -n 1) $(home-manager generations | sed 's/.*-> //' | sed 's/ (current)//' | head -n 1)";
-      nd = "nvd diff $(ls -1d /nix/var/nix/profiles/system-* | sort -V | tail -n 2 | head -n 1) /run/current-system/";
-      nbd = "nvd diff /run/current-system/ $(ls -1d /nix/var/nix/profiles/system-* | sort -V | tail -n 1)";
-      ntd = "nvd diff $(ls -1d /nix/var/nix/profiles/system-* | sort -V | tail -n 1) /run/current-system/";
+      hd = "${lib.getExe pkgs.nvd} diff $(home-manager generations | sed 's/.*-> //' | head -n 2 | tail -n 1) $(home-manager generations | sed 's/.*-> //' | sed 's/ (current)//' | head -n 1)";
+      nd = "${lib.getExe pkgs.nvd} diff $(ls -1d /nix/var/nix/profiles/system-* | sort -V | tail -n 2 | head -n 1) /run/current-system/";
+      nbd = "${lib.getExe pkgs.nvd} diff /run/current-system/ $(ls -1d /nix/var/nix/profiles/system-* | sort -V | tail -n 1)";
+      ntd = "${lib.getExe pkgs.nvd} diff $(ls -1d /nix/var/nix/profiles/system-* | sort -V | tail -n 1) /run/current-system/";
       # other
       # rm = "rm -I";
       rm = ''echo "This is not the command you are looking for. Use tp. Or \rm (command rm on fish) if you REALLY need it."; false'';

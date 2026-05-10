@@ -32,7 +32,6 @@
         home-manager.users."jonah" = self.homeModules.user;
         home-manager.extraSpecialArgs = let
         in {
-          hostname = "gamer";
           pkgs-stable = import inputs.nixpkgs-stable {system = "x86_64-linux";};
           flakeLocation = "/etc/nixos";
         };

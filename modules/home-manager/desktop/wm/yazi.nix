@@ -2,7 +2,7 @@
   flake.homeModules.wm = {
     pkgs,
     lib,
-    hostname, # TODO: Make this not use hostname
+    osConfig,
     ...
   }: {
     programs.yazi = {
@@ -32,7 +32,8 @@
           ];
         };
         opener = {
-          play = lib.mkIf (hostname == "laptop") [
+          play = lib.mkIf (osConfig.networking.hostName == "laptop") [
+            # TODO: Make sure that this has actually worked
             {
               run = "mpv --hwdec=auto --vulkan-device='Intel(R) HD Graphics 530 (SKL GT2)' %s";
               orphan = true;

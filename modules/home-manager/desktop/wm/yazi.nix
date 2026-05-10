@@ -4,7 +4,7 @@
   lib,
   config,
   osConfig,
-  hostname,
+  hostname, # TODO: Make this not use hostname
   ...
 }: {
   programs.yazi = {

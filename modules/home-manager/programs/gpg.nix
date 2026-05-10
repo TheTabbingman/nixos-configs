@@ -1,7 +1,9 @@
-{pkgs, ...}: {
-  programs.gpg.enable = true;
-  services.gpg-agent = {
-    enable = true;
-    pinentry.package = pkgs.pinentry-gtk2;
+{...}: {
+  flake.homeModules.gpg = {pkgs, ...}: {
+    programs.gpg.enable = true;
+    services.gpg-agent = {
+      enable = true;
+      pinentry.package = pkgs.pinentry-gtk2;
+    };
   };
 }

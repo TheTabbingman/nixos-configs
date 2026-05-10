@@ -1,6 +1,8 @@
 {...}: {
-  programs.nh = {
-    enable = true;
-    flake = "/etc/nixos";
+  flake.homeModules.programs = {...}: {
+    programs.nh = {
+      enable = true;
+      flake = "/etc/nixos";
+    };
   };
 }

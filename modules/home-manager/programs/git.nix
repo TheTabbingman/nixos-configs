@@ -1,14 +1,16 @@
 {...}: {
-  programs.git = {
-    enable = true;
-    lfs.enable = true;
-    settings = {
-      user = {
-        email = "51281790+TheTabbingman@users.noreply.github.com";
-        name = "TheTabbingMan";
+  flake.homeModules.programs = {...}: {
+    programs.git = {
+      enable = true;
+      lfs.enable = true;
+      settings = {
+        user = {
+          email = "51281790+TheTabbingman@users.noreply.github.com";
+          name = "TheTabbingMan";
+        };
+        credential.helper = "cache --timeout 3600";
       };
-      credential.helper = "cache --timeout 3600";
+      signing.format = null;
     };
-    signing.format = null;
   };
 }

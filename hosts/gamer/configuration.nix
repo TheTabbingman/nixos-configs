@@ -38,10 +38,10 @@
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
+          # Aim for this? home-manager.users.jonah = self.homeModules.jonah;
           home-manager.users."jonah" = {
             imports = [
-              ./_home.nix
-              inputs.sops-nix.homeManagerModules.sops
+              self.homeModules.jonah
               inputs.nix-flatpak.homeManagerModules.nix-flatpak
               inputs.dms.homeModules.niri
               inputs.dms.homeModules.dank-material-shell

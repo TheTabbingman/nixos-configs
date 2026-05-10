@@ -1,7 +1,5 @@
 {...}: {
-  flake.nixosModules.system = {hostname, ...}: {
-    networking.hostName = hostname; # Define your hostname.
-
+  flake.nixosModules.system = {...}: {
     nix = {
       settings.experimental-features = ["nix-command" "flakes"];
 

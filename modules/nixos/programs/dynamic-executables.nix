@@ -1,9 +1,5 @@
-{...}: {
-  flake.nixosModules.dynamic-executables = {
-    pkgs,
-    inputs,
-    ...
-  }: {
+{inputs, ...}: {
+  flake.nixosModules.dynamic-executables = {pkgs, ...}: {
     environment.systemPackages = with pkgs; [
       nix-ld
       inputs.nix-alien.packages.${stdenv.hostPlatform.system}.nix-alien

@@ -1,11 +1,7 @@
 {self, ...}: {
   flake.homeModules.jonah = {
-    config,
     pkgs,
-    pkgs-stable,
     userConfig,
-    nhModules,
-    inputs,
     ...
   }: {
     home.username = "${userConfig.name}";

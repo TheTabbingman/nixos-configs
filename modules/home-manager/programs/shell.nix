@@ -1,4 +1,4 @@
-{...}: {
+{inputs, ...}: {
   flake.homeModules.programs = {
     flakeLocation,
     lib,
@@ -56,5 +56,8 @@
       fish.enable = true;
       nix-index.enable = true;
     };
+    imports = [
+      inputs.nix-index-database.homeModules.default
+    ];
   };
 }

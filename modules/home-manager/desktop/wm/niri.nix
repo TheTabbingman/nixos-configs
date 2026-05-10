@@ -1,4 +1,8 @@
-{self, ...}: {
+{
+  self,
+  inputs,
+  ...
+}: {
   flake.homeModules.niri = {
     pkgs,
     lib,
@@ -6,6 +10,7 @@
     ...
   }: {
     imports = [
+      inputs.dms.homeModules.niri
       self.homeModules.wm
     ];
     home.sessionVariables = {

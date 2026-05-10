@@ -20,8 +20,7 @@
           system = "x86_64-linux";
         };
       in {
-        inherit inputs pkgs-stable;
-        hostname = "nixos-gamer";
+        inherit pkgs-stable;
         userConfig = users."jonah";
         nixosModulesLocation = "${inputs.self}/modules/nixos";
       };
@@ -32,26 +31,14 @@
         self.nixosModules.gaming
         self.nixosModules.hyprland
         inputs.home-manager.nixosModules.home-manager
-        {
           nixpkgs.overlays = [inputs.dolphin-overlay.overlays.default inputs.ulauncher.overlays.default];
-        }
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
           # Aim for this? home-manager.users.jonah = self.homeModules.jonah;
-          home-manager.users."jonah" = {
-            imports = [
-              self.homeModules.jonah
-              inputs.nix-flatpak.homeManagerModules.nix-flatpak
-              inputs.dms.homeModules.niri
-              inputs.dms.homeModules.dank-material-shell
-              inputs.dms-plugin-registry.modules.default
-              inputs.nix-index-database.homeModules.default
-            ];
-          };
+          home-manager.users."jonah" = self.homeModules.jonah;
           home-manager.extraSpecialArgs = let
           in {
-            inherit inputs;
             hostname = "gamer";
             pkgs-stable = import inputs.nixpkgs-stable {system = "x86_64-linux";};
             userConfig = users."jonah";
@@ -67,6 +54,7 @@
     utils,
     ...
   }: {
+    networking.hostName = "nixos-gamer"; # Define your hostname.
     environment.systemPackages = with pkgs; [
       solaar
     ];

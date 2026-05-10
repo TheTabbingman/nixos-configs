@@ -1,9 +1,5 @@
-{...}: {
-  flake.nixosModules.system = {
-    inputs,
-    lib,
-    ...
-  }: let
+{inputs, ...}: {
+  flake.nixosModules.system = {lib, ...}: let
     mkPaths = base: paths: map (p: "${base}/${p}") paths;
   in {
     imports = [

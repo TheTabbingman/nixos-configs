@@ -1,9 +1,9 @@
-{self, ...}: {
-  flake.nixosModules.system = {
-    pkgs,
-    inputs,
-    ...
-  }: {
+{
+  self,
+  inputs,
+  ...
+}: {
+  flake.nixosModules.system = {pkgs, ...}: {
     imports = [
       inputs.niri.nixosModules.niri
       self.nixosModules.wmCommon

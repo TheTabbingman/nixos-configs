@@ -1,5 +1,5 @@
-{...}: {
-  flake.homeModules.system = {inputs, ...}: {
+{inputs, ...}: {
+  flake.homeModules.system = {...}: {
     imports = [
       inputs.sops-nix.homeManagerModules.sops
     ];

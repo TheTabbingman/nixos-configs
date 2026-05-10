@@ -1,9 +1,9 @@
-{self, ...}: {
-  flake.nixosModules.system = {
-    inputs,
-    pkgs,
-    ...
-  }: {
+{
+  self,
+  inputs,
+  ...
+}: {
+  flake.nixosModules.system = {pkgs, ...}: {
     imports = [
       inputs.nix-index-database.nixosModules.nix-index
       self.nixosModules.shell

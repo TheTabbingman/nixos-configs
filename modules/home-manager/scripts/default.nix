@@ -1,13 +1,9 @@
 {...}: {
-  flake.homeModules.scripts = {
-    pkgs,
-    nhModules,
-    ...
-  }: {
+  flake.homeModules.scripts = {pkgs, ...}: {
     home.packages = [
-      (import "${nhModules}/scripts/_check-home-diff.nix" {inherit pkgs;})
-      (import "${nhModules}/scripts/_check-nix-diff.nix" {inherit pkgs;})
-      (import "${nhModules}/scripts/_check-nix-boot-diff.nix" {inherit pkgs;})
+      (pkgs.callPackage ./_check-home-diff.nix {})
+      (pkgs.callPackage ./_check-nix-diff.nix {})
+      (pkgs.callPackage ./_check-nix-boot-diff.nix {})
     ];
   };
 }

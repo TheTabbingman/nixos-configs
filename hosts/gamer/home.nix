@@ -1,11 +1,11 @@
 {self, ...}: {
-  flake.homeModules.jonah = {
+  flake.homeModules.user = {
     pkgs,
-    userConfig,
+    osConfig,
     ...
   }: {
-    home.username = "${userConfig.name}";
-    home.homeDirectory = "/home/${userConfig.name}";
+    home.username = "${osConfig.preferences.user.name}";
+    home.homeDirectory = "/home/${osConfig.preferences.user.name}";
 
     home.stateVersion = "24.11";
 

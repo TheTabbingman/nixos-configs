@@ -5,49 +5,40 @@
   inputs,
   self,
   lib,
+  config,
   ...
 }: {
-  flake.nixosConfigurations.nixos-gamer = let
-    users = {
-      jonah = {
-        name = "jonah";
+  flake.nixosConfigurations.nixos-gamer = inputs.nixpkgs.lib.nixosSystem {
+    specialArgs = let
+      pkgs-stable = import inputs.nixpkgs-stable {
+        system = "x86_64-linux";
       };
+    in {
+      inherit pkgs-stable;
     };
-  in
-    inputs.nixpkgs.lib.nixosSystem {
-      specialArgs = let
-        pkgs-stable = import inputs.nixpkgs-stable {
-          system = "x86_64-linux";
+    modules = [
+      self.nixosModules.gamer
+      self.nixosModules.system
+      self.nixosModules.nvidia
+      self.nixosModules.gaming
+      self.nixosModules.hyprland
+      inputs.home-manager.nixosModules.home-manager
+      {
+        nixpkgs.overlays = [inputs.dolphin-overlay.overlays.default inputs.ulauncher.overlays.default];
+      }
+      {
+        home-manager.useGlobalPkgs = true;
+        home-manager.useUserPackages = true;
+        home-manager.users."jonah" = self.homeModules.user;
+        home-manager.extraSpecialArgs = let
+        in {
+          hostname = "gamer";
+          pkgs-stable = import inputs.nixpkgs-stable {system = "x86_64-linux";};
+          flakeLocation = "/etc/nixos";
         };
-      in {
-        inherit pkgs-stable;
-        userConfig = users."jonah";
-        nixosModulesLocation = "${inputs.self}/modules/nixos";
-      };
-      modules = [
-        self.nixosModules.gamer
-        self.nixosModules.system
-        self.nixosModules.nvidia
-        self.nixosModules.gaming
-        self.nixosModules.hyprland
-        inputs.home-manager.nixosModules.home-manager
-          nixpkgs.overlays = [inputs.dolphin-overlay.overlays.default inputs.ulauncher.overlays.default];
-        {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          # Aim for this? home-manager.users.jonah = self.homeModules.jonah;
-          home-manager.users."jonah" = self.homeModules.jonah;
-          home-manager.extraSpecialArgs = let
-          in {
-            hostname = "gamer";
-            pkgs-stable = import inputs.nixpkgs-stable {system = "x86_64-linux";};
-            userConfig = users."jonah";
-            nhModules = "${inputs.self}/modules/home-manager";
-            flakeLocation = "/etc/nixos";
-          };
-        }
-      ];
-    };
+      }
+    ];
+  };
 
   flake.nixosModules.gamer = {
     pkgs,

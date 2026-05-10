@@ -2,79 +2,81 @@
 # and may be overwritten by future invocations.  Please make changes
 # to /etc/nixos/configuration.nix instead.
 {
-  config,
-  lib,
-  pkgs,
-  modulesPath,
-  ...
-}: {
-  imports = [
-    (modulesPath + "/installer/scan/not-detected.nix")
-  ];
+  flake.nixosModules.gamer = {
+    config,
+    lib,
+    pkgs,
+    modulesPath,
+    ...
+  }: {
+    imports = [
+      (modulesPath + "/installer/scan/not-detected.nix")
+    ];
 
-  boot.initrd.availableKernelModules = ["nvme" "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod"];
-  boot.initrd.kernelModules = [];
-  boot.kernelModules = ["kvm-amd"];
-  boot.extraModulePackages = [];
+    boot.initrd.availableKernelModules = ["nvme" "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod"];
+    boot.initrd.kernelModules = [];
+    boot.kernelModules = ["kvm-amd"];
+    boot.extraModulePackages = [];
 
-  fileSystems."/" = {
-    device = "/dev/disk/by-uuid/a0a31b91-438b-46f9-bbaf-3c15bbc390e5";
-    fsType = "btrfs";
-    options = ["subvol=@" "compress-force=zstd"];
+    fileSystems."/" = {
+      device = "/dev/disk/by-uuid/a0a31b91-438b-46f9-bbaf-3c15bbc390e5";
+      fsType = "btrfs";
+      options = ["subvol=@" "compress-force=zstd"];
+    };
+
+    fileSystems."/nix" = {
+      device = "/dev/disk/by-uuid/a0a31b91-438b-46f9-bbaf-3c15bbc390e5";
+      fsType = "btrfs";
+      options = ["subvol=@nix" "compress-force=zstd"];
+    };
+
+    fileSystems."/persist" = {
+      device = "/dev/disk/by-uuid/a0a31b91-438b-46f9-bbaf-3c15bbc390e5";
+      neededForBoot = true;
+      fsType = "btrfs";
+      options = ["subvol=@persist" "compress-force=zstd"];
+    };
+
+    fileSystems."/home" = {
+      device = "/dev/disk/by-uuid/a0a31b91-438b-46f9-bbaf-3c15bbc390e5";
+      neededForBoot = true;
+      fsType = "btrfs";
+      options = ["subvol=@home" "compress-force=zstd"];
+    };
+
+    fileSystems."/home/jonah/.cache" = {
+      device = "/dev/disk/by-uuid/a0a31b91-438b-46f9-bbaf-3c15bbc390e5";
+      fsType = "btrfs";
+      options = ["subvol=@jonahcache" "compress-force=zstd"];
+    };
+
+    fileSystems."/boot" = {
+      device = "/dev/disk/by-uuid/125C-922E";
+      fsType = "vfat";
+      options = ["fmask=0077" "dmask=0077"];
+    };
+
+    fileSystems."/mnt/evo1700" = {
+      device = "/dev/disk/by-uuid/34af9db7-0145-4365-b9b8-b337ac5509e8";
+      fsType = "btrfs";
+      options = ["subvol=@data" "compress-force=zstd"];
+    };
+
+    fileSystems."/mnt/ssd" = {
+      device = "/dev/disk/by-uuid/93785aad-aa85-4ad1-8ee0-72d226decbbf";
+      fsType = "btrfs";
+      options = ["subvol=@data" "compress-force=zstd"];
+    };
+
+    fileSystems."/mnt/extra" = {
+      device = "/dev/disk/by-uuid/d473a985-d1d5-4c47-8ab7-d6556c08696e";
+      fsType = "btrfs";
+      options = ["subvol=@data" "compress-force=zstd"];
+    };
+
+    swapDevices = [];
+
+    nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+    hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
   };
-
-  fileSystems."/nix" = {
-    device = "/dev/disk/by-uuid/a0a31b91-438b-46f9-bbaf-3c15bbc390e5";
-    fsType = "btrfs";
-    options = ["subvol=@nix" "compress-force=zstd"];
-  };
-
-  fileSystems."/persist" = {
-    device = "/dev/disk/by-uuid/a0a31b91-438b-46f9-bbaf-3c15bbc390e5";
-    neededForBoot = true;
-    fsType = "btrfs";
-    options = ["subvol=@persist" "compress-force=zstd"];
-  };
-
-  fileSystems."/home" = {
-    device = "/dev/disk/by-uuid/a0a31b91-438b-46f9-bbaf-3c15bbc390e5";
-    neededForBoot = true;
-    fsType = "btrfs";
-    options = ["subvol=@home" "compress-force=zstd"];
-  };
-
-  fileSystems."/home/jonah/.cache" = {
-    device = "/dev/disk/by-uuid/a0a31b91-438b-46f9-bbaf-3c15bbc390e5";
-    fsType = "btrfs";
-    options = ["subvol=@jonahcache" "compress-force=zstd"];
-  };
-
-  fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/125C-922E";
-    fsType = "vfat";
-    options = ["fmask=0077" "dmask=0077"];
-  };
-
-  fileSystems."/mnt/evo1700" = {
-    device = "/dev/disk/by-uuid/34af9db7-0145-4365-b9b8-b337ac5509e8";
-    fsType = "btrfs";
-    options = ["subvol=@data" "compress-force=zstd"];
-  };
-
-  fileSystems."/mnt/ssd" = {
-    device = "/dev/disk/by-uuid/93785aad-aa85-4ad1-8ee0-72d226decbbf";
-    fsType = "btrfs";
-    options = ["subvol=@data" "compress-force=zstd"];
-  };
-
-  fileSystems."/mnt/extra" = {
-    device = "/dev/disk/by-uuid/d473a985-d1d5-4c47-8ab7-d6556c08696e";
-    fsType = "btrfs";
-    options = ["subvol=@data" "compress-force=zstd"];
-  };
-
-  swapDevices = [];
-
-  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }

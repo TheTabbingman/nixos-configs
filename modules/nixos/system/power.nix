@@ -1,4 +1,6 @@
-{pkgs, ...}: {
-  services.power-profiles-daemon.enable = true;
-  services.upower.enable = true;
+{...}: {
+  flake.nixosModules.system = {...}: {
+    services.power-profiles-daemon.enable = true;
+    services.upower.enable = true;
+  };
 }

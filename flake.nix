@@ -4,6 +4,8 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.11";
+    flake-parts.url = "github:hercules-ci/flake-parts";
+    import-tree.url = "github:vic/import-tree";
     impermanence = {
       url = "github:nix-community/impermanence";
       inputs.nixpkgs.follows = "";
@@ -73,101 +75,7 @@
     };
   };
 
-  outputs = {
-    self,
-    nixpkgs,
-    nixpkgs-stable,
-    home-manager,
-    ...
-  } @ inputs: let
-    inherit (self) outputs;
-
-    users = {
-      jonah = {
-        name = "jonah";
-      };
-    };
-
-    mkNixosConfiguration = username: hostname:
-      nixpkgs.lib.nixosSystem {
-        specialArgs = let
-          pkgs-stable = import nixpkgs-stable {
-            system = "x86_64-linux";
-          };
-        in {
-          inherit inputs outputs pkgs-stable;
-          hostname = "nixos-" + hostname;
-          userConfig = users.${username};
-          nixosModules = "${self}/modules/nixos";
-        };
-        modules = [
-          ./hosts/${hostname}/configuration.nix
-          inputs.impermanence.nixosModules.impermanence
-          inputs.sops-nix.nixosModules.sops
-          home-manager.nixosModules.home-manager
-          inputs.nix-index-database.nixosModules.nix-index
-          inputs.nix-flatpak.nixosModules.nix-flatpak
-          inputs.stylix.nixosModules.stylix
-          inputs.niri.nixosModules.niri
-          inputs.dms.nixosModules.dank-material-shell
-          {
-            nixpkgs.overlays = [inputs.dolphin-overlay.overlays.default inputs.ulauncher.overlays.default];
-          }
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.${username} = {
-              imports = [
-                ./hosts/${hostname}/home.nix
-                inputs.sops-nix.homeManagerModules.sops
-                inputs.nix-flatpak.homeManagerModules.nix-flatpak
-                inputs.dms.homeModules.niri
-                inputs.dms.homeModules.dank-material-shell
-                inputs.dms-plugin-registry.modules.default
-                inputs.nix-index-database.homeModules.default
-              ];
-            };
-            home-manager.extraSpecialArgs = {
-              inherit inputs outputs hostname;
-              pkgs-stable = import nixpkgs-stable {system = "x86_64-linux";};
-              userConfig = users.${username};
-              nhModules = "${self}/modules/home-manager";
-              flakeLocation = "/etc/nixos";
-            };
-          }
-        ];
-      };
-
-    mkHomeConfiguration = username: hostname:
-      home-manager.lib.homeManagerConfiguration {
-        pkgs = import nixpkgs {
-          system = "x86_64-linux";
-        };
-        extraSpecialArgs = {
-          inherit inputs outputs hostname;
-          pkgs-stable = import nixpkgs-stable {system = "x86_64-linux";};
-          userConfig = users.${username};
-          nhModules = "${self}/modules/home-manager";
-          flakeLocation = "/etc/nixos";
-        };
-        modules = [
-          ./hosts/${hostname}/home.nix
-          inputs.nix-flatpak.homeManagerModules.nix-flatpak
-          inputs.stylix.homeModules.stylix
-          inputs.niri.homeModules.niri
-        ];
-      };
-  in {
-    nixosConfigurations = {
-      nixos-gamer = mkNixosConfiguration "jonah" "gamer";
-      nixos-vm = mkNixosConfiguration "jonah" "vm";
-      nixos-laptop = mkNixosConfiguration "jonah" "laptop";
-    };
-
-    homeConfigurations = {
-      "jonah@nixos-gamer" = mkHomeConfiguration "jonah" "gamer";
-      "jonah@nixos-vm" = mkHomeConfiguration "jonah" "vm";
-      "jonah@nixos-laptop" = mkHomeConfiguration "jonah" "laptop";
-    };
-  };
+  outputs = inputs @ {flake-parts, ...}:
+    flake-parts.lib.mkFlake {inherit inputs;}
+    (inputs.import-tree [./modules/nixos ./hosts/gamer]);
 }

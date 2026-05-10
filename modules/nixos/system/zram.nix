@@ -1,8 +1,10 @@
 {...}: {
-  zramSwap = {
-    enable = true;
-    memoryPercent = 50;
-    algorithm = "zstd";
-    priority = 100;
+  flake.nixosModules.system = {...}: {
+    zramSwap = {
+      enable = true;
+      memoryPercent = 50;
+      algorithm = "zstd";
+      priority = 100;
+    };
   };
 }

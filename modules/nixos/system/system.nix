@@ -1,67 +1,65 @@
-{
-  hostname,
-  pkgs,
-  ...
-}: {
-  networking.hostName = hostname; # Define your hostname.
+{...}: {
+  flake.nixosModules.system = {hostname, ...}: {
+    networking.hostName = hostname; # Define your hostname.
 
-  nix = {
-    settings.experimental-features = ["nix-command" "flakes"];
+    nix = {
+      settings.experimental-features = ["nix-command" "flakes"];
 
-    optimise = {
-      automatic = true;
+      optimise = {
+        automatic = true;
+      };
+      gc = {
+        automatic = true;
+        options = "--delete-older-than 7d";
+      };
     };
-    gc = {
-      automatic = true;
-      options = "--delete-older-than 7d";
+
+    # Allow unfree packages
+    nixpkgs.config.allowUnfree = true;
+
+    security.sudo = {
+      extraConfig = ''
+        Defaults pwfeedback
+      '';
+      extraRules = [
+        {
+          groups = ["wheel"];
+          commands = [
+            {
+              command = "/run/current-system/sw/bin/systemctl start wg-quick-wg0";
+              options = ["NOPASSWD"];
+            }
+            {
+              command = "/run/current-system/sw/bin/systemctl stop wg-quick-wg0";
+              options = ["NOPASSWD"];
+            }
+            {
+              command = "/run/current-system/sw/bin/systemctl start wg-quick-wg1";
+              options = ["NOPASSWD"];
+            }
+            {
+              command = "/run/current-system/sw/bin/systemctl stop wg-quick-wg1";
+              options = ["NOPASSWD"];
+            }
+            {
+              command = "/run/current-system/sw/bin/systemctl start openvpn-chicago";
+              options = ["NOPASSWD"];
+            }
+            {
+              command = "/run/current-system/sw/bin/systemctl stop openvpn-chicago";
+              options = ["NOPASSWD"];
+            }
+            {
+              command = "/run/current-system/sw/bin/systemctl start openvpn-portugal";
+              options = ["NOPASSWD"];
+            }
+            {
+              command = "/run/current-system/sw/bin/systemctl stop openvpn-portugal";
+              options = ["NOPASSWD"];
+            }
+          ];
+        }
+      ];
     };
-  };
-
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
-
-  security.sudo = {
-    extraConfig = ''
-      Defaults pwfeedback
-    '';
-    extraRules = [
-      {
-        groups = ["wheel"];
-        commands = [
-          {
-            command = "/run/current-system/sw/bin/systemctl start wg-quick-wg0";
-            options = ["NOPASSWD"];
-          }
-          {
-            command = "/run/current-system/sw/bin/systemctl stop wg-quick-wg0";
-            options = ["NOPASSWD"];
-          }
-          {
-            command = "/run/current-system/sw/bin/systemctl start wg-quick-wg1";
-            options = ["NOPASSWD"];
-          }
-          {
-            command = "/run/current-system/sw/bin/systemctl stop wg-quick-wg1";
-            options = ["NOPASSWD"];
-          }
-          {
-            command = "/run/current-system/sw/bin/systemctl start openvpn-chicago";
-            options = ["NOPASSWD"];
-          }
-          {
-            command = "/run/current-system/sw/bin/systemctl stop openvpn-chicago";
-            options = ["NOPASSWD"];
-          }
-          {
-            command = "/run/current-system/sw/bin/systemctl start openvpn-portugal";
-            options = ["NOPASSWD"];
-          }
-          {
-            command = "/run/current-system/sw/bin/systemctl stop openvpn-portugal";
-            options = ["NOPASSWD"];
-          }
-        ];
-      }
-    ];
   };
 }

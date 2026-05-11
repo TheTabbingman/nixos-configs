@@ -13,6 +13,7 @@
     environment.systemPackages = with pkgs; [
       linux-wallpaperengine
       kdiskmark
+      kopia-ui
     ];
     programs.nix-index-database.comma.enable = true;
   };

@@ -1,7 +1,7 @@
 {self, ...}: {
   flake.homeModules.default = {
     config,
-    flakeLocation,
+    osConfig,
     ...
   }: let
     configDirs = builtins.attrNames (builtins.readDir ../../dotfiles/.config);
@@ -16,7 +16,7 @@
       map (dir: {
         name = ".config/${dir}";
         value = {
-          source = config.lib.file.mkOutOfStoreSymlink "${flakeLocation}/dotfiles/.config/${dir}";
+          source = config.lib.file.mkOutOfStoreSymlink "${osConfig.preferences.flakeLocation}/dotfiles/.config/${dir}";
         };
       })
       configDirs

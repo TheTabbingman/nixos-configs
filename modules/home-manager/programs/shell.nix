@@ -1,8 +1,8 @@
 {inputs, ...}: {
   flake.homeModules.programs = {
-    flakeLocation,
     lib,
     pkgs,
+    osConfig,
     ...
   }: {
     home = {
@@ -11,10 +11,10 @@
       };
 
       shellAliases = let
-        pathFlakeLocation = "path:${flakeLocation}";
+        pathFlakeLocation = "path:${osConfig.preferences.flakeLocation}";
       in {
         # edit
-        ne = "pushd ${flakeLocation} && nvim . && popd";
+        ne = "pushd ${osConfig.preferences.flakeLocation} && nvim . && popd";
         # home-manager
         # hms = "home-manager switch --flake ${pathFlakeLocation} && chd";
         # nix

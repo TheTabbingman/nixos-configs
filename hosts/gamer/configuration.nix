@@ -19,6 +19,7 @@
     modules = [
       self.nixosModules.gamer
       self.nixosModules.system
+      self.nixosModules.impermanence
       self.nixosModules.nvidia
       self.nixosModules.gaming
       self.nixosModules.hyprland

@@ -9,12 +9,8 @@
   ...
 }: {
   flake.nixosConfigurations.nixos-gamer = inputs.nixpkgs.lib.nixosSystem {
-    specialArgs = let
-      pkgs-stable = import inputs.nixpkgs-stable {
-        system = "x86_64-linux";
-      };
-    in {
-      inherit pkgs-stable;
+    specialArgs = {
+      pkgs-stable = import inputs.nixpkgs-stable {system = "x86_64-linux";};
     };
     modules = [
       self.nixosModules.gamer

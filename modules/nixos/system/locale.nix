@@ -1,5 +1,5 @@
 {...}: {
-  flake.nixosModules.system = {...}: {
+  flake.nixosModules.system = {pkgs, ...}: {
     # Set your time zone.
     time.timeZone = "America/Chicago";
 
@@ -16,6 +16,17 @@
       LC_PAPER = "en_US.UTF-8";
       LC_TELEPHONE = "en_US.UTF-8";
       LC_TIME = "en_US.UTF-8";
+    };
+    i18n.inputMethod = {
+      enable = true;
+      type = "fcitx5";
+      fcitx5 = {
+        waylandFrontend = true;
+        addons = with pkgs; [
+          fcitx5-mozc-ut
+          fcitx5-gtk
+        ];
+      };
     };
   };
 }

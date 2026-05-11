@@ -8,6 +8,7 @@
       # ./dms.nix
     ];
     programs.regreet.enable = !config.services.displayManager.sddm.enable && !config.services.displayManager.gdm.enable;
+    programs.regreet.cageArgs = ["-s" "-d" "-m" "last"];
 
     # Keyring stuff
     services.gnome.gnome-keyring.enable = true;

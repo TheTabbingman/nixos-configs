@@ -25,7 +25,9 @@
                   key = "<leader>q";
                   mode = "n";
                   lua = true;
-                  action = "vim.diagnostic.setloclist";
+                  action =
+                    # lua
+                    "vim.diagnostic.setloclist";
                   desc = "Open diagnostic [Q]uickfix list";
                 }
                 {
@@ -63,21 +65,25 @@
                   mode = "n";
                   desc = "[/] Fuzzily search in current buffer";
                   lua = true;
-                  action = "require('telescope.builtin').current_buffer_fuzzy_find";
+                  action =
+                    # lua
+                    "require('telescope.builtin').current_buffer_fuzzy_find";
                 }
                 {
                   key = "<leader>s/";
                   mode = "n";
                   desc = "[S]earch [/] in Open Files";
                   lua = true;
-                  action = ''
-                    function()
-                      require('telescope.builtin').live_grep {
-                        grep_open_files = true,
-                        prompt_title = 'Live Grep in Open Files',
-                      }
-                    end
-                  '';
+                  action =
+                    # lua
+                    ''
+                      function()
+                        require('telescope.builtin').live_grep {
+                          grep_open_files = true,
+                          prompt_title = 'Live Grep in Open Files',
+                        }
+                      end
+                    '';
                 }
                 {
                   key = "<leader>y";
@@ -262,7 +268,10 @@
                   event = ["TextYankPost"];
                   desc = "Highlight when yanking (copying) text";
                   group = "kickstart-highlight-yank";
-                  callback = lib.generators.mkLuaInline ''function() vim.hl.on_yank() end'';
+                  callback =
+                    lib.generators.mkLuaInline
+                    # lua
+                    ''function() vim.hl.on_yank() end'';
                 }
                 {
                   event = ["BufEnter"];

@@ -169,6 +169,7 @@
                 };
                 setupOpts.defaults = {
                   color_devicons = true;
+                  sorting_strategy = "descending";
                   layout_config = {
                     height = 0.9;
                     horizontal = {

@@ -8,7 +8,6 @@
           ".librewolf"
           ".local/state"
           ".mozilla/native-messaging-hosts"
-          ".ollama"
           ".steam"
           ".var/app/org.flybywiresim.installer"
           "Calibre Library"

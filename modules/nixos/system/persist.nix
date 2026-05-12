@@ -23,6 +23,11 @@
           "/var/db/sudo/lectured"
           "/var/log"
           {
+            # Need to make sure that /var/lib/private has 0700 permissions
+            directory = "/var/lib/private/ollama";
+            mode = "u=rwx,g=,o=";
+          }
+          {
             directory = "/var/lib/colord";
             user = "colord";
             group = "colord";

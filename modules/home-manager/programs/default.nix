@@ -30,13 +30,16 @@
       soundconverter
       qbittorrent
     ];
+
     dconf.settings = {
       "io/missioncenter/MissionCenter" = {
         performance-sidebar-hidden-graphs = "net-enp8s0;disk-nvme0n1;net-ip6tnl0";
         apps-page-merged-process-stats = true;
       };
     };
+
     services.syncthing.enable = true;
+
     xdg.desktopEntries.fat-boy = {
       name = "Connect to fat-boy";
       comment = "Remote Desktop to fat-boy";
@@ -46,11 +49,9 @@
       icon = "org.remmina.Remmina";
       categories = ["Network" "RemoteAccess"];
     };
-    services.ollama = {
-      enable = true;
-      package = pkgs.ollama-cuda;
-    };
+
     programs.lazygit.enable = true;
+
     xdg.mimeApps = {
       enable = true;
       defaultApplications = {

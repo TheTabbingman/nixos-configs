@@ -3,7 +3,11 @@
   inputs,
   ...
 }: {
-  flake.nixosModules.system = {pkgs, ...}: {
+  flake.nixosModules.system = {
+    pkgs,
+    config,
+    ...
+  }: {
     imports = [
       inputs.nix-index-database.nixosModules.nix-index
       self.nixosModules.shell
@@ -16,5 +20,12 @@
       kopia-ui
     ];
     programs.nix-index-database.comma.enable = true;
+
+    services.ollama = {
+      enable = true;
+      package = pkgs.ollama-cuda;
+      environmentVariables = {"OLLAMA_CONTEXT_LENGTH" = "32768";};
+    };
+    services.open-webui.enable = true;
   };
 }

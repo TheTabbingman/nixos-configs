@@ -194,7 +194,10 @@
               };
               formatter.conform-nvim.enable = true;
               visuals.fidget-nvim.enable = true;
-              autocomplete.blink-cmp.enable = true;
+              autocomplete.blink-cmp = {
+                enable = true;
+                setupOpts.keymap.preset = "default";
+              };
               languages = {
                 enableFormat = true;
                 enableTreesitter = true;

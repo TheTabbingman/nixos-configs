@@ -1,5 +1,5 @@
 {...}: {
-  flake.homeModules.programs = {pkgs, ...}: {
+  flake.homeModules.neovim = {pkgs, ...}: {
     home.packages = with pkgs; [
       neovim
       clang

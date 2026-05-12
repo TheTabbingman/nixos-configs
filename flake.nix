@@ -73,6 +73,8 @@
       url = "github:Ulauncher/Ulauncher";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nvf.url = "github:notashelf/nvf";
   };
 
   outputs = inputs @ {flake-parts, ...}:

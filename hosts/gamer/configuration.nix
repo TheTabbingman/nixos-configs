@@ -17,6 +17,7 @@
       self.nixosModules.system
       self.nixosModules.impermanence
       self.nixosModules.nvidia
+      self.nixosModules.programs
       self.nixosModules.gaming
       self.nixosModules.hyprland
       inputs.home-manager.nixosModules.home-manager

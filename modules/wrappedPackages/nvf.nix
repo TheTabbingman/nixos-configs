@@ -292,7 +292,6 @@
                   signs = false;
                 };
               };
-              preventJunkFiles = false;
               luaConfigRC.post =
                 # lua
                 ''

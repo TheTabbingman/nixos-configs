@@ -80,13 +80,6 @@
                   '';
                 }
                 {
-                  key = "<leader><leader>";
-                  mode = "n";
-                  desc = "Open Diagnostic Window";
-                  lua = true;
-                  action = "vim.diagnostic.open_float"; # NOTE:Should maybe be vim.lsp.buf.hover instead?
-                }
-                {
                   key = "<leader>y";
                   mode = ["n" "v"];
                   desc = "Copy to system clipboard";
@@ -130,6 +123,11 @@
                 setupOpts = {
                   delay = 0;
                   icons.mappings = true;
+                };
+                register = {
+                  "<leader>s" = "[S]earch";
+                  "<leader>sv" = "Telescope Git";
+                  "<leader>svc" = "Commits";
                 };
               };
               telescope = {
@@ -211,7 +209,10 @@
                 };
               };
               autopairs.nvim-autopairs.enable = true;
-              notes.todo-comments.enable = true;
+              notes.todo-comments = {
+                enable = true;
+                setupOpts.signs = false;
+              };
               visuals.indent-blankline.enable = true;
               diagnostics.nvim-lint.enable = true;
               git = {
@@ -220,12 +221,13 @@
                   enable = true;
                   setupOpts = {
                     signs = {
-                      add = "text:+";
-                      change = "text:~";
-                      delete = "text:_";
-                      topdelete = "text:‾";
-                      changedelete = "text:~";
+                      add = {"text" = "+";};
+                      change = {"text" = "~";};
+                      delete = {"text" = "_";};
+                      topdelete = {"text" = "‾";};
+                      changedelete = {"text" = "~";};
                     };
+                    current_line_blame = true;
                   };
                 };
               };
@@ -261,25 +263,26 @@
                   group = "kickstart-highlight-yank";
                   callback = lib.generators.mkLuaInline ''function() vim.hl.on_yank() end'';
                 }
+                {
+                  event = ["BufEnter"];
+                  desc = "Fix a indentation bug https://github.com/NotAShelf/nvf/issues/1397";
+                  pattern = ["*"];
+                  command = "setlocal indentexpr=nvim_treesitter#indent()";
+                }
               ];
-              diagnostics.config = {
-                update_in_insert = false;
-                severity_sort = true;
-                float = "border:rounded, source:if_many";
-                # underline = "severity:min:vim.diagnostic.severity.WARN";
-                virtual_text = true;
-                virtual_lines = false;
-                jump = "float:true";
+              diagnostics = {
+                enable = true;
+                config = {
+                  severity_sort = true;
+                  virtual_text = true;
+                  virtual_lines = false;
+                  signs = false;
+                };
               };
-              luaConfigRC.post = ''
-                require('which-key').add({
-                  { "<leader>s", group = "[S]earch", mode = { "n", "v" } },
-                  { "<leader>sv", group = "Telescope Git", mode = { "n", "v" } },
-                  { "<leader>svc", group = "Commits", mode = { "n", "v" } },
-                  -- { "<leader>t", group = "[T]oggle" },
-                  -- { "<leader>h", group = "Git [H]unk", mode = { "n", "v" } },
-                })
-              '';
+              luaConfigRC.post =
+                # lua
+                ''
+                '';
             };
           }
         ];

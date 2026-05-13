@@ -39,6 +39,22 @@
         ];
       };
       yazi = {
+        opener = {
+          set-wallpaper = [
+            {
+              run = "dms ipc wallpaper set %s1";
+              desc = "Set as wallpaper";
+            }
+          ];
+        };
+        open = {
+          prepend_rules = [
+            {
+              mime = "image/*";
+              use = ["open" "reveal" "set-wallpaper"];
+            }
+          ];
+        };
         plugin = {
           prepend_previewers = [
             {

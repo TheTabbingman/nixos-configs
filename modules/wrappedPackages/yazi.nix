@@ -40,6 +40,11 @@
             on = "y";
             run = [''shell -- for path in %s; do echo "file://$path"; done | ${lib.getExe' pkgs.wl-clipboard "wl-copy"} -t text/uri-list'' "yank"];
           }
+          {
+            on = ["g" "r"];
+            run = ''shell -- ya emit cd "$(git rev-parse --show-toplevel)"'';
+            desc = "Go to root of git project";
+          }
         ];
       };
       yazi = {

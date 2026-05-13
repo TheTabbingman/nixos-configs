@@ -22,7 +22,10 @@
       self.nixosModules.hyprland
       inputs.home-manager.nixosModules.home-manager
       {
-        nixpkgs.overlays = [inputs.dolphin-overlay.overlays.default inputs.ulauncher.overlays.default];
+        nixpkgs.overlays = [
+          # inputs.dolphin-overlay.overlays.default
+          inputs.ulauncher.overlays.default
+        ];
       }
       {
         home-manager.useGlobalPkgs = true;

@@ -142,6 +142,7 @@
   }: {
     environment.systemPackages = let
       yazi = self.packages.${pkgs.stdenv.hostPlatform.system}.yazi.wrap ({lib, ...}: {
+        package = pkgs.yazi.override {_7zz = pkgs._7zz-rar;}; # _7zz-rar is unfree
         settings.yazi.opener = {
           play = lib.mkIf (config.networking.hostName == "nixos-laptop") [
             # TODO: Make sure that this has actually worked

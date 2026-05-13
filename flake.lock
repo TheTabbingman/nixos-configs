@@ -1267,7 +1267,8 @@
         "nvf": "nvf",
         "sops-nix": "sops-nix",
         "stylix": "stylix",
-        "ulauncher": "ulauncher"
+        "ulauncher": "ulauncher",
+        "wrapper-modules": "wrapper-modules"
       }
     },
     "sops-nix": {
@@ -1450,6 +1451,26 @@
       "original": {
         "owner": "Ulauncher",
         "repo": "Ulauncher",
+        "type": "github"
+      }
+    },
+    "wrapper-modules": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1778560014,
+        "narHash": "sha256-Hu9RMo7vJt/4dx/vAvyG+cE9RBwpaH1ouyunvruYaDI=",
+        "owner": "BirdeeHub",
+        "repo": "nix-wrapper-modules",
+        "rev": "e30aa99c9c7038e16efae3cad7916a47307a9e36",
+        "type": "github"
+      },
+      "original": {
+        "owner": "BirdeeHub",
+        "repo": "nix-wrapper-modules",
         "type": "github"
       }
     },

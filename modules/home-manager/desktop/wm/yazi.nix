@@ -1,5 +1,5 @@
 {...}: {
-  flake.homeModules.wm = {
+  flake.homeModules.yazi = {
     pkgs,
     lib,
     osConfig,

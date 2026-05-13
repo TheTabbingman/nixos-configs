@@ -61,6 +61,7 @@
       what-size = what-size-yazi;
       exifaudio = exifaudio-yazi;
       compress = pkgs.yaziPlugins.compress;
+      chmod = pkgs.yaziPlugins.chmod;
     };
     settings = {
       keymap = {
@@ -112,6 +113,11 @@
             on = ["." "s"];
             run = "plugin what-size";
             desc = "Calc size of selection or cwd";
+          }
+          {
+            on = ["c" "m"];
+            run = "plugin chmod";
+            desc = "Chmod on selected files";
           }
         ];
       };

@@ -103,13 +103,22 @@
                   desc = "Paste from system clipboard";
                   action = ''"+p'';
                 }
+                {
+                  key = "<leader>tw";
+                  mode = ["n"];
+                  desc = "[T]oggle [W]rap";
+                  action = ":set wrap!<CR>";
+                }
               ];
               theme = {
                 enable = true;
                 name = "onedark";
                 style = "dark";
               };
-              treesitter.enable = true;
+              treesitter = {
+                enable = true;
+                grammars = pkgs.vimPlugins.nvim-treesitter.allGrammars;
+              };
               lineNumberMode = "relNumber";
               undoFile.enable = true;
               searchCase = "smart";
@@ -211,6 +220,9 @@
                   enable = true;
                   lsp.servers = ["nixd"];
                 };
+                json.enable = true;
+                yaml.enable = true;
+                toml.enable = true;
               };
               debugger = {
                 nvim-dap = {
@@ -292,6 +304,7 @@
                   signs = false;
                 };
               };
+              preventJunkFiles = false;
               luaConfigRC.post =
                 # lua
                 ''

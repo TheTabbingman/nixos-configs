@@ -211,6 +211,7 @@
                 enableFormat = true;
                 enableTreesitter = true;
                 enableDAP = true;
+                enableExtraDiagnostics = true;
                 lua.enable = true;
                 clang.enable = true;
                 typescript.enable = true;

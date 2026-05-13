@@ -2,6 +2,7 @@
   flake.wrappers.yazi = {
     wlib,
     pkgs,
+    lib,
     ...
   }: {
     imports = [wlib.wrapperModules.yazi];
@@ -29,6 +30,14 @@
       ffmpegthumbnailer = ffmpegthumbnailer-yazi;
     };
     settings = {
+      keymap = {
+        mgr.prepend_keymap = [
+          {
+            on = "<C-n>";
+            run = "shell -- ${lib.getExe pkgs.ripdrag} %h --and-exit --icons-only --icon-size 64 -W 64 -H 64 --no-click";
+          }
+        ];
+      };
       yazi = {
         plugin = {
           prepend_previewers = [

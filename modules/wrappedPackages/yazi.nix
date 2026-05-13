@@ -27,8 +27,23 @@
           runHook postInstall
         '';
       };
+      what-size-yazi = pkgs.stdenv.mkDerivation {
+        name = "what-size.yazi";
+        src = pkgs.fetchFromGitHub {
+          owner = "pirafrank";
+          repo = "what-size.yazi";
+          rev = "179ebf69c9c3ade40cacc0f25e9557a43427c6ca";
+          sha256 = "sha256-7q/45TopqbojNRvYDmP9+hgSGPmiyLHBcV051qpOB2Y=";
+        };
+        installPhase = ''
+          runHook preInstall
+          cp -r . $out
+          runHook postInstall
+        '';
+      };
     in {
       ffmpegthumbnailer = ffmpegthumbnailer-yazi;
+      what-size = what-size-yazi;
       compress = pkgs.yaziPlugins.compress;
     };
     settings = {
@@ -76,6 +91,11 @@
             on = ["c" "a" "u"];
             run = "plugin compress -phl";
             desc = "Archive selected files (password+header+level)";
+          }
+          {
+            on = ["." "s"];
+            run = "plugin what-size";
+            desc = "Calc size of selection or cwd";
           }
         ];
       };

@@ -18,6 +18,7 @@
       linux-wallpaperengine
       kdiskmark
       kopia-ui
+      tor-browser
     ];
     programs.nix-index-database.comma.enable = true;
 

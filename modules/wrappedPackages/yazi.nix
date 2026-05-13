@@ -7,6 +7,7 @@
     ...
   }: {
     imports = [wlib.wrapperModules.yazi];
+    package = pkgs.yazi.override {_7zz = pkgs._7zz-rar;}; # _7zz-rar is unfree
     extraPackages = with pkgs; [
       ffmpegthumbnailer
       exiftool

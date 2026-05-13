@@ -45,7 +45,7 @@
           }
           {
             on = ["g" "r"];
-            run = ''shell -- ya emit cd "$(git rev-parse --show-toplevel)"'';
+            run = ''shell -- ya emit cd "$(${lib.getExe pkgs.git} rev-parse --show-toplevel)"'';
             desc = "Go to root of git project";
           }
           {

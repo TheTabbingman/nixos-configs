@@ -314,8 +314,6 @@
       }).neovim;
   };
   flake.nixosModules.programs = {pkgs, ...}: {
-    environment.systemPackages = [
-      self.packages.${pkgs.stdenv.hostPlatform.system}.nvf
-    ];
+    environment.systemPackages = [self.packages.${pkgs.stdenv.hostPlatform.system}.nvf];
   };
 }

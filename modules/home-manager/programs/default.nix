@@ -2,7 +2,6 @@
   flake.homeModules.programs = {pkgs, ...}: {
     home.packages = with pkgs; [
       nix-search-cli
-      alacritty-graphics
       chafa
       tealdeer
       nix-inspect

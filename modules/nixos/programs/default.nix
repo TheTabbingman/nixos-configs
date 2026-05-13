@@ -20,6 +20,7 @@
       kdiskmark
       kopia-ui
       tor-browser
+      puddletag
     ];
     programs.nix-index-database.comma.enable = true;
 

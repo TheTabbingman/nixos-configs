@@ -11,6 +11,7 @@
       ffmpegthumbnailer
       exiftool
       mediainfo
+      lazygit
     ];
     aliases = ["y"];
     plugins = let
@@ -62,6 +63,7 @@
       exifaudio = exifaudio-yazi;
       compress = pkgs.yaziPlugins.compress;
       chmod = pkgs.yaziPlugins.chmod;
+      lazygit = pkgs.yaziPlugins.lazygit;
     };
     settings = {
       keymap = {
@@ -118,6 +120,11 @@
             on = ["c" "m"];
             run = "plugin chmod";
             desc = "Chmod on selected files";
+          }
+          {
+            on = ["g" "i"];
+            run = "plugin lazygit";
+            desc = "run lazygit";
           }
         ];
       };

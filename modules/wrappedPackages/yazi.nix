@@ -10,6 +10,7 @@
     extraPackages = with pkgs; [
       ffmpegthumbnailer
       exiftool
+      mediainfo
     ];
     aliases = ["y"];
     plugins = let
@@ -41,9 +42,24 @@
           runHook postInstall
         '';
       };
+      exifaudio-yazi = pkgs.stdenv.mkDerivation {
+        name = "exifaudio.yazi";
+        src = pkgs.fetchFromGitHub {
+          owner = "Sonico98";
+          repo = "exifaudio.yazi";
+          rev = "4506f9d5032e714c0689be09d566dd877b9d464e";
+          sha256 = "sha256-RWCqWBpbmU3sh/A+LBJPXL/AY292blKb/zZXGvIA5/o=";
+        };
+        installPhase = ''
+          runHook preInstall
+          cp -r . $out
+          runHook postInstall
+        '';
+      };
     in {
       ffmpegthumbnailer = ffmpegthumbnailer-yazi;
       what-size = what-size-yazi;
+      exifaudio = exifaudio-yazi;
       compress = pkgs.yaziPlugins.compress;
     };
     settings = {
@@ -121,6 +137,10 @@
             {
               mime = "video/*";
               run = "ffmpegthumbnailer";
+            }
+            {
+              mime = "audio/*";
+              run = "exifaudio";
             }
           ];
           prepend_preloaders = [

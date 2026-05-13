@@ -36,6 +36,10 @@
             on = "<C-n>";
             run = "shell -- ${lib.getExe pkgs.ripdrag} %h --and-exit --icons-only --icon-size 64 -W 64 -H 64 --no-click";
           }
+          {
+            on = "y";
+            run = [''shell -- for path in %s; do echo "file://$path"; done | ${lib.getExe' pkgs.wl-clipboard "wl-copy"} -t text/uri-list'' "yank"];
+          }
         ];
       };
       yazi = {

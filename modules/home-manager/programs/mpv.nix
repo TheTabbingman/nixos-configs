@@ -217,6 +217,14 @@
       "mpv/scripts/SmartCopyPaste.lua".source = "${smartCopyPaste}/SmartCopyPaste.lua";
       "mpv/scripts/trim.lua".source = "${trim}/trim.lua";
       "mpv/scripts/thumbfast.lua".source = "${pkgs.mpvScripts.thumbfast}/share/mpv/scripts/thumbfast.lua";
+      "mpv/script-opts/thumbfast.conf".text =
+        # ini
+        ''
+          network=yes
+          hwdec=yes
+          max_height=400
+          max_width=400
+        '';
       "mpv/shaders" = {
         source = pkgs.symlinkJoin {
           name = "mpv-shaders";

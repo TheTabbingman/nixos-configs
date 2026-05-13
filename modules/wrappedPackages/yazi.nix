@@ -45,6 +45,11 @@
             run = ''shell -- ya emit cd "$(git rev-parse --show-toplevel)"'';
             desc = "Go to root of git project";
           }
+          {
+            on = "<C-g>";
+            run = ''shell -- ${lib.getExe pkgs.rofi} -theme fullscreen-preview -show filebrowser -filebrowser-command "ya emit reveal" -filebrowser-directory "$(pwd)"'';
+            desc = "Grid view";
+          }
         ];
       };
       yazi = {

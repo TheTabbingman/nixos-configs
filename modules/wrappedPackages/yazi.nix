@@ -112,7 +112,7 @@
             desc = "Archive selected files (password+header+level)";
           }
           {
-            on = ["." "s"];
+            on = [">" "s"];
             run = "plugin what-size";
             desc = "Calc size of selection or cwd";
           }

@@ -265,9 +265,14 @@
                 };
                 setupOpts.options.numbers = "none";
               };
-              utility.yazi-nvim = {
-                enable = true;
-                mappings.openYazi = ''\'';
+              utility = {
+                yazi-nvim = {
+                  enable = true;
+                  mappings.openYazi = ''\'';
+                };
+                motion = {
+                  flash-nvim.enable = true;
+                };
               };
               terminal.toggleterm = {
                 enable = true;

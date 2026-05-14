@@ -42,7 +42,7 @@
         "credentials=${config.sops.templates."smb-secrets".path}"
         "uid=1000"
         "gid=100"
-        "soft"
+        "nofail"
       ];
     in
       lib.genAttrs (map (share: "/mnt/share/fat-boy/${share}") shares) (mountPoint: {
@@ -104,6 +104,9 @@
     };
 
     # Needed for plex-mpv-shim
-    networking.firewall.allowedTCPPorts = [3000];
+    networking = {
+      firewall.allowedTCPPorts = [3000];
+      extraHosts = "192.168.0.81 fat-boy"; # This needs to be manually changed if the ip ever changes
+    };
   };
 }

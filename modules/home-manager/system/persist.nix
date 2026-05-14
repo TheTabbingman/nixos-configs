@@ -36,7 +36,6 @@
           "gwenview/recentfolders"
           "icons" # The icons for distrobox-export stuff is here
           "jellyfin-desktop"
-          "nvim"
           "osu"
           "plex"
           "Plexamp"

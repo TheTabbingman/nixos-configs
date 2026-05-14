@@ -43,7 +43,7 @@
         # See https://wiki.hyprland.org/Configuring/Keywords/
 
         # Set programs that you use
-        "$terminal" = "alacritty";
+        "$terminal" = "ghostty";
         "$fileManager" = "dolphin";
         "$menu" = "ulauncher-toggle";
 

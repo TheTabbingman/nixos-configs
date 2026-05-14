@@ -15,7 +15,7 @@
       self.nixosModules.distrobox
     ];
     environment.systemPackages = with pkgs; [
-      alacritty-graphics
+      ghostty
       linux-wallpaperengine
       kdiskmark
       kopia-ui

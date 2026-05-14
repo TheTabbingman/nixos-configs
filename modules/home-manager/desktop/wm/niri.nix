@@ -429,8 +429,8 @@
                Mod+Shift+Slash { show-hotkey-overlay; }
 
                // Suggested binds for running programs: terminal, app launcher, screen locker.
-               Mod+Q hotkey-overlay-title="Open a Terminal: alacritty" { spawn "${lib.getExe pkgs.alacritty-graphics}"; }
-               Mod+E hotkey-overlay-title="Open a File Manager: yazi" { spawn-sh "${lib.getExe pkgs.alacritty-graphics} -e ${lib.getExe pkgs.fish} -i -c ${lib.getExe pkgs.yazi}"; }
+               Mod+Q hotkey-overlay-title="Open a Terminal: ghostty" { spawn-sh "${lib.getExe pkgs.ghostty} +new-window"; }
+               Mod+E hotkey-overlay-title="Open a File Manager: yazi" { spawn-sh "${lib.getExe pkgs.ghostty} -e ${lib.getExe pkgs.fish} -i -c ${lib.getExe pkgs.yazi}"; }
                Mod+Shift+E hotkey-overlay-title="Open a File Manager: dolphin" { spawn "${lib.getExe' pkgs.kdePackages.dolphin "dolphin"}"; }
                Alt+Space hotkey-overlay-title="Run an Application: ulauncher" { spawn-sh "gapplication action io.ulauncher.Ulauncher toggle-window"; }
                Super+Alt+L hotkey-overlay-title="Lock the Screen: dms lock" { spawn-sh "dms ipc call lock lock"; }

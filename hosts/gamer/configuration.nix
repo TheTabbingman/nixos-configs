@@ -38,8 +38,6 @@
 
     hardware.bluetooth.enable = true;
 
-    environment.variables.LIBVA_DRIVER_NAME = "nvidia";
-
     hardware.keyboard.qmk.enable = true;
     hardware.keyboard.qmk.keychronSupport = true;
 

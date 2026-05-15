@@ -127,7 +127,7 @@
             desc = "run lazygit";
           }
           {
-            on = ["g" "f"];
+            on = ["g" "b"];
             run = "cd /mnt/share/fat-boy";
             desc = "Cd to fat-boy";
           }

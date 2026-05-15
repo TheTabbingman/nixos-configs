@@ -31,8 +31,7 @@
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
         home-manager.users."jonah" = self.homeModules.user;
-        home-manager.extraSpecialArgs = let
-        in {
+        home-manager.extraSpecialArgs = {
           pkgs-stable = import inputs.nixpkgs-stable {system = "x86_64-linux";};
         };
       }

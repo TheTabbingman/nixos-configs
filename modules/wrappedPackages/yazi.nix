@@ -13,7 +13,6 @@
       mediainfo
       lazygit
     ];
-    aliases = ["y"];
     plugins = let
       ffmpegthumbnailer-yazi = pkgs.stdenv.mkDerivation {
         name = "ffmpegthumbnailer.yazi";
@@ -208,5 +207,17 @@
         };
       });
     in [yazi];
+  };
+  flake.homeModules.programs = {
+    programs.fish.functions = {
+      y = ''
+        set -l tmp (mktemp -t "yazi-cwd.XXXXX")
+        command yazi $argv --cwd-file="$tmp"
+        if read cwd < "$tmp"; and [ -n "$cwd" ]; and [ "$cwd" != "$PWD" ]
+          builtin cd -- "$cwd"
+        end
+        rm -f -- "$tmp"
+      '';
+    };
   };
 }

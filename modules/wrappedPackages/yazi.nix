@@ -56,10 +56,25 @@
           runHook postInstall
         '';
       };
+      bunny-yazi = pkgs.stdenv.mkDerivation {
+        name = "bunny.yazi";
+        src = pkgs.fetchFromGitHub {
+          owner = "stelcodes";
+          repo = "bunny.yazi";
+          rev = "71b14a3d624572f4884354c2e218296e9ece07cc";
+          sha256 = "sha256-uQO0C00yOFPWq8KEO/kEZM6tFZRc9SiXfgN7kzlwDeA=";
+        };
+        installPhase = ''
+          runHook preInstall
+          cp -r . $out
+          runHook postInstall
+        '';
+      };
     in {
       ffmpegthumbnailer = ffmpegthumbnailer-yazi;
       what-size = what-size-yazi;
       exifaudio = exifaudio-yazi;
+      bunny = bunny-yazi;
       compress = pkgs.yaziPlugins.compress;
       chmod = pkgs.yaziPlugins.chmod;
       lazygit = pkgs.yaziPlugins.lazygit;
@@ -125,6 +140,11 @@
             on = ["g" "i"];
             run = "plugin lazygit";
             desc = "run lazygit";
+          }
+          {
+            on = ["'"];
+            run = "plugin bunny";
+            desc = "Start bunny.yazi";
           }
         ];
       };
@@ -202,6 +222,15 @@
               require("git"):setup {
                   order = 1500,
               }
+
+              require("bunny"):setup({
+                  hops = {
+                      { key = {"f", "b"}, path = "/mnt/share/fat-boy/", desc = "fat-boy"},
+                      { key = {"f", "v", "6"}, path = "/mnt/share/fat-boy/6X6/Backups/Jonah's Stuff/Videos", desc = "fat-boy 6X6 videos"},
+                      { key = {"f", "v", "3"}, path = "/mnt/share/fat-boy/3X4/Backups/Jonah's Stuff/Videos", desc = "fat-boy 3X4 videos"},
+                      { key = "n", path = "/etc/nixos", desc = "NixOS Config"},
+                  },
+              })
           EOF
         '';
     };

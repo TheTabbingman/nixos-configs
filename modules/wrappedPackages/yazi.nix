@@ -136,6 +136,11 @@
             run = "cd /etc/nixos";
             desc = "Cd to nix config";
           }
+          {
+            on = ["g" "p"];
+            run = "cd /persist";
+            desc = "Cd to /persist";
+          }
         ];
       };
       yazi = {

@@ -77,7 +77,12 @@
       categories = ["Network" "RemoteAccess"];
     };
 
-    programs.lazygit.enable = true;
+    programs.lazygit = {
+      enable = true;
+      settings = {
+        git.overrideGpg = true;
+      };
+    };
 
     xdg.mimeApps = {
       enable = true;

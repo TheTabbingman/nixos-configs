@@ -34,8 +34,8 @@
         nbd = "${lib.getExe pkgs.nvd} diff /run/current-system/ $(ls -1d /nix/var/nix/profiles/system-* | sort -V | tail -n 1)";
         ntd = "${lib.getExe pkgs.nvd} diff $(ls -1d /nix/var/nix/profiles/system-* | sort -V | tail -n 1) /run/current-system/";
         # other
-        # rm = "rm -I";
-        rm = ''echo "This is not the command you are looking for. Use tp. Or \rm (command rm on fish) if you REALLY need it."; false'';
+        rm = "rm -I";
+        # rm = ''echo "This is not the command you are looking for. Use tp. Or \rm (command rm on fish) if you REALLY need it."; false'';
         tp = "${pkgs.trash-cli}/bin/trash-put";
         fish-reload = "source ~/.config/fish/**/*.fish";
         # Stop all vpn

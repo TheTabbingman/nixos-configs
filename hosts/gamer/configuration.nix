@@ -9,9 +9,6 @@
   ...
 }: {
   flake.nixosConfigurations.nixos-gamer = inputs.nixpkgs.lib.nixosSystem {
-    specialArgs = {
-      pkgs-stable = import inputs.nixpkgs-stable {system = "x86_64-linux";};
-    };
     modules = [
       self.nixosModules.gamer
       self.nixosModules.system
@@ -31,9 +28,6 @@
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
         home-manager.users."jonah" = self.homeModules.user;
-        home-manager.extraSpecialArgs = {
-          pkgs-stable = import inputs.nixpkgs-stable {system = "x86_64-linux";};
-        };
       }
     ];
   };

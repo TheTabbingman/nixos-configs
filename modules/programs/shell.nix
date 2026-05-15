@@ -68,6 +68,7 @@
         };
       };
       nix-index.enable = true;
+      zoxide.enable = true;
     };
     imports = [
       inputs.nix-index-database.homeModules.default

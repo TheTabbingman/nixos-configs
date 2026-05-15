@@ -102,6 +102,7 @@
           "umu"
           "waydroid/data"
           "xdg-desktop-portal" # Has some icons from bottles
+          "zoxide" # Has to be the folder because it overrites the file
         ]
         ++ mkPaths ".config" [
           "bcompare5"

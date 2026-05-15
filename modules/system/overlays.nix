@@ -1,6 +1,8 @@
 {inputs, ...}: {
   flake.nixosModules.system = {...}: {
     nixpkgs.overlays = [
+      inputs.ulauncher.overlays.default
+      # inputs.dolphin-overlay.overlays.default
       (final: prev: {
         # https://github.com/nixos/nixpkgs/issues/514113
         # https://github.com/NixOS/nixpkgs/issues/513245

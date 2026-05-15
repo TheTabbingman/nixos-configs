@@ -19,12 +19,6 @@
       self.nixosModules.hyprland
       inputs.home-manager.nixosModules.home-manager
       {
-        nixpkgs.overlays = [
-          # inputs.dolphin-overlay.overlays.default
-          inputs.ulauncher.overlays.default
-        ];
-      }
-      {
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
         home-manager.users."jonah" = self.homeModules.user;

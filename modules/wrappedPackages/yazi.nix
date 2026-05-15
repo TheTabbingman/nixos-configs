@@ -63,6 +63,7 @@
       compress = pkgs.yaziPlugins.compress;
       chmod = pkgs.yaziPlugins.chmod;
       lazygit = pkgs.yaziPlugins.lazygit;
+      git = pkgs.yaziPlugins.git;
     };
     settings = {
       keymap = {
@@ -161,6 +162,20 @@
               run = "ffmpegthumbnailer";
             }
           ];
+          prepend_fetchers = [
+            {
+              id = "git";
+              url = "*";
+              run = "git";
+              group = "git";
+            }
+            {
+              id = "git";
+              url = "*/";
+              run = "git";
+              group = "git";
+            }
+          ];
         };
       };
     };
@@ -182,7 +197,11 @@
                       ui.Span(ya.group_name(h.cha.gid) or tostring(h.cha.gid)):fg("magenta"),
                       " ",
               }
-          end, 500, Status.RIGHT)
+              end, 500, Status.RIGHT)
+
+              require("git"):setup {
+                  order = 1500,
+              }
           EOF
         '';
     };

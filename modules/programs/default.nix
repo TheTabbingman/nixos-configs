@@ -56,6 +56,7 @@
       z-library-desktop
       soundconverter
       qbittorrent
+      telegram-desktop
     ];
 
     dconf.settings = {

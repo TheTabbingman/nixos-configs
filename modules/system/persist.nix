@@ -98,6 +98,7 @@
           "remmina"
           "Steam"
           "Tabletop Simulator"
+          "TelegramDesktop"
           "Trash"
           "umu"
           "waydroid/data"

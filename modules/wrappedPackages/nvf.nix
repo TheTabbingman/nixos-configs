@@ -279,7 +279,7 @@
                     enable = true;
                     mappings = {
                       jump = "S";
-                      treesitter = "";
+                      treesitter = "s";
                     };
                   };
                 };

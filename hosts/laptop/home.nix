@@ -17,6 +17,7 @@
     imports = with self; [
       homeModules.system
       homeModules.default
+      homeModules.persist
       homeModules.programs
       homeModules.gaming
       homeModules.scripts

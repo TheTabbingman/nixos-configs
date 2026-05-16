@@ -30,10 +30,24 @@
       options = ["subvol=@nix" "compress-force=zstd"];
     };
 
+    fileSystems."/persist" = {
+      device = "/dev/disk/by-uuid/22e530c7-a48f-40e8-a474-0c2ca3a91825";
+      neededForBoot = true;
+      fsType = "btrfs";
+      options = ["subvol=@persist" "compress-force=zstd"];
+    };
+
     fileSystems."/home" = {
       device = "/dev/disk/by-uuid/22e530c7-a48f-40e8-a474-0c2ca3a91825";
+      neededForBoot = true;
       fsType = "btrfs";
       options = ["subvol=@home" "compress-force=zstd"];
+    };
+
+    fileSystems."/home/jonah/.cache" = {
+      device = "/dev/disk/by-uuid/22e530c7-a48f-40e8-a474-0c2ca3a91825";
+      fsType = "btrfs";
+      options = ["subvol=@jonahcache" "compress-force=zstd"];
     };
 
     fileSystems."/boot" = {

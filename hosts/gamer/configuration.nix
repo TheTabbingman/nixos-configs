@@ -1,29 +1,21 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
 {
   inputs,
   self,
-  lib,
-  config,
   ...
 }: {
   flake.nixosConfigurations.nixos-gamer = inputs.nixpkgs.lib.nixosSystem {
-    modules = [
-      self.nixosModules.gamer
-      self.nixosModules.system
-      self.nixosModules.impermanence
-      self.nixosModules.nvidia
-      self.nixosModules.programs
-      self.nixosModules.gaming
-      self.nixosModules.hyprland
-      inputs.home-manager.nixosModules.home-manager
-      {
-        home-manager.useGlobalPkgs = true;
-        home-manager.useUserPackages = true;
-        home-manager.users."jonah" = self.homeModules.user;
-      }
-    ];
+    modules = with self;
+      [
+        nixosModules.gamer
+        nixosModules.gamerHome
+        nixosModules.system
+        nixosModules.impermanence
+        nixosModules.nvidia
+        nixosModules.programs
+        nixosModules.gaming
+        nixosModules.hyprland
+      ]
+      ++ [inputs.home-manager.nixosModules.home-manager];
   };
 
   flake.nixosModules.gamer = {
@@ -36,11 +28,14 @@
       solaar
     ];
 
-    hardware.bluetooth.enable = true;
+    hardware = {
+      bluetooth.enable = true;
 
-    hardware.keyboard.qmk.enable = true;
-    hardware.keyboard.qmk.keychronSupport = true;
+      keyboard.qmk.enable = true;
+      keyboard.qmk.keychronSupport = true;
+    };
 
+    # OpenTabletDriver
     hardware.uinput.enable = true;
     boot.kernelModules = ["uinput"];
     hardware.opentabletdriver.enable = true;

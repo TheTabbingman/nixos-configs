@@ -13,6 +13,7 @@
           exiftool
           mediainfo
           lazygit
+          trash-cli
         ];
         _7zz = pkgs._7zz-rar; # _7zz-rar is unfree
       };
@@ -60,10 +61,25 @@
             runHook postInstall
           '';
         };
+        recycle-bin-yazi = pkgs.stdenv.mkDerivation {
+          name = "recycle-bin.yazi";
+          src = pkgs.fetchFromGitHub {
+            owner = "uhs-robert";
+            repo = "recycle-bin.yazi";
+            rev = "fa687116c46a784e664ef96619b32abf51f29b06";
+            hash = "sha256-lpxTGWA15szM5VJ+qvV2+GTg7HXiZaZfyWyjeNMsTSM=";
+          };
+          installPhase = ''
+            runHook preInstall
+            cp -r . $out
+            runHook postInstall
+          '';
+        };
       in {
         ffmpegthumbnailer = ffmpegthumbnailer-yazi;
         what-size = what-size-yazi;
         exifaudio = exifaudio-yazi;
+        recycle-bin = recycle-bin-yazi;
         compress = pkgs.yaziPlugins.compress;
         chmod = pkgs.yaziPlugins.chmod;
         lazygit = pkgs.yaziPlugins.lazygit;
@@ -143,6 +159,11 @@
             on = ["g" "p"];
             run = "cd /persist";
             desc = "Cd to /persist";
+          }
+          {
+            on = ["T"];
+            run = "plugin recycle-bin";
+            desc = "Open Recycle Bin menu";
           }
         ];
       };
@@ -232,6 +253,8 @@
           require("git"):setup {
               order = 1500,
           }
+
+          require("recycle-bin"):setup()
         '';
     };
   };

@@ -221,7 +221,7 @@
         '';
     };
   };
-  flake.nixosModules.programs = {
+  flake.nixosModules.yazi = {
     pkgs,
     config,
     ...
@@ -242,7 +242,7 @@
       });
     in [yazi];
   };
-  flake.homeModules.programs = {
+  flake.homeModules.yazi = {
     programs.fish.functions = {
       y = ''
         set -l tmp (mktemp -t "yazi-cwd.XXXXX")

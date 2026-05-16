@@ -25,7 +25,6 @@
       package = pkgs.ollama-cuda;
       environmentVariables = {"OLLAMA_CONTEXT_LENGTH" = "32768";};
     };
-    services.open-webui.enable = true;
   };
   flake.homeModules.programs = {pkgs, ...}: {
     home.packages = with pkgs; [

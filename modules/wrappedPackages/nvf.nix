@@ -196,6 +196,7 @@
                 };
               };
               visuals.nvim-web-devicons.enable = true;
+              ui.illuminate.enable = true;
               lsp = {
                 enable = true;
                 inlayHints.enable = true;

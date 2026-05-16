@@ -84,6 +84,7 @@
         chmod = pkgs.yaziPlugins.chmod;
         lazygit = pkgs.yaziPlugins.lazygit;
         git = pkgs.yaziPlugins.git;
+        restore = pkgs.yaziPlugins.restore;
       };
       keymap = {
         mgr.prepend_keymap = [
@@ -161,9 +162,19 @@
             desc = "Cd to /persist";
           }
           {
-            on = ["T"];
+            on = "T";
             run = "plugin recycle-bin";
             desc = "Open Recycle Bin menu";
+          }
+          {
+            on = "u";
+            run = "plugin restore";
+            desc = "Restore last deleted files/folders";
+          }
+          {
+            on = "U";
+            run = "plugin restore -- --interactive";
+            desc = "Restore deleted files/folders (Interactive)";
           }
         ];
       };

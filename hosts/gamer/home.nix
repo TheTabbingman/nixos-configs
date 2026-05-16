@@ -1,28 +1,30 @@
 {self, ...}: {
-  flake.homeModules.user = {
-    pkgs,
-    osConfig,
-    ...
-  }: {
-    home.username = "${osConfig.preferences.user.name}";
-    home.homeDirectory = "/home/${osConfig.preferences.user.name}";
+  flake.nixosModules.gamerHome = {...}: {
+    home-manager = {
+      useGlobalPkgs = true;
+      useUserPackages = true;
+      users."jonah" = self.homeModules.gamerUser;
+    };
+  };
+  flake.homeModules.gamerUser = {osConfig, ...}: {
+    home = {
+      username = "${osConfig.preferences.user.name}";
+      homeDirectory = "/home/${osConfig.preferences.user.name}";
 
-    home.stateVersion = "24.11";
+      stateVersion = "24.11";
+    };
 
-    imports = [
-      self.homeModules.system
-      self.homeModules.default
-      self.homeModules.persist
-      self.homeModules.programs
-      self.homeModules.gaming
-      self.homeModules.developer
-      self.homeModules.scripts
-      self.homeModules.niri
-      self.homeModules.dms
-      self.homeModules.hyprland
-    ];
-
-    home.packages = with pkgs; [
+    imports = with self; [
+      homeModules.system
+      homeModules.default
+      homeModules.persist
+      homeModules.programs
+      homeModules.gaming
+      homeModules.developer
+      homeModules.scripts
+      homeModules.niri
+      homeModules.dms
+      homeModules.hyprland
     ];
 
     # Let Home Manager install and manage itself.

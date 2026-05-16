@@ -87,5 +87,6 @@
     (inputs.import-tree [
       ./modules
       ./hosts/gamer
+      ./hosts/laptop
     ]);
 }

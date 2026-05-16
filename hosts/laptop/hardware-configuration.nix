@@ -2,47 +2,49 @@
 # and may be overwritten by future invocations.  Please make changes
 # to /etc/nixos/configuration.nix instead.
 {
-  config,
-  lib,
-  pkgs,
-  modulesPath,
-  ...
-}: {
-  imports = [
-    (modulesPath + "/installer/scan/not-detected.nix")
-  ];
+  flake.nixosModules.laptop = {
+    config,
+    lib,
+    pkgs,
+    modulesPath,
+    ...
+  }: {
+    imports = [
+      (modulesPath + "/installer/scan/not-detected.nix")
+    ];
 
-  boot.initrd.availableKernelModules = ["xhci_pci" "ahci" "nvme" "usb_storage" "sd_mod" "rtsx_pci_sdmmc"];
-  boot.initrd.kernelModules = [];
-  boot.kernelModules = ["kvm-intel"];
-  boot.extraModulePackages = [];
+    boot.initrd.availableKernelModules = ["xhci_pci" "ahci" "nvme" "usb_storage" "sd_mod" "rtsx_pci_sdmmc"];
+    boot.initrd.kernelModules = [];
+    boot.kernelModules = ["kvm-intel"];
+    boot.extraModulePackages = [];
 
-  fileSystems."/" = {
-    device = "/dev/disk/by-uuid/22e530c7-a48f-40e8-a474-0c2ca3a91825";
-    fsType = "btrfs";
-    options = ["subvol=@" "compress-force=zstd"];
+    fileSystems."/" = {
+      device = "/dev/disk/by-uuid/22e530c7-a48f-40e8-a474-0c2ca3a91825";
+      fsType = "btrfs";
+      options = ["subvol=@" "compress-force=zstd"];
+    };
+
+    fileSystems."/nix" = {
+      device = "/dev/disk/by-uuid/22e530c7-a48f-40e8-a474-0c2ca3a91825";
+      fsType = "btrfs";
+      options = ["subvol=@nix" "compress-force=zstd"];
+    };
+
+    fileSystems."/home" = {
+      device = "/dev/disk/by-uuid/22e530c7-a48f-40e8-a474-0c2ca3a91825";
+      fsType = "btrfs";
+      options = ["subvol=@home" "compress-force=zstd"];
+    };
+
+    fileSystems."/boot" = {
+      device = "/dev/disk/by-uuid/6D4C-9312";
+      fsType = "vfat";
+      options = ["fmask=0077" "dmask=0077"];
+    };
+
+    swapDevices = [];
+
+    nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+    hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
   };
-
-  fileSystems."/nix" = {
-    device = "/dev/disk/by-uuid/22e530c7-a48f-40e8-a474-0c2ca3a91825";
-    fsType = "btrfs";
-    options = ["subvol=@nix" "compress-force=zstd"];
-  };
-
-  fileSystems."/home" = {
-    device = "/dev/disk/by-uuid/22e530c7-a48f-40e8-a474-0c2ca3a91825";
-    fsType = "btrfs";
-    options = ["subvol=@home" "compress-force=zstd"];
-  };
-
-  fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/6D4C-9312";
-    fsType = "vfat";
-    options = ["fmask=0077" "dmask=0077"];
-  };
-
-  swapDevices = [];
-
-  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }

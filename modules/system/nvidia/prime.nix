@@ -1,4 +1,4 @@
-{...}: {
+{self, ...}: {
   flake.nixosModules.nvidiaPrime = {
     lib,
     config,
@@ -22,7 +22,7 @@
           system.nixos.tags = ["battery-saver"];
           imports = [
             # Leave only the integrated GPU enabled
-            ./disable.nix
+            self.nixosModules.disableNvidia
           ];
           hardware.nvidia = {
             prime.offload.enable = lib.mkForce false;

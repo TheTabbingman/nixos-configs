@@ -1,29 +1,30 @@
-{
-  config,
-  pkgs,
-  pkgs-stable,
-  userConfig,
-  nhModules,
-  inputs,
-  ...
-}: {
-  home.username = "${userConfig.name}";
-  home.homeDirectory = "/home/${userConfig.name}";
+{self, ...}: {
+  flake.nixosModules.laptopHome = {...}: {
+    home-manager = {
+      useGlobalPkgs = true;
+      useUserPackages = true;
+      users."jonah" = self.homeModules.laptopUser;
+    };
+  };
+  flake.homeModules.laptopUser = {osConfig, ...}: {
+    home = {
+      username = "${osConfig.preferences.user.name}";
+      homeDirectory = "/home/${osConfig.preferences.user.name}";
+    };
 
-  home.stateVersion = "24.11";
+    home.stateVersion = "24.11";
 
-  imports = [
-    "${nhModules}/default.nix"
-    "${nhModules}/system"
-    "${nhModules}/programs"
-    "${nhModules}/programs/gaming"
-    "${nhModules}/scripts"
-    "${nhModules}/desktop/wm/niri.nix"
-  ];
+    imports = with self; [
+      homeModules.system
+      homeModules.default
+      homeModules.programs
+      homeModules.gaming
+      homeModules.scripts
+      homeModules.niri
+      homeModules.dms
+    ];
 
-  home.packages = with pkgs; [
-  ];
-
-  # Let Home Manager install and manage itself.
-  programs.home-manager.enable = true;
+    # Let Home Manager install and manage itself.
+    programs.home-manager.enable = true;
+  };
 }

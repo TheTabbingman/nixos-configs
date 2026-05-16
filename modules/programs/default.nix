@@ -57,6 +57,7 @@
       soundconverter
       qbittorrent
       telegram-desktop
+      whatsie
     ];
 
     dconf.settings = {

@@ -90,6 +90,7 @@
           "gwenview/recentfolders"
           "icons" # The icons for distrobox-export stuff is here
           "jellyfin-desktop"
+          "org.keshavnrj.ubuntu"
           "osu"
           "plex"
           "Plexamp"
@@ -157,6 +158,7 @@
           "fsearch/fsearch.conf"
           "gwenviewrc"
           "nixpkgs/config.nix"
+          "org.keshavnrj.ubuntu/WhatSie.conf"
           "sops/age/keys.txt" # Very important
         ];
     };

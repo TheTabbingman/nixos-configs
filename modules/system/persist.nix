@@ -100,7 +100,6 @@
           "Steam"
           "Tabletop Simulator"
           "TelegramDesktop"
-          "Trash"
           "umu"
           "waydroid/data"
           "xdg-desktop-portal" # Has some icons from bottles

@@ -225,6 +225,7 @@
                 json.enable = true;
                 yaml.enable = true;
                 toml.enable = true;
+                bash.enable = true;
               };
               debugger = {
                 nvim-dap = {

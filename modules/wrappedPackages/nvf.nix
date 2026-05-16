@@ -215,7 +215,12 @@
                 enableExtraDiagnostics = true;
                 lua.enable = true;
                 clang.enable = true;
+                cmake.enable = true;
+                make.enable = true;
+                html.enable = true;
+                css.enable = true;
                 typescript.enable = true;
+                vue.enable = true;
                 python.enable = true;
                 nix = {
                   # TODO: Setup the rest of the way
@@ -225,7 +230,11 @@
                 json.enable = true;
                 yaml.enable = true;
                 toml.enable = true;
+                markdown.enable = true;
+                xml.enable = true;
                 bash.enable = true;
+                fish.enable = true;
+                docker.enable = true;
               };
               debugger = {
                 nvim-dap = {

@@ -434,7 +434,15 @@
                clip-to-geometry true
            }
 
+           window-rule {
+               match app-id="^steam_app_.*"
+
+               variable-refresh-rate true
+           }
+
            binds {
+               Mod+Alt+v hotkey-overlay-title="Enable vrr" { spawn-sh "niri msg output DP-3 vrr ON"; }
+               Mod+Alt+Shift+v hotkey-overlay-title="Disable vrr" { spawn-sh "niri msg output DP-3 vrr ON --on-demand"; }
                // Keys consist of modifiers separated by + signs, followed by an XKB key name
                // in the end. To find an XKB name for a particular key, you may use a program
                // like wev.

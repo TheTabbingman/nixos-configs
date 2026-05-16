@@ -265,13 +265,23 @@
                 };
                 setupOpts.options.numbers = "none";
               };
+              mini = {
+                statusline.enable = true;
+                surround.enable = true;
+              };
               utility = {
                 yazi-nvim = {
                   enable = true;
                   mappings.openYazi = ''\'';
                 };
                 motion = {
-                  flash-nvim.enable = true;
+                  flash-nvim = {
+                    enable = true;
+                    mappings = {
+                      jump = "S";
+                      treesitter = "";
+                    };
+                  };
                 };
               };
               terminal.toggleterm = {

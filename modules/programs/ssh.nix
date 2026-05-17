@@ -1,6 +1,6 @@
 {...}: {
   flake.homeModules.programs = {config, ...}: {
-    sops.secrets.github-ssh = {};
+    sops.secrets."ssh/github" = {};
     programs.ssh = {
       enable = true;
       enableDefaultConfig = false;
@@ -9,7 +9,7 @@
         "github.com" = {
           hostname = "github.com";
           user = "git";
-          identityFile = config.sops.secrets.github-ssh.path;
+          identityFile = config.sops.secrets."ssh/github".path;
         };
       };
     };

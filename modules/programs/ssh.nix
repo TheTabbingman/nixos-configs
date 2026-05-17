@@ -1,6 +1,5 @@
 {...}: {
   flake.homeModules.programs = {config, ...}: {
-    services.ssh-agent.enable = true;
     sops.secrets.github-ssh = {};
     programs.ssh = {
       enable = true;

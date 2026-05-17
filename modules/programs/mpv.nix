@@ -163,7 +163,7 @@
         volume-max = 200;
         save-position-on-quit = true;
         vo = "gpu-next";
-        ytdl-raw-options = "cookies-from-browser=firefox";
+        ytdl-raw-options = "cookies-from-browser=firefox:~/.librewolf/default";
 
         # Debanding reduces banding artifacts from low-quality or compressed sources.
         # iterations: number of passes (1-4). Higher = stronger but more GPU cost.

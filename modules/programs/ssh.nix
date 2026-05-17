@@ -6,7 +6,7 @@
       enable = true;
       enableDefaultConfig = false;
       matchBlocks."*" = {
-        addKeysToAgent = "yes";
+        addKeysToAgent = "yes"; # TODO: Make this timeout
         identityFile = config.sops.secrets."ssh/gamer".path;
       };
       matchBlocks = {

@@ -1,10 +1,14 @@
 {...}: {
   flake.homeModules.programs = {config, ...}: {
     sops.secrets."ssh/github" = {};
+    sops.secrets."ssh/gamer" = {};
     programs.ssh = {
       enable = true;
       enableDefaultConfig = false;
-      matchBlocks."*".addKeysToAgent = "yes";
+      matchBlocks."*" = {
+        addKeysToAgent = "yes";
+        identityFile = config.sops.secrets."ssh/gamer".path;
+      };
       matchBlocks = {
         "github.com" = {
           hostname = "github.com";

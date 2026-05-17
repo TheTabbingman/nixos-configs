@@ -1,5 +1,5 @@
 {inputs, ...}: {
-  flake.nixosModules.system = {...}: {
+  flake.nixosModules.system = {config, ...}: {
     nixpkgs.overlays = [
       inputs.ulauncher.overlays.default
       # inputs.dolphin-overlay.overlays.default
@@ -11,11 +11,7 @@
         };
         stable = import inputs.nixpkgs-stable {
           system = final.stdenv.hostPlatform.system;
-          config = {
-            # This should be the same as nixpkgs.config
-            allowUnfree = true;
-            cudaSupport = true;
-          };
+          config = config.nixpkgs.config;
         };
       })
     ];

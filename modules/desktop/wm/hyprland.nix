@@ -342,6 +342,12 @@
           }
           {
             _args = [
+              "${mainMod} + b"
+              (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("${lib.getExe pkgs.librewolf}")'')
+            ];
+          }
+          {
+            _args = [
               "${mainMod} + C"
               (lib.generators.mkLuaInline "hl.dsp.window.close()")
             ];

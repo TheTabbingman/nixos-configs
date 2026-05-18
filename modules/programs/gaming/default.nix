@@ -15,6 +15,7 @@
       gamescope.enable = true;
       gamemode.enable = true;
     };
+    environment.systemPackages = with pkgs; [gamescope-wsi];
   };
   flake.homeModules.gaming = {pkgs, ...}: {
     home.packages = with pkgs; [
@@ -32,6 +33,7 @@
       ryubing
       eden
       prismlauncher
+      protonplus
     ];
   };
 }

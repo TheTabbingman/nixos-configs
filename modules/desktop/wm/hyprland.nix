@@ -31,7 +31,6 @@
     ];
     # services.hypridle.enable = true;
     # services.hyprpolkitagent.enable = true;
-    home.packages = [pkgs.kitty];
     wayland.windowManager.hyprland = {
       enable = true;
       configType = "lua";
@@ -183,7 +182,7 @@
               layout = "scrolling";
             }
           ];
-          scrolling = lib.generators.mkLuaInline ''{fullscreen_on_one_column = false, explicit_column_widths = "0.333, 0.5, 0.667"}'';
+          scrolling = lib.generators.mkLuaInline ''{fullscreen_on_one_column = true, explicit_column_widths = "0.333, 0.5, 0.667", wrap_focus = false, wrap_swapcol = false}'';
 
           decoration = lib.mkMerge [
             {
@@ -260,6 +259,7 @@
               natural_scroll = true;
             };
           };
+          cursor.no_warps = true;
         };
 
         # Default animations, see https://wiki.hyprland.org/Configuring/Animations/ for more
@@ -376,13 +376,25 @@
           {
             _args = [
               "${mainMod} + h"
-              (lib.generators.mkLuaInline ''hl.dsp.focus({direction="left"})'')
+              (lib.generators.mkLuaInline ''hl.dsp.layout("focus l")'')
             ];
           }
           {
             _args = [
               "${mainMod} + l"
-              (lib.generators.mkLuaInline ''hl.dsp.focus({direction="right"})'')
+              (lib.generators.mkLuaInline ''hl.dsp.layout("focus r")'')
+            ];
+          }
+          {
+            _args = [
+              "${mainMod} + CTRL + h"
+              (lib.generators.mkLuaInline ''hl.dsp.focus({monitor = "-1"})'')
+            ];
+          }
+          {
+            _args = [
+              "${mainMod} + CTRL + l"
+              (lib.generators.mkLuaInline ''hl.dsp.focus({monitor = "+1"})'')
             ];
           }
           {
@@ -401,13 +413,13 @@
           {
             _args = [
               "${mainMod} + SHIFT + h"
-              (lib.generators.mkLuaInline ''hl.dsp.window.move({direction="left"})'')
+              (lib.generators.mkLuaInline ''hl.dsp.layout("swapcol l")'')
             ];
           }
           {
             _args = [
               "${mainMod} + SHIFT + l"
-              (lib.generators.mkLuaInline ''hl.dsp.window.move({direction="right"})'')
+              (lib.generators.mkLuaInline ''hl.dsp.layout("swapcol r")'')
             ];
           }
           {
@@ -420,6 +432,31 @@
             _args = [
               "${mainMod} + SHIFT + j"
               (lib.generators.mkLuaInline ''hl.dsp.window.move({direction="down"})'')
+            ];
+          }
+
+          {
+            _args = [
+              "${mainMod} + RIGHT"
+              (lib.generators.mkLuaInline ''hl.dsp.layout("consume_or_expel next")'')
+            ];
+          }
+          {
+            _args = [
+              "${mainMod} + SHIFT + RIGHT"
+              (lib.generators.mkLuaInline ''hl.dsp.layout("consume_or_expel next")'')
+            ];
+          }
+          {
+            _args = [
+              "${mainMod} + LEFT"
+              (lib.generators.mkLuaInline ''hl.dsp.layout("consume_or_expel prev")'')
+            ];
+          }
+          {
+            _args = [
+              "${mainMod} + SHIFT + LEFT"
+              (lib.generators.mkLuaInline ''hl.dsp.layout("consume_or_expel prev")'')
             ];
           }
 

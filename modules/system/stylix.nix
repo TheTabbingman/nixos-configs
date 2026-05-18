@@ -41,4 +41,7 @@
       targets.plymouth.enable = false;
     };
   };
+  flake.homeModules.system = {
+    stylix.targets.hyprland.enable = false; # NOTE: Stylix doesn't currently doesn't support hyprland lua
+  };
 }

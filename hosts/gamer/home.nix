@@ -4,6 +4,7 @@
       useGlobalPkgs = true;
       useUserPackages = true;
       users."jonah" = self.homeModules.gamerUser;
+      backupFileExtension = "hmOrig";
     };
   };
   flake.homeModules.gamerUser = {osConfig, ...}: {

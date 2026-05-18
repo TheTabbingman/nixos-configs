@@ -4,6 +4,7 @@
       useGlobalPkgs = true;
       useUserPackages = true;
       users."jonah" = self.homeModules.laptopUser;
+      backupFileExtension = "hmOrig";
     };
   };
   flake.homeModules.laptopUser = {osConfig, ...}: {

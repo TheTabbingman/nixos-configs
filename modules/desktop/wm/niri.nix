@@ -436,6 +436,7 @@
 
            window-rule {
                match app-id="^steam_app_.*"
+               match app-id="^osu!$"
 
                variable-refresh-rate true
            }

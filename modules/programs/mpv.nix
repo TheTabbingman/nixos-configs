@@ -181,6 +181,8 @@
 
         keepaspect-window = false;
         auto-window-resize = false;
+
+        target-colorspace-hint-mode = "source";
       };
       bindings = {
         # Optimized shaders for higher-end GPU

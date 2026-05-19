@@ -259,7 +259,6 @@
               natural_scroll = true;
             };
           };
-          cursor.no_warps = true;
         };
 
         # Default animations, see https://wiki.hyprland.org/Configuring/Animations/ for more

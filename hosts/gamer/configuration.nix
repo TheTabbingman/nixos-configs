@@ -14,6 +14,7 @@
         nixosModules.programs
         nixosModules.gaming
         nixosModules.hyprland
+        nixosModules.virtualization
       ]
       ++ [inputs.home-manager.nixosModules.home-manager];
   };

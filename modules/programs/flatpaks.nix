@@ -28,6 +28,7 @@
             inherit sha256;
           }}";
         }
+        "xyz.rust4diva.Rust4Diva"
       ];
     };
   };

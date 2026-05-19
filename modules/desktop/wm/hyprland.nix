@@ -182,7 +182,7 @@
               layout = "scrolling";
             }
           ];
-          scrolling = lib.generators.mkLuaInline ''{fullscreen_on_one_column = true, explicit_column_widths = "0.333, 0.5, 0.667", wrap_focus = false, wrap_swapcol = false}'';
+          scrolling = lib.generators.mkLuaInline ''{fullscreen_on_one_column = true, explicit_column_widths = "0.333, 0.5, 0.667", wrap_focus = false, wrap_swapcol = false, follow_min_visible="0.1"}'';
 
           decoration = lib.mkMerge [
             {
@@ -360,7 +360,7 @@
           {
             _args = [
               "${mainMod} + E"
-              (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("${lib.getExe pkgs.yazi}")'')
+              (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("${lib.getExe pkgs.ghostty} -e ${lib.getExe pkgs.fish} -i -c ${lib.getExe pkgs.yazi}")'')
             ];
           }
           {
@@ -400,6 +400,18 @@
             _args = [
               "${mainMod} + CTRL + l"
               (lib.generators.mkLuaInline ''hl.dsp.focus({monitor = "+1"})'')
+            ];
+          }
+          {
+            _args = [
+              "${mainMod} + CTRL + SHIFT + h"
+              (lib.generators.mkLuaInline ''hl.dsp.window.move({monitor = "-1"})'')
+            ];
+          }
+          {
+            _args = [
+              "${mainMod} + CTRL + SHIFT + l"
+              (lib.generators.mkLuaInline ''hl.dsp.window.move({monitor = "+1"})'')
             ];
           }
           {

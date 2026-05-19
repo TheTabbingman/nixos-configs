@@ -65,6 +65,7 @@
           ".steam"
           ".var/app/org.flybywiresim.installer"
           ".var/app/xyz.rust4diva.Rust4Diva"
+          ".var/app/com.usebottles.bottles"
           "Calibre Library"
           "Documents"
           "Downloads"
@@ -84,7 +85,6 @@
         ]
         ++ mkPaths ".local/share" [
           "Anki2"
-          "bottles"
           "cartridges"
           "chatterino"
           "containers"

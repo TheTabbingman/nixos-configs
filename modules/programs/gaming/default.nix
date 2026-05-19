@@ -28,7 +28,6 @@
             gamemode
           ];
       })
-      (pkgs.bottles.override {removeWarningPopup = true;})
       cartridges
       ryubing
       eden
@@ -45,6 +44,7 @@
         }}";
       }
       "xyz.rust4diva.Rust4Diva"
+      "com.usebottles.bottles"
     ];
   };
 }

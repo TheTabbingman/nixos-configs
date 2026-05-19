@@ -10,6 +10,7 @@
     # Enable hyprland
     programs.hyprland = {
       enable = true;
+      withUWSM = true;
       package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
       portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
     };
@@ -33,6 +34,7 @@
     # services.hyprpolkitagent.enable = true;
     wayland.windowManager.hyprland = {
       enable = true;
+      systemd.enable = false;
       configType = "lua";
       package = null;
       portalPackage = null;
@@ -336,13 +338,13 @@
           {
             _args = [
               "${mainMod} + Q"
-              (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("${lib.getExe pkgs.ghostty}")'')
+              (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("uwsm app -- ${lib.getExe pkgs.ghostty}")'')
             ];
           }
           {
             _args = [
               "${mainMod} + b"
-              (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("${lib.getExe pkgs.librewolf}")'')
+              (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("uwsm app -- ${lib.getExe pkgs.librewolf}")'')
             ];
           }
           {
@@ -360,7 +362,7 @@
           {
             _args = [
               "${mainMod} + E"
-              (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("${lib.getExe pkgs.ghostty} -e ${lib.getExe pkgs.fish} -i -c ${lib.getExe pkgs.yazi}")'')
+              (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("uwsm app -- ${lib.getExe pkgs.ghostty} -e ${lib.getExe pkgs.fish} -i -c ${lib.getExe pkgs.yazi}")'')
             ];
           }
           {
@@ -372,7 +374,7 @@
           {
             _args = [
               "ALT + space"
-              (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("ulauncher-toggle")'')
+              (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("uwsm app -- ulauncher-toggle")'')
             ];
           }
           # "$mainMod, P, pseudo, # dwindle"
@@ -637,7 +639,7 @@
           {
             _args = [
               "print"
-              (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("grim -l 0 -g slurp - | wl-copy")'')
+              (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("uwsm app -- grim -l 0 -g slurp - | wl-copy")'')
             ];
           }
 
@@ -680,28 +682,28 @@
           {
             _args = [
               "XF86AudioRaiseVolume"
-              (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("${lib.getExe' pkgs.wireplumber "wpctl"} set-volume @DEFAULT_AUDIO_SINK@ 0.02+ -l 1.0")'')
+              (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("uwsm app -- ${lib.getExe' pkgs.wireplumber "wpctl"} set-volume @DEFAULT_AUDIO_SINK@ 0.02+ -l 1.0")'')
               "{repeating = true, locked = true}"
             ];
           }
           {
             _args = [
               "XF86AudioLowerVolume"
-              (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("${lib.getExe' pkgs.wireplumber "wpctl"} set-volume @DEFAULT_AUDIO_SINK@ 0.02-")'')
+              (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("uwsm app -- ${lib.getExe' pkgs.wireplumber "wpctl"} set-volume @DEFAULT_AUDIO_SINK@ 0.02-")'')
               "{repeating = true, locked = true}"
             ];
           }
           {
             _args = [
               "XF86AudioMute"
-              (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("${lib.getExe' pkgs.wireplumber "wpctl"} set-mute @DEFAULT_AUDIO_SINK@ toggle")'')
+              (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("uwsm app -- ${lib.getExe' pkgs.wireplumber "wpctl"} set-mute @DEFAULT_AUDIO_SINK@ toggle")'')
               "{repeating = true, locked = true}"
             ];
           }
           {
             _args = [
               "XF86AudioMicMute"
-              (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("${lib.getExe' pkgs.wireplumber "wpctl"} set-mute @DEFAULT_AUDIO_SOURCE@ toggle")'')
+              (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("uwsm app -- ${lib.getExe' pkgs.wireplumber "wpctl"} set-mute @DEFAULT_AUDIO_SOURCE@ toggle")'')
               "{repeating = true, locked = true}"
             ];
           }
@@ -709,14 +711,14 @@
           {
             _args = [
               "XF86MonBrightnessUp"
-              (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("${lib.getExe pkgs.brightnessctl} --class=backlight set +10%")'')
+              (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("uwsm app -- ${lib.getExe pkgs.brightnessctl} --class=backlight set +10%")'')
               "{repeating = true, locked = true}"
             ];
           }
           {
             _args = [
               "XF86MonBrightnessDown"
-              (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("${lib.getExe pkgs.brightnessctl} --class=backlight set 10%-")'')
+              (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("uwsm app -- ${lib.getExe pkgs.brightnessctl} --class=backlight set 10%-")'')
               "{repeating = true, locked = true}"
             ];
           }
@@ -724,28 +726,28 @@
           {
             _args = [
               "XF86AudioPlay"
-              (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("${lib.getExe pkgs.playerctl} play-pause")'')
+              (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("uwsm app -- ${lib.getExe pkgs.playerctl} play-pause")'')
               "{locked = true}"
             ];
           }
           {
             _args = [
               "XF86AudioStop"
-              (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("${lib.getExe pkgs.playerctl} stop")'')
+              (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("uwsm app -- ${lib.getExe pkgs.playerctl} stop")'')
               "{locked = true}"
             ];
           }
           {
             _args = [
               "XF86AudioPrev"
-              (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("${lib.getExe pkgs.playerctl} previous")'')
+              (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("uwsm app -- ${lib.getExe pkgs.playerctl} previous")'')
               "{locked = true}"
             ];
           }
           {
             _args = [
               "XF86AudioNext"
-              (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("${lib.getExe pkgs.playerctl} next")'')
+              (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("uwsm app -- ${lib.getExe pkgs.playerctl} next")'')
               "{locked = true}"
             ];
           }

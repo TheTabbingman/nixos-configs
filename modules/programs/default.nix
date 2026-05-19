@@ -57,6 +57,7 @@
       qbittorrent
       telegram-desktop
       whatsie
+      ouch-rar
     ];
 
     dconf.settings = {

@@ -64,6 +64,7 @@
           ".mozilla/native-messaging-hosts"
           ".steam"
           ".var/app/org.flybywiresim.installer"
+          ".var/app/xyz.rust4diva.Rust4Diva"
           "Calibre Library"
           "Documents"
           "Downloads"

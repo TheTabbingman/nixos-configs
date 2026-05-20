@@ -355,6 +355,7 @@
             (mkBind "${mainMod} + e" ''hl.dsp.exec_cmd("uwsm app -- ${lib.getExe pkgs.ghostty} -e ${lib.getExe pkgs.fish} -i -c ${lib.getExe pkgs.yazi}")'' [])
             (mkBind "${mainMod} + SHIFT + e" ''hl.dsp.exec_cmd("uwsm app -- ${lib.getExe' pkgs.kdePackages.dolphin "dolphin"}")'' [])
             (mkBind "ALT + space" ''hl.dsp.exec_cmd("uwsm app -- ulauncher-toggle")'' [])
+            (mkBind "${mainMod} + ALT + l" ''hl.dsp.exec_cmd("dms ipc call lock lock")'' [])
 
             (mkBind "${mainMod} + v" "hl.dsp.window.float()" [])
             # "$mainMod, P, pseudo, # dwindle"

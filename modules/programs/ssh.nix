@@ -4,8 +4,8 @@
     programs.ssh = {
       enable = true;
       enableDefaultConfig = false;
-      matchBlocks."*".addKeysToAgent = "yes"; # TODO: Make this timeout
-      matchBlocks = {
+      settings."*".addKeysToAgent = "yes"; # TODO: Make this timeout
+      settings = {
         "github.com" = {
           hostname = "github.com";
           user = "git";

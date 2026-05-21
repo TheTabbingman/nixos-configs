@@ -58,6 +58,7 @@
       telegram-desktop
       whatsie
       ouch-rar
+      thunderbird
     ];
 
     dconf.settings = {

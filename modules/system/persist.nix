@@ -60,6 +60,7 @@
       directories =
         [
           ".librewolf"
+          ".thunderbird"
           ".local/state"
           ".mozilla/native-messaging-hosts"
           ".steam"
@@ -85,6 +86,7 @@
         ]
         ++ mkPaths ".local/share" [
           "Anki2"
+          "applications" # For bottles
           "cartridges"
           "chatterino"
           "containers"
@@ -121,6 +123,7 @@
           "GIMP"
           "heroic"
           "hypr/dms"
+          "kdeconnect"
           "koreader"
           "libreoffice"
           "mozc"

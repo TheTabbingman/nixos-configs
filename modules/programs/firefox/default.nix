@@ -115,6 +115,7 @@
         "privacy.fingerprintingProtection.overrides" = "+AllTargets,-CSSPrefersColorScheme";
         "middlemouse.paste" = false;
         "general.autoScroll" = true;
+        "privacy.clearOnShutdown_v2.cookiesAndStorage" = false;
       };
       profiles.default = {
         extensions.force = true;

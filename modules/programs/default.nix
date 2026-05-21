@@ -25,6 +25,8 @@
       package = pkgs.ollama-cuda;
       environmentVariables = {"OLLAMA_CONTEXT_LENGTH" = "32768";};
     };
+
+    programs.kdeconnect.enable = true;
   };
   flake.homeModules.programs = {pkgs, ...}: {
     home.packages = with pkgs; [
@@ -70,10 +72,7 @@
 
     services.syncthing.enable = true;
 
-    services.kdeconnect = {
-      enable = true;
-      indicator = true;
-    };
+    services.kdeconnect.indicator = true;
 
     xdg.desktopEntries.fat-boy = {
       name = "Connect to fat-boy";

@@ -69,6 +69,11 @@
 
     services.syncthing.enable = true;
 
+    services.kdeconnect = {
+      enable = true;
+      indicator = true;
+    };
+
     xdg.desktopEntries.fat-boy = {
       name = "Connect to fat-boy";
       comment = "Remote Desktop to fat-boy";

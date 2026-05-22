@@ -37,6 +37,7 @@
         ++ mkPaths "/var/lib" [
           "bluetooth"
           "btrfs"
+          "libvirt/images"
           "nixos"
           "systemd/coredump"
           "tailscale"

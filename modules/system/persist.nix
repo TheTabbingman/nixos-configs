@@ -47,6 +47,7 @@
       files = [
         "/etc/machine-id"
         "/var/lib/regreet/state.toml"
+        "/home/.duperemove.hash"
         # {
         #   file = "/var/keys/secret_file";
         #   parentDirectory = {mode = "u=rwx,g=,o=";};

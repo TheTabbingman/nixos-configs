@@ -105,7 +105,7 @@
 
     # Needed for plex-mpv-shim
     networking = {
-      firewall.allowedTCPPorts = [3000];
+      firewall.allowedTCPPorts = [3000 5900];
       extraHosts = "192.168.0.81 fat-boy"; # This needs to be manually changed if the ip ever changes
     };
   };

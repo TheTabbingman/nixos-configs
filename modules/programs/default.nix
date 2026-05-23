@@ -106,8 +106,8 @@
         "application/x-extension-xhtml" = "librewolf.desktop";
         "application/xhtml+xml" = "librewolf.desktop";
         "x-scheme-handler/chrome" = "librewolf.desktop";
-        "application/zip" = "ark.desktop";
-        "application/x-rar" = "ark.desktop";
+        "application/zip" = "org.kde.ark.desktop";
+        "application/x-rar" = "org.kde.ark.desktop";
         "video/x-matroska" = "mpv.desktop";
         "video/mp4" = "mpv.desktop";
         "audio/x-wav" = "mpv.desktop";

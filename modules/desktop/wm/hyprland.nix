@@ -399,7 +399,7 @@
             # "alt, 9, changegroupactive, 9"
             # "alt, 0, changegroupactive, 10"
 
-            (mkBind "print" ''hl.dsp.exec_cmd("uwsm app -- grim -l 0 -g slurp - | wl-copy")'' [])
+            (mkBind "print" ''hl.dsp.exec_cmd("uwsm app -- ${lib.getExe pkgs.grim} -l 0 -g ${lib.getExe pkgs.slurp} - | ${lib.getExe' pkgs.wl-clipboard "wl-copy"}")'' [])
 
             (mkBind "${mainMod} + r" ''hl.dsp.layout("colresize +conf")'' [])
             (mkBind "${mainMod} + SHIFT + f" "hl.dsp.window.fullscreen()" [])

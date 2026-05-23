@@ -1,7 +1,7 @@
 {...}: {
   flake.homeModules.developer = {pkgs, ...}: {
     home.packages = with pkgs; [
-      vscode
+      vscodium
     ];
     programs.direnv = {
       enable = true;

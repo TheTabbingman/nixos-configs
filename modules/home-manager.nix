@@ -7,7 +7,7 @@
     nix.gc = {
       automatic = true;
       dates = "03:15";
-      options = "--delete-older-than 7d";
+      options = "--delete-older-than 14d";
     };
 
     home.file = let

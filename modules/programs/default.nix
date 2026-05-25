@@ -20,12 +20,6 @@
     ];
     programs.nix-index-database.comma.enable = true;
 
-    services.ollama = {
-      enable = true;
-      package = pkgs.ollama-cuda;
-      environmentVariables = {"OLLAMA_CONTEXT_LENGTH" = "32768";};
-    };
-
     programs.kdeconnect.enable = true;
   };
   flake.homeModules.programs = {pkgs, ...}: {

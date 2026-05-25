@@ -26,6 +26,7 @@
       homeModules.niri
       homeModules.dms
       homeModules.hyprland
+      homeModules.ai
     ];
 
     # Let Home Manager install and manage itself.

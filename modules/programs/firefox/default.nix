@@ -112,7 +112,7 @@
 
         "privacy.resistFingerprinting" = false;
         "privacy.fingerprintingProtection" = true;
-        "privacy.fingerprintingProtection.overrides" = "+AllTargets,-CSSPrefersColorScheme";
+        "privacy.fingerprintingProtection.overrides" = "+AllTargets,-CSSPrefersColorScheme,-JSDateTimeUTC";
         "middlemouse.paste" = false;
         "general.autoScroll" = true;
         "privacy.clearOnShutdown_v2.cookiesAndStorage" = false;

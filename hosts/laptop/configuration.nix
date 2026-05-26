@@ -18,6 +18,7 @@
         nixosModules.nvidiaPrime
         nixosModules.programs
         nixosModules.gaming
+        nixosModules.zram
       ]
       ++ [inputs.home-manager.nixosModules.home-manager];
   };

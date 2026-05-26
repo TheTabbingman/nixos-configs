@@ -60,7 +60,7 @@
 
     dconf.settings = {
       "io/missioncenter/MissionCenter" = {
-        performance-sidebar-hidden-graphs = "net-enp8s0;disk-nvme0n1;net-ip6tnl0";
+        performance-sidebar-hidden-graphs = "net-enp8s0;net-ip6tnl0";
         apps-page-merged-process-stats = true;
       };
     };

@@ -1,5 +1,5 @@
 {...}: {
-  flake.nixosModules.system = {...}: {
+  flake.nixosModules.zram = {...}: {
     zramSwap = {
       enable = true;
       memoryPercent = 50;

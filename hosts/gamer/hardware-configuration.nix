@@ -74,7 +74,12 @@
       options = ["subvol=@data" "compress-force=zstd"];
     };
 
-    swapDevices = [];
+    swapDevices = [
+      {
+        device = "/dev/disk/by-uuid/b8f2b9b8-4d18-4fbc-9b97-0a4356ea6f4a";
+      }
+    ];
+    boot.zswap.enable = true;
 
     nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
     hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;

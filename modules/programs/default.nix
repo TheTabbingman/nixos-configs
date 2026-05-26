@@ -17,6 +17,7 @@
       kopia-ui
       tor-browser
       puddletag
+      gparted-full
     ];
     programs.nix-index-database.comma.enable = true;
 

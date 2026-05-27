@@ -30,7 +30,7 @@
 
         WorkingDirectory = "/mnt/ssd/Programs/SwarmUI";
 
-        ExecStart = "${lib.getExe pkgs.nix} develop path:./.nix --command ${lib.getExe pkgs.bash} ./launch-linux.sh";
+        ExecStart = "${lib.getExe pkgs.nix} run path:./.nix/fhs";
 
         Restart = "on-failure";
         RestartSec = "5s";

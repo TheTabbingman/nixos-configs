@@ -28,6 +28,7 @@
     pkgs,
     lib,
     config,
+    osConfig,
     ...
   }: {
     imports = [
@@ -76,6 +77,32 @@
              DISPLAY ":0"; // important for xwayland-satellite
              // QT_QPA_PLATFORM "wayland"; // optional: force QT apps to always use wayland
            }       // https://niri-wm.github.io/niri/Configuration:-Input
+
+           ${
+            if osConfig.networking.hostName == "nixos-gamer"
+            then
+              # kdl
+              ''
+                output "DP-3" {
+                    mode "2560x1440@180.002"
+                    scale 1
+                    position x=1920 y=0
+                    variable-refresh-rate on-demand=true
+                }
+                output "DP-2" {
+                    mode "1920x1080@143.856"
+                    scale 1
+                    position x=0 y=360
+                    variable-refresh-rate on-demand=true
+                }
+                output "HDMI-A-1" {
+                    mode "1920x1200@59.950"
+                    scale 1
+                    position x=4480 y=240
+                }
+              ''
+            else ''''
+          }
 
            input {
                keyboard {

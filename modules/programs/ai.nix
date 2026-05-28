@@ -36,9 +36,9 @@
         RestartSec = "5s";
       };
 
-      Install = {
-        WantedBy = ["default.target"];
-      };
+      # Install = {
+      #   WantedBy = ["default.target"];
+      # };
     };
   };
 }

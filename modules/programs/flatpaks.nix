@@ -6,7 +6,7 @@
     services.flatpak = {
       enable = true;
       uninstallUnmanaged = true;
-      update.onActivation = true;
+      update.onActivation = false;
       packages = [
       ];
     };
@@ -18,7 +18,7 @@
     services.flatpak = {
       enable = true;
       uninstallUnmanaged = true;
-      update.onActivation = true;
+      update.onActivation = false;
       # Some packages are in gaming
       packages = [
       ];

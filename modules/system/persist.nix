@@ -77,6 +77,7 @@
           "persist"
           "Pictures"
           "Videos"
+          "Coding"
           {
             directory = ".local/share/keyrings";
             mode = "0700";

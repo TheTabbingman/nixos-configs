@@ -1,11 +1,21 @@
 {...}: {
   flake.homeModules.developer = {pkgs, ...}: {
     home.packages = with pkgs; [
-      vscodium
     ];
-    programs.direnv = {
-      enable = true;
-      nix-direnv.enable = true;
+    programs = {
+      # vscodium.enable = true;
+      # zed-editor.enable = true;
+      # helix = {
+      #   enable = true;
+      #   extraPackages = with pkgs; [
+      #     nixd
+      #   ];
+      # };
+
+      direnv = {
+        enable = true;
+        nix-direnv.enable = true;
+      };
     };
   };
 }

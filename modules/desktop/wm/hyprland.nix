@@ -347,6 +347,27 @@
           };
         in
           [
+            # HDR Keybinds for when auto enable doesn't work
+            (mkBind "${mainMod} + ALT + h"
+              # lua
+              ''
+                function()
+                hl.monitor({
+                    ["output"] = "DP-3",
+                    ["cm"] = "hdr",
+                    ["sdrbrightness"] = 2
+                })
+                end'' [])
+            (mkBind "${mainMod} + ALT + SHIFT + h"
+              # lua
+              ''
+                function()
+                hl.monitor({
+                    ["output"] = "DP-3",
+                    ["cm"] = "srgb"
+                })
+                end'' [])
+
             (mkBind "${mainMod} + c" "hl.dsp.window.close()" [])
             (mkBind "${mainMod} + m" "hl.dsp.exit()" []) # TODO: Make this hyprshutdown?
 

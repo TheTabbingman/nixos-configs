@@ -381,8 +381,8 @@
 
             (mkBind "${mainMod} + s" ''hl.dsp.workspace.toggle_special("magic")'' [])
 
-            (mkBind "${mainMod} + mouse_up" ''function() return hl.plugin.split_monitor_workspaces.workspace("+1") end'' [])
-            (mkBind "${mainMod} + mouse_down" ''function() return hl.plugin.split_monitor_workspaces.workspace("-1") end'' [])
+            (mkBind "${mainMod} + mouse_up" ''function() return hl.plugin.split_monitor_workspaces.workspace("-1") end'' [])
+            (mkBind "${mainMod} + mouse_down" ''function() return hl.plugin.split_monitor_workspaces.workspace("+1") end'' [])
 
             # Scroll through group TODO:
             # "alt, bracketleft, changegroupactive, b"

@@ -88,6 +88,7 @@
                     scale 1
                     position x=1920 y=0
                     variable-refresh-rate on-demand=true
+                    focus-at-startup
                 }
                 output "DP-2" {
                     mode "1920x1080@143.856"

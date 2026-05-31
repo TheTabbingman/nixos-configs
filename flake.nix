@@ -74,6 +74,8 @@
     };
 
     nvf.url = "github:notashelf/nvf";
+
+    scopebuddy.url = "github:OpenGamingCollective/ScopeBuddy";
   };
 
   outputs = inputs @ {flake-parts, ...}:

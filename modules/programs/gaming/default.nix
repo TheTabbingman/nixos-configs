@@ -33,6 +33,7 @@
       eden
       prismlauncher
       protonplus
+      scopebuddy
     ];
     services.flatpak.packages = [
       rec {

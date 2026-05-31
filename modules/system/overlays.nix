@@ -13,6 +13,7 @@
           system = final.stdenv.hostPlatform.system;
           config = config.nixpkgs.config;
         };
+        scopebuddy = inputs.scopebuddy.packages.${final.stdenv.hostPlatform.system}.default;
       })
     ];
   };

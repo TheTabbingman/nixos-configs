@@ -34,6 +34,8 @@
       prismlauncher
       protonplus
       scopebuddy
+      lsfg-vk
+      lsfg-vk-ui
     ];
     services.flatpak.packages = [
       rec {

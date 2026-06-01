@@ -57,7 +57,7 @@
     sops.secrets."windscribe/portugal/preshared-key" = {};
     networking.wg-quick.interfaces = {
       wg0 = {
-        autostart = false;
+        autostart = true;
         address = ["100.127.13.215/32"];
         dns = ["10.255.255.3"];
         privateKeyFile = config.sops.secrets."windscribe/chicago/private-key".path;

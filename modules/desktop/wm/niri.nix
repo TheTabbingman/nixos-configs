@@ -20,8 +20,8 @@
 
     xdg.portal = {
       enable = true;
-      extraPortals = [pkgs.xdg-desktop-portal-gtk];
-      config.common.default = "gtk";
+      extraPortals = [pkgs.kdePackages.xdg-desktop-portal-kde];
+      config.common.default = "kde";
     };
   };
   flake.homeModules.niri = {

@@ -66,9 +66,6 @@
           ".local/state"
           ".mozilla/native-messaging-hosts"
           ".steam"
-          ".var/app/org.flybywiresim.installer"
-          ".var/app/xyz.rust4diva.Rust4Diva"
-          ".var/app/com.usebottles.bottles"
           "Calibre Library"
           "Documents"
           "Downloads"
@@ -145,6 +142,11 @@
           "ulauncher"
           "unity3d/Berserk Games/Tabletop Simulator"
           "Z-Library"
+        ]
+        ++ mkPaths ".var/app" [
+          "com.usebottles.bottles"
+          "org.flybywiresim.installer"
+          "xyz.rust4diva.Rust4Diva"
         ];
       files =
         [

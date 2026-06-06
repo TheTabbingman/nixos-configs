@@ -16,7 +16,10 @@
     };
 
     # Optional, hint electron apps to use wayland
-    environment.sessionVariables.NIXOS_OZONE_WL = "1";
+    environment.sessionVariables = {
+      NIXOS_OZONE_WL = "1";
+      NVD_BACKEND = "direct";
+    };
   };
   flake.homeModules.hyprland = {
     pkgs,

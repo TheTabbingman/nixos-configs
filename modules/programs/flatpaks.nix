@@ -22,6 +22,7 @@
       # Some packages are in gaming
       packages = [
         "com.github.tchx84.Flatseal"
+        "io.github.tntwise.REAL-Video-Enhancer"
       ];
     };
   };

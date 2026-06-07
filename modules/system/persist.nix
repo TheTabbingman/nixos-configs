@@ -145,6 +145,7 @@
         ]
         ++ mkPaths ".var/app" [
           "com.usebottles.bottles"
+          "io.github.tntwise.REAL-Video-Enhancer"
           "org.flybywiresim.installer"
           "xyz.rust4diva.Rust4Diva"
         ];

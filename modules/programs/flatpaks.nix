@@ -24,6 +24,13 @@
         "com.github.tchx84.Flatseal"
         "io.github.tntwise.REAL-Video-Enhancer"
       ];
+      overrides = {
+        "io.github.tntwise.REAL-Video-Enhancer".Context = {
+          filesystems = [
+            "/mnt/share/fat-boy/3X4/Backups/Jonah's Stuff"
+          ];
+        };
+      };
     };
   };
 }

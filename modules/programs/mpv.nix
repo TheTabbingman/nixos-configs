@@ -274,4 +274,8 @@
       enable = true;
     };
   };
+  flake.nixosModules.programs = {
+    # Needed for plex-mpv-shim
+    networking.firewall.allowedTCPPorts = [3000];
+  };
 }

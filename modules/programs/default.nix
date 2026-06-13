@@ -56,6 +56,7 @@
       whatsie
       ouch-rar
       thunderbird
+      video2x
     ];
 
     dconf.settings = {

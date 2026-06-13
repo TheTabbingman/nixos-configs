@@ -19,6 +19,9 @@
             hash = "sha256-m1axR0HrqHfoz+1tvhCOr1xq0lVkHjxrrf2KnTA7ZVg=";
           };
         };
+        video2x = prev.video2x.override {
+          ffmpeg = prev.ffmpeg.override {withPlacebo = true;};
+        };
       })
     ];
   };

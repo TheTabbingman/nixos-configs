@@ -219,6 +219,7 @@
       "mpv/scripts/SmartCopyPaste.lua".source = "${smartCopyPaste}/SmartCopyPaste.lua";
       "mpv/scripts/trim.lua".source = "${trim}/trim.lua";
       "mpv/scripts/thumbfast.lua".source = "${pkgs.mpvScripts.thumbfast}/share/mpv/scripts/thumbfast.lua";
+      "mpv/scripts/mpris.so".source = "${pkgs.mpvScripts.mpris}/share/mpv/scripts/mpris.so";
       "mpv/script-opts/thumbfast.conf".text =
         # ini
         ''

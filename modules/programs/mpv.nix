@@ -346,7 +346,7 @@
       jellyfin-mpv-shim = {
         enable = true;
         settings = {
-          allow_transcode_to_h265 = true;
+          allow_transcode_to_h265 = false;
           always_transcode = false;
           audio_output = "hdmi";
           auto_play = true;

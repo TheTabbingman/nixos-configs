@@ -44,7 +44,6 @@
       plex-desktop
       plexamp
       jellyfin-desktop
-      jellyfin-mpv-shim
       gimp
       ffmpeg
       btdu

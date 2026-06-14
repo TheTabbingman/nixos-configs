@@ -131,7 +131,6 @@
           "niri/dms"
           "nix"
           "OpenTabletDriver"
-          "plex-mpv-shim"
           "Plexamp"
           "qBittorrent"
           "QDirStat"
@@ -166,6 +165,7 @@
           "dolphinrc"
           "fsearch/fsearch.conf"
           "gwenviewrc"
+          "jellyfin-mpv-shim/cred.json"
           "nixpkgs/config.nix"
           "org.keshavnrj.ubuntu/WhatSie.conf"
           "sops/age/keys.txt" # Very important

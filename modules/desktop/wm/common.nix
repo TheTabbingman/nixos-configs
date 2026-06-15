@@ -43,5 +43,6 @@
       playerctl
       wl-clipboard # optional: provide complete clipboard API (used by some terminal apps)
     ];
+    services.playerctld.enable = true;
   };
 }

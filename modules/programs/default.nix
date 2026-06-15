@@ -48,7 +48,7 @@
       ffmpeg
       btdu
       qdirstat
-      z-library-desktop
+      # z-library-desktop
       soundconverter
       qbittorrent
       telegram-desktop

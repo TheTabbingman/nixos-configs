@@ -9,10 +9,10 @@
       self.nixosModules.wmCommon
     ];
 
-    nixpkgs.overlays = [inputs.niri.overlays.niri];
+    # nixpkgs.overlays = [inputs.niri.overlays.niri];
     programs.niri = {
       enable = true;
-      package = pkgs.niri-unstable;
+      package = pkgs.niri; # NOTE: This is needed because niri flake changes the default package to niri-stable which is super out of date
     };
 
     environment.systemPackages = with pkgs; [

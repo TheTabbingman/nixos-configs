@@ -157,14 +157,17 @@
     in
       pkgs.stdenv.mkDerivation {
         name = "ArtCNN";
-        src = pkgs.fetchurl {
-          url = "https://github.com/Artoriuz/ArtCNN/releases/download/v${version}/ArtCNN_C4F32_DS.glsl";
-          hash = "sha256-oEycum+7jm25I51hhIOQIIrt+ONI7xFuEhdMgD0iB34=";
+        src = pkgs.fetchFromGitHub {
+          owner = "Artoriuz";
+          repo = "ArtCNN";
+          tag = "v${version}";
+          hash = "sha256-/cNJj7ah2Jux8pWGngPEjdhKRG1JsPBmb6EsJnQCCAM=";
         };
         dontUnpack = true;
         installPhase = ''
           mkdir -p $out
-          cp $src $out/ArtCNN_C4F32_DS.glsl
+          cp $src/GLSL/ArtCNN_C4F32_DS.glsl $out/ArtCNN_C4F32_DS.glsl
+          cp $src/GLSL/ArtCNN_C4F16_DS.glsl $out/ArtCNN_C4F16_DS.glsl
         '';
       };
   in {
@@ -213,9 +216,11 @@
         "CTRL+SHIFT+s" = ''no-osd change-list glsl-shaders toggle "~~/shaders/SSimSuperRes.glsl"; show-text "SSimSuperRes"'';
         "CTRL+s" = ''no-osd change-list glsl-shaders toggle "~~/shaders/adaptive-sharpen.glsl"; show-text "adaptive-sharpen"'';
         "CTRL+f" = ''no-osd change-list glsl-shaders set "~~/shaders/FSRCNNX_x2_16-0-4-1.glsl"; show-text "FSRCNNX"'';
-        "CTRL+a" = ''no-osd change-list glsl-shaders set "~~/shaders/ArtCNN_C4F32_DS.glsl"; show-text "ArtCNN"'';
+        "CTRL+a" = ''no-osd change-list glsl-shaders set "~~/shaders/ArtCNN_C4F32_DS.glsl"; show-text "ArtCNN32"'';
+        "CTRL+SHIFT+a" = ''no-osd change-list glsl-shaders set "~~/shaders/ArtCNN_C4F16_DS.glsl"; show-text "ArtCNN16"'';
         "CTRL+SHIFT+f" = ''no-osd change-list glsl-shaders set "~~/shaders/FSRCNNX_x2_16-0-4-1.glsl:~~/shaders/SSimSuperRes.glsl"; show-text "FSRCNNX + SSimSuperRes"'';
-        "CTRL+9" = ''no-osd change-list glsl-shaders set "~~/shaders/ArtCNN_C4F32_DS.glsl:~~/shaders/SSimSuperRes.glsl"; show-text "ArtCNN + SSimSuperRes"'';
+        "CTRL+9" = ''no-osd change-list glsl-shaders set "~~/shaders/ArtCNN_C4F32_DS.glsl:~~/shaders/SSimSuperRes.glsl"; show-text "ArtCNN32 + SSimSuperRes"'';
+        "CTRL+SHIFT+(" = ''no-osd change-list glsl-shaders set "~~/shaders/ArtCNN_C4F16_DS.glsl:~~/shaders/SSimSuperRes.glsl"; show-text "ArtCNN16 + SSimSuperRes"'';
 
         # CTRL+7  set vf "@vsr:d3d11vpp=scale=2:scaling-mode=nvidia:format=nv12"; show-text "NVIDIA VSR Enabled"
         # CTRL+9 script-binding enable-vsr

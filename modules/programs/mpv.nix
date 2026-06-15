@@ -1,10 +1,12 @@
 {...}: {
   flake.homeModules.programs = {pkgs, ...}: let
-    vsrife = pkgs.python3Packages.callPackage ./_vsrife.nix {};
-    vsrifePythonEnv = pkgs.python3.withPackages (ps: [
-      ps.vapoursynth
-      vsrife
-    ]);
+    # NOTE: I would love to use this but unfortunately torch-tensorrt isn't in nixpkgs so I have to use the method I'm using if I want tensorrt (which I do)
+    # vsrife = pkgs.python3Packages.callPackage ./_vsrife.nix {};
+    # vsrifePythonEnv = pkgs.python3.withPackages (ps: [
+    #   ps.vapoursynth
+    #   vsrife
+    #   ps.tensorrt
+    # ]);
     mpv-with-vs = pkgs.mpv.override {
       mpv-unwrapped = pkgs.mpv-unwrapped.override {
         vapoursynthSupport = true;
@@ -13,7 +15,14 @@
         "--prefix"
         "PYTHONPATH"
         ":"
-        "${vsrifePythonEnv}/${pkgs.python3.sitePackages}"
+        # "${vsrifePythonEnv}/${pkgs.python3.sitePackages}"
+        "/home/jonah/persist/vsrife/venv_vsrife/lib/python3.13/site-packages"
+
+        # NOTE: This is only required when using imperitive venv
+        "--prefix"
+        "LD_LIBRARY_PATH"
+        ":"
+        "/run/opengl-driver/lib:/run/opengl-driver-32/lib"
       ];
     };
 
@@ -230,12 +239,44 @@
 
         # Hard to get working on nixos
         "CTRL+r" = ''vf toggle @rife:vapoursynth="~~/rife.vpy":4:4'';
+        "CTRL+SHIFT+r" = ''vf toggle @rife:vapoursynth="~~/rife-heavy.vpy":4:4'';
+        "CTRL+ALT+r" = ''vf toggle @rife:vapoursynth="~~/rife-lite.vpy":4:4'';
 
         "RIGHT" = "seek 5";
         "LEFT" = "seek -5";
       };
     };
-    xdg.configFile = {
+    xdg.configFile = let
+      mkRifeScript = model:
+      # python
+      ''
+        import vapoursynth as vs
+        from vsrife import rife
+        core = vs.core
+
+        # 1. Setup the clip (standard mpv-vapoursynth boilerplate)
+        clip = video_in
+
+        # 2. Convert to RGBH (Half-precision FP16)
+        # This is vital for performance on RTX cards and uses less VRAM
+        clip = core.resize.Bicubic(clip, format=vs.RGBH, matrix_in_s="709")
+
+        # 3. Apply RIFE with Real-Time optimizations
+        clip = rife(
+            clip,
+            model="${model}",
+            trt=True,
+            auto_download=True, # Shouldn't be enabled if using the nix package vsrife
+            factor_num=2,
+            sc=True                  # Scene change detection
+        )
+
+        # 4. Convert back to YUV for mpv display
+        clip = core.resize.Bicubic(clip, format=vs.YUV420P10, matrix_s="709")
+
+        clip.set_output()
+      '';
+    in {
       "mpv/scripts/osc.lua".source = "${thumbfast-osc}/osc.lua";
       "mpv/mpv_websocket".source = "${mpv-websocket}/mpv_websocket";
       "mpv/scripts/run_websocket_server.lua".source = "${mpv-websocket-script}/run_websocket_server.lua";
@@ -266,35 +307,9 @@
         };
         recursive = true;
       };
-      "mpv/rife.vpy".text =
-        # python
-        ''
-          import vapoursynth as vs
-          from vsrife import rife
-          core = vs.core
-
-          # 1. Setup the clip (standard mpv-vapoursynth boilerplate)
-          clip = video_in
-
-          # 2. Convert to RGBH (Half-precision FP16)
-          # This is vital for performance on RTX cards and uses less VRAM
-          clip = core.resize.Bicubic(clip, format=vs.RGBH, matrix_in_s="709")
-
-          # 3. Apply RIFE with Real-Time optimizations
-          clip = rife(
-              clip,
-              model="4.25",
-              trt=False,
-              auto_download=False,
-              factor_num=2,
-              sc=True                  # Scene change detection
-          )
-
-          # 4. Convert back to YUV for mpv display
-          clip = core.resize.Bicubic(clip, format=vs.YUV420P10, matrix_s="709")
-
-          clip.set_output()
-        '';
+      "mpv/rife.vpy".text = mkRifeScript "4.25";
+      "mpv/rife-heavy.vpy".text = mkRifeScript "4.25.heavy";
+      "mpv/rife-lite.vpy".text = mkRifeScript "4.25.lite";
     };
     services = {
       plex-mpv-shim = {

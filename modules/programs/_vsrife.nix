@@ -8,8 +8,6 @@
   numpy,
   tqdm,
   torch,
-  tensorrt,
-  tensorrtSupport ? false, # Doesn't work because torch-tensorrt isn't in nixpkgs
 }: let
   modelFile = fetchurl {
     url = "https://github.com/HolyWu/vs-rife/releases/download/model/flownet_v4.25.pkl";
@@ -31,14 +29,12 @@ in
 
     build-system = [hatchling];
 
-    dependencies =
-      [
-        vapoursynth
-        numpy
-        torch
-        tqdm
-      ]
-      ++ lib.optionals tensorrtSupport [tensorrt];
+    dependencies = [
+      vapoursynth
+      numpy
+      torch
+      tqdm
+    ];
 
     preBuild = ''
       mkdir -p vsrife/models

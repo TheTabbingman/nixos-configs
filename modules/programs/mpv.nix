@@ -287,7 +287,7 @@
               trt=False,
               auto_download=False,
               factor_num=2,
-              sc=False                  # Scene change detection
+              sc=True                  # Scene change detection
           )
 
           # 4. Convert back to YUV for mpv display

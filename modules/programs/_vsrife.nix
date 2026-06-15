@@ -19,14 +19,14 @@
 in
   buildPythonPackage (finalAttrs: {
     pname = "vs-rife";
-    version = "5.7.0";
+    version = "3488617283db7c428a83ba4a19382285da698b6a";
     pyproject = true;
 
     src = fetchFromGitHub {
       owner = "HolyWu";
       repo = "vs-rife";
-      rev = "v${finalAttrs.version}";
-      hash = "sha256-uP18+IDEvTTFaYyhC4pMOTbR/yhiLUqn3/9TQw5BSDM=";
+      rev = "3488617283db7c428a83ba4a19382285da698b6a";
+      hash = "sha256-k1vudIKg45m1uiXZb+blvYLkctD7IoQzl3lutxKp4vY=";
     };
 
     build-system = [hatchling];

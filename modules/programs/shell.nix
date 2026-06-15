@@ -55,6 +55,7 @@
         opd = "sudo systemctl stop openvpn-portugal";
 
         json2nix = "nix run github:sempruijs/json2nix";
+        nix-alien = "nix run github:thiagokokada/nix-alien --";
       };
       packages = with pkgs; [
         gtrash

@@ -1,7 +1,6 @@
 {inputs, ...}: {
   flake.nixosModules.system = {pkgs, ...}: {
     environment.systemPackages = with pkgs; [
-      inputs.nix-alien.packages.${stdenv.hostPlatform.system}.nix-alien
     ];
     # programs.nix-ld = {
     # enable = true;

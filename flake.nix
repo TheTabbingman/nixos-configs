@@ -32,7 +32,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    hyprland.url = "github:hyprwm/Hyprland";
+    hyprland.url = "github:hyprwm/Hyprland"; # NOTE: I would like to use nixpkgs but hyprland-plugins expects the flake
     split-monitor-workspaces = {
       url = "github:Duckonaut/split-monitor-workspaces";
       inputs.hyprland.follows = "hyprland";
@@ -48,8 +48,6 @@
     };
 
     nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
-
-    nix-alien.url = "github:thiagokokada/nix-alien";
 
     niri.url = "github:sodiboo/niri-flake";
 

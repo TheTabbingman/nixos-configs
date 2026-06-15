@@ -56,7 +56,7 @@
       plugins = {
         linuxWallpaperEngine.enable = true;
         powerUsagePlugin.enable = true;
-        # nvidiaGpuMonitor.enable = true; # Disabled because I currently need to make manual changes to fix it
+        nvidiaGpuMonitor.enable = true;
         tailscale.enable = true;
         dankDesktopWeather.enable = true;
       };

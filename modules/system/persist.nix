@@ -116,7 +116,6 @@
           "bcompare5"
           "calibre"
           "chromium"
-          "DankMaterialShell/plugins/nvidiaGpuMonitor"
           "eden"
           "fcitx5"
           "freerdp/server" # Required to remember remmina certificates

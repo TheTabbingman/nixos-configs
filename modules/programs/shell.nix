@@ -53,6 +53,8 @@
         # Openvpn portugal
         opu = "vpnoff && sudo systemctl start openvpn-portugal";
         opd = "sudo systemctl stop openvpn-portugal";
+
+        json2nix = "nix run github:sempruijs/json2nix";
       };
       packages = with pkgs; [
         gtrash

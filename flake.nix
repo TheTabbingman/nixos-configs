@@ -61,10 +61,6 @@
       url = "github:AvengeMedia/dms-plugin-registry";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    json2nix = {
-      url = "github:sempruijs/json2nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
 
     ulauncher = {
       url = "github:Ulauncher/Ulauncher";

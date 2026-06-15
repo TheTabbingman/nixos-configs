@@ -66,8 +66,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    dolphin-overlay.url = "github:rumboon/dolphin-overlay"; # NOTE: Maybe just do this myself manually by putting the file in the repo and using nix to put it where it should be
-
     ulauncher = {
       url = "github:Ulauncher/Ulauncher";
       inputs.nixpkgs.follows = "nixpkgs";

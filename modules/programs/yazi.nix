@@ -9,30 +9,16 @@
       enable = true;
       package = pkgs.yazi.override {
         extraPackages = with pkgs; [
-          ffmpegthumbnailer
-          exiftool
-          mediainfo
           lazygit
           trash-cli
+          mediainfo
+          ffmpeg
+          imagemagick
         ];
         _7zz = pkgs._7zz-rar; # _7zz-rar is unfree
       };
       shellWrapperName = "y";
       plugins = let
-        ffmpegthumbnailer-yazi = pkgs.stdenv.mkDerivation {
-          name = "ffmpegthumbnailer.yazi";
-          src = pkgs.fetchFromGitHub {
-            owner = "ze0987";
-            repo = "ffmpegthumbnailer.yazi";
-            rev = "b0e5cc8278181a8bdcb9442d2f9307a05d0e0525";
-            sha256 = "sha256-CTTeywF+hlxYRi2wgdbGoogyrIGrZoWTNuqTC9wA92g=";
-          };
-          installPhase = ''
-            runHook preInstall
-            cp -r . $out
-            runHook postInstall
-          '';
-        };
         what-size-yazi = pkgs.stdenv.mkDerivation {
           name = "what-size.yazi";
           src = pkgs.fetchFromGitHub {
@@ -40,20 +26,6 @@
             repo = "what-size.yazi";
             rev = "179ebf69c9c3ade40cacc0f25e9557a43427c6ca";
             sha256 = "sha256-7q/45TopqbojNRvYDmP9+hgSGPmiyLHBcV051qpOB2Y=";
-          };
-          installPhase = ''
-            runHook preInstall
-            cp -r . $out
-            runHook postInstall
-          '';
-        };
-        exifaudio-yazi = pkgs.stdenv.mkDerivation {
-          name = "exifaudio.yazi";
-          src = pkgs.fetchFromGitHub {
-            owner = "Sonico98";
-            repo = "exifaudio.yazi";
-            rev = "4506f9d5032e714c0689be09d566dd877b9d464e";
-            sha256 = "sha256-RWCqWBpbmU3sh/A+LBJPXL/AY292blKb/zZXGvIA5/o=";
           };
           installPhase = ''
             runHook preInstall
@@ -76,15 +48,14 @@
           '';
         };
       in {
-        ffmpegthumbnailer = ffmpegthumbnailer-yazi;
         what-size = what-size-yazi;
-        exifaudio = exifaudio-yazi;
         recycle-bin = recycle-bin-yazi;
         compress = pkgs.yaziPlugins.compress;
         chmod = pkgs.yaziPlugins.chmod;
         lazygit = pkgs.yaziPlugins.lazygit;
         git = pkgs.yaziPlugins.git;
         restore = pkgs.yaziPlugins.restore;
+        mediainfo = pkgs.unstable.yaziPlugins.mediainfo;
       };
       keymap = {
         mgr.prepend_keymap = [
@@ -205,20 +176,56 @@
         };
         plugin = {
           prepend_previewers = [
+            # This doesn't seem to support mka preview image but exifaudio doesn't seem to either
+            # Replace magick, image, video with mediainfo
             {
-              mime = "video/*";
-              run = "ffmpegthumbnailer";
+              mime = "{audio,video,image}/*";
+              run = "mediainfo";
             }
-            {
-              mime = "audio/*";
-              run = "exifaudio";
-            }
+
+            # Hide metadata by default.
+            # Example for image mimetype:
+            # {
+            #   mime = "{image}/*";
+            #   run = "mediainfo --no-metadata";
+            # }
+
+            # Hide image preview by default.
+            # Example for video mimetype:
+            # {
+            #   mime = "{video}/*";
+            #   run = "mediainfo --no-preview";
+            # }
+
+            # NOTE: Use both --no-metadata and --no-preview will display nothing. :)
+            # Make sure both of your previewers and preloaders has the same arguments (--no-metadata and --no-preview)
           ];
           prepend_preloaders = [
             {
-              mime = "video/*";
-              run = "ffmpegthumbnailer";
+              mime = "{audio,video,image}/*";
+              run = "mediainfo";
             }
+            {
+              mime = "application/subrip";
+              run = "mediainfo";
+            }
+
+            # Hide metadata by default.
+            # Example for image mimetype:
+            # {
+            #   mime = "{image}/*";
+            #   run = "mediainfo --no-metadata";
+            # }
+
+            # Hide image preview by default.
+            # Example for video mimetype:
+            # {
+            #   mime = "{video}/*";
+            #   run = "mediainfo --no-preview";
+            # }
+
+            # NOTE: Use both --no-metadata and --no-preview will display nothing. :)
+            # Make sure both of your previewers and preloaders has the same arguments (--no-metadata and --no-preview)
           ];
           prepend_fetchers = [
             {

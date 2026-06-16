@@ -228,8 +228,8 @@
         "CTRL+a" = ''no-osd change-list glsl-shaders set "~~/shaders/ArtCNN_C4F32_DS.glsl"; show-text "ArtCNN32"'';
         "CTRL+SHIFT+a" = ''no-osd change-list glsl-shaders set "~~/shaders/ArtCNN_C4F16_DS.glsl"; show-text "ArtCNN16"'';
         "CTRL+SHIFT+f" = ''no-osd change-list glsl-shaders set "~~/shaders/FSRCNNX_x2_16-0-4-1.glsl:~~/shaders/SSimSuperRes.glsl"; show-text "FSRCNNX + SSimSuperRes"'';
-        "CTRL+9" = ''no-osd change-list glsl-shaders set "~~/shaders/ArtCNN_C4F32_DS.glsl:~~/shaders/SSimSuperRes.glsl"; show-text "ArtCNN32 + SSimSuperRes"'';
-        "CTRL+SHIFT+(" = ''no-osd change-list glsl-shaders set "~~/shaders/ArtCNN_C4F16_DS.glsl:~~/shaders/SSimSuperRes.glsl"; show-text "ArtCNN16 + SSimSuperRes"'';
+        "CTRL+9" = ''no-osd change-list glsl-shaders set "~~/shaders/ArtCNN_C4F16_DS.glsl:~~/shaders/SSimSuperRes.glsl"; show-text "ArtCNN16 + SSimSuperRes"'';
+        "CTRL+SHIFT+(" = ''no-osd change-list glsl-shaders set "~~/shaders/ArtCNN_C4F32_DS.glsl:~~/shaders/SSimSuperRes.glsl"; show-text "ArtCNN32 + SSimSuperRes"'';
 
         # CTRL+7  set vf "@vsr:d3d11vpp=scale=2:scaling-mode=nvidia:format=nv12"; show-text "NVIDIA VSR Enabled"
         # CTRL+9 script-binding enable-vsr

@@ -147,6 +147,30 @@
             run = "plugin restore -- --interactive";
             desc = "Restore deleted files/folders (Interactive)";
           }
+          {
+            on = ["c" "a" "o" "4"];
+            run = let
+              yazi-ffmpeg-convert = pkgs.writeShellScriptBin "yazi-ffmpeg-convert" ''
+                input="$1"
+                output="''${input%.*}.m4a"
+                exec ${lib.getExe pkgs.ffmpeg} -i "$input" -map 0:a -map 0:v -c copy -map -0:v:0 -disposition:v attached_pic "$output"
+              '';
+            in ''
+              shell -- ${lib.getExe yazi-ffmpeg-convert} %h;
+            '';
+          }
+          {
+            on = ["c" "a" "o" "k"];
+            run = let
+              yazi-ffmpeg-convert = pkgs.writeShellScriptBin "yazi-ffmpeg-convert" ''
+                input="$1"
+                output="''${input%.*}.mka"
+                exec ${lib.getExe pkgs.ffmpeg} -i "$input" -map 0:a -map 0:t? -c copy -map_metadata 0 "$output"
+              '';
+            in ''
+              shell -- ${lib.getExe yazi-ffmpeg-convert} %h;
+            '';
+          }
         ];
       };
       settings = {

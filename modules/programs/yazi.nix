@@ -150,25 +150,31 @@
           {
             on = ["c" "a" "o" "4"];
             run = let
-              yazi-ffmpeg-convert = pkgs.writeShellScriptBin "yazi-ffmpeg-convert" ''
-                input="$1"
-                output="''${input%.*}.m4a"
-                exec ${lib.getExe pkgs.ffmpeg} -i "$input" -map 0:a -map 0:v -c copy -map -0:v:0 -disposition:v attached_pic "$output"
+              yazi-ffmpeg-convert-bulk-m4a = pkgs.writeShellScriptBin "yazi-ffmpeg-convert-bulk-m4a" ''
+                for input in "$@"; do
+                  if [ -f "$input" ]; then
+                    output="''${input%.*}.m4a"
+                    ${lib.getExe pkgs.ffmpeg} -i "$input" -map 0:a -map 0:v -c copy -map -0:v:0 -disposition:v attached_pic "$output"
+                  fi
+                done
               '';
             in ''
-              shell -- ${lib.getExe yazi-ffmpeg-convert} %h;
+              shell -- ${lib.getExe yazi-ffmpeg-convert-bulk-m4a} %s;
             '';
           }
           {
             on = ["c" "a" "o" "k"];
             run = let
-              yazi-ffmpeg-convert = pkgs.writeShellScriptBin "yazi-ffmpeg-convert" ''
-                input="$1"
-                output="''${input%.*}.mka"
-                exec ${lib.getExe pkgs.ffmpeg} -i "$input" -map 0:a -map 0:t? -c copy -map_metadata 0 "$output"
+              yazi-ffmpeg-convert-bulk-mka = pkgs.writeShellScriptBin "yazi-ffmpeg-convert-bulk-mka" ''
+                for input in "$@"; do
+                  if [ -f "$input" ]; then
+                    output="''${input%.*}.mka"
+                    ${lib.getExe pkgs.ffmpeg} -i "$input" -map 0:a -map 0:t? -c copy -map_metadata 0 "$output"
+                  fi
+                done
               '';
             in ''
-              shell -- ${lib.getExe yazi-ffmpeg-convert} %h;
+              shell -- ${lib.getExe yazi-ffmpeg-convert-bulk-mka} %s;
             '';
           }
         ];

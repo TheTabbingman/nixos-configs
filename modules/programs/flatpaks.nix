@@ -6,7 +6,7 @@
     services.flatpak = {
       enable = true;
       uninstallUnmanaged = true;
-      update.onActivation = false;
+      update.onActivation = true;
       packages = [
       ];
     };
@@ -18,7 +18,7 @@
     services.flatpak = {
       enable = true;
       uninstallUnmanaged = true;
-      update.onActivation = false;
+      update.onActivation = true;
       # Some packages are in gaming
       packages = [
         "com.github.tchx84.Flatseal"

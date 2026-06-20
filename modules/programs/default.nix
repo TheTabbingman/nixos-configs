@@ -1,16 +1,12 @@
-{
-  self,
-  inputs,
-  ...
-}: {
+{self, ...}: {
   flake.nixosModules.system = {pkgs, ...}: {
     imports = [
-      inputs.nix-index-database.nixosModules.nix-index
       self.nixosModules.shell
       self.nixosModules.waydroid
       self.nixosModules.distrobox
     ];
     environment.systemPackages = with pkgs; [
+      comma
       ghostty
       linux-wallpaperengine
       kdiskmark
@@ -19,7 +15,7 @@
       puddletag
       gparted-full
     ];
-    programs.nix-index-database.comma.enable = true;
+    programs.nix-index.enable = true;
 
     programs.kdeconnect.enable = true;
   };

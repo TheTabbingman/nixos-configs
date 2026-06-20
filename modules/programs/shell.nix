@@ -1,4 +1,4 @@
-{inputs, ...}: {
+{...}: {
   flake.nixosModules.shell = {pkgs, ...}: {
     programs.fish.enable = true;
     users.users.jonah.shell = pkgs.fish;
@@ -74,8 +74,5 @@
       nix-index.enable = true;
       zoxide.enable = true;
     };
-    imports = [
-      inputs.nix-index-database.homeModules.default
-    ];
   };
 }

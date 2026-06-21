@@ -123,6 +123,8 @@
           "heroic"
           "hypr/dms"
           "kdeconnect"
+          "kopia"
+          "kopia-ui"
           "koreader"
           "libreoffice"
           "mozc"

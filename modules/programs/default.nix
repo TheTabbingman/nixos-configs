@@ -102,6 +102,7 @@
         "video/mp4" = "mpv.desktop";
         "audio/x-wav" = "mpv.desktop";
         "audio/flac" = "mpv.desktop";
+        "audio/x-opus+ogg" = "mpv.desktop";
         "image/jpeg" = "org.gnome.Loupe.desktop";
         "image/webp" = "org.gnome.Loupe.desktop";
         "image/png" = "org.gnome.Loupe.desktop";

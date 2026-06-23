@@ -164,6 +164,7 @@
         ]
         ++ mkPaths ".config" [
           "DankMaterialShell/plugin_settings.json"
+          "DankMaterialShell/.firstlaunch"
           "dolphinrc"
           "fsearch/fsearch.conf"
           "gwenviewrc"

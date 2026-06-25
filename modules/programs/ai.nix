@@ -7,6 +7,7 @@
     services.ollama = {
       enable = true;
       openFirewall = true;
+      host = "[::]";
       package = pkgs.ollama-cuda;
     };
     services.llama-cpp = {

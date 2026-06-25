@@ -439,6 +439,7 @@
                // - host Firefox (app-id is "firefox")
                // - Flatpak Firefox (app-id is "org.mozilla.firefox")
                match app-id=r#"firefox$"# title="^Picture-in-Picture$"
+               match app-id=r#"librewolf$"# title="^Picture-in-Picture$"
                open-floating true
            }
 

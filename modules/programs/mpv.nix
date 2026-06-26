@@ -431,7 +431,7 @@
           local_kbps = 2147483;
           log_decisions = false;
           media_ended_cmd = null;
-          media_key_seek = false;
+          media_key_seek = true;
           media_keys = true;
           menu_mouse = true;
           mpv_ext = true;

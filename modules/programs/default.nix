@@ -36,9 +36,7 @@
       ungoogled-chromium
       koreader
       calibre
-      plex-desktop
       plexamp
-      jellyfin-desktop
       gimp
       ffmpeg
       btdu

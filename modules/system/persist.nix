@@ -97,10 +97,8 @@
           "flatpak"
           "gwenview/recentfolders"
           "icons" # The icons for distrobox-export stuff is here
-          "jellyfin-desktop"
           "org.keshavnrj.ubuntu"
           "osu"
-          "plex"
           "Plexamp"
           "PrismLauncher"
           "qBittorrent"

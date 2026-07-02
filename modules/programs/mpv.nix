@@ -184,6 +184,7 @@
       enable = true;
       package = mpv-with-vs;
       config = {
+        alang = "jp,jpn,en,eng";
         input-ipc-server = "/tmp/mpv-socket";
         hwdec = "auto";
         profile = "high-quality";

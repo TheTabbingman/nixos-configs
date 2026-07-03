@@ -451,10 +451,10 @@
           mpv_log_level = "info";
           pre_media_cmd = null;
           sanitize_output = true;
-          seek_down = -60;
+          seek_down = 0;
           seek_left = -5;
           seek_right = 5;
-          seek_up = 60;
+          seek_up = 0;
           shader_pack_custom = false;
           shader_pack_enable = true;
           shader_pack_profile = null;

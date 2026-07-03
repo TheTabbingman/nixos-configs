@@ -1,5 +1,9 @@
-{...}: {
-  flake.homeModules.programs = {pkgs, ...}: let
+{inputs, ...}: {
+  flake.homeModules.programs = {
+    pkgs,
+    lib,
+    ...
+  }: let
     # NOTE: I would love to use this but unfortunately torch-tensorrt isn't in nixpkgs so I have to use the method I'm using if I want tensorrt (which I do)
     # vsrife = pkgs.python3Packages.callPackage ./_vsrife.nix {};
     # vsrifePythonEnv = pkgs.python3.withPackages (ps: [
@@ -39,27 +43,10 @@
         cp player/lua/osc.lua $out
       '';
     };
-    mpv-websocket = let
-      version = "0.4.4";
-    in
-      pkgs.stdenv.mkDerivation {
-        name = "mpv-websocket";
-        src = pkgs.fetchurl {
-          url = "https://github.com/kuroahna/mpv_websocket/releases/download/${version}/x86_64-unknown-linux-musl.zip";
-          hash = "sha256-m587c87nL+eYCi4hlJR8RxYZim7a3CIgr6xnXGbQjYI=";
-        };
-        nativeBuildInputs = [pkgs.unzip];
-        sourceRoot = ".";
-        installPhase = ''
-          mkdir -p $out
-          cp mpv_websocket $out
-          chmod +x $out/mpv_websocket
-        '';
-      };
     mpv-websocket-script = pkgs.stdenv.mkDerivation {
       name = "mpv-websocket-script";
       src = pkgs.fetchFromGitHub {
-        owner = "TheTabbingMan";
+        owner = "TheTabbingMan"; # TODO: Make this just a substituteInPlace instead maybe. I'm having to change the rust source to fix another issue though so I have to use a fork either way
         repo = "mpv_websocket";
         rev = "80103c92aac2fec2d67e4faf720351b7ba787d54";
         hash = "sha256-+z53aUC1E72/KTBXnILO5mmNIH13qVSoPm3sxRrBw1Y=";
@@ -179,6 +166,26 @@
           cp $src/GLSL/ArtCNN_C4F16_DS.glsl $out/ArtCNN_C4F16_DS.glsl
         '';
       };
+    dualsubtitles = pkgs.stdenv.mkDerivation {
+      name = "dualsubtitles";
+      src = pkgs.fetchFromGitHub {
+        owner = "magnumpv";
+        repo = "dualsubtitles";
+        rev = "09de738b710a5ce9006526c832dc3bc71c10cc9b";
+        hash = "sha256-emjpg+tgul3fAULONA09a4ZK12pRQVOFmkMUCSr86uQ=";
+      };
+      dontUnpack = true;
+      installPhase = ''
+        mkdir -p $out
+        cp -r $src/scripts/dualsubtitles $out/dualsubtitles
+        substituteInPlace $out/dualsubtitles/main.lua \
+          --replace-fail 'mp.add_key_binding("k",' 'mp.add_key_binding("Ctrl+j",' \
+          --replace-fail 'mp.add_key_binding("K",' 'mp.add_key_binding("Ctrl+J",' \
+          --replace-fail 'mp.add_key_binding("u",' 'mp.add_key_binding("S",' \
+          --replace-fail 'mp.add_key_binding("Ctrl+r",' '-- mp.add_key_binding("Ctrl+r",' \
+          --replace-fail 'mp.add_key_binding("Ctrl+R",' '-- mp.add_key_binding("Ctrl+R",'
+      '';
+    };
   in {
     programs.mpv = {
       enable = true;
@@ -279,7 +286,7 @@
       '';
     in {
       "mpv/scripts/osc.lua".source = "${thumbfast-osc}/osc.lua";
-      "mpv/mpv_websocket".source = "${mpv-websocket}/mpv_websocket";
+      "mpv/mpv_websocket".source = ''${lib.getExe' inputs.mpv_websocket.packages.${pkgs.stdenv.hostPlatform.system}.default "mpv_websocket"}'';
       "mpv/scripts/run_websocket_server.lua".source = "${mpv-websocket-script}/run_websocket_server.lua";
       "mpv/scripts/AnimeAnyK.lua".source = "${animeanyk}/AnimeAnyK.lua";
       "mpv/scripts/SmartCopyPaste.lua".source = "${smartCopyPaste}/SmartCopyPaste.lua";
@@ -311,6 +318,90 @@
       "mpv/rife.vpy".text = mkRifeScript "4.25";
       "mpv/rife-heavy.vpy".text = mkRifeScript "4.25.heavy";
       "mpv/rife-lite.vpy".text = mkRifeScript "4.25.lite";
+      "mpv/scripts/dualsubtitles".source = "${dualsubtitles}/dualsubtitles";
+      "mpv/script-opts/dualsubtitles.conf".text =
+        # ini
+        ''
+          # Subtitles to Be Auto-Selected on Startup (The First One Has the Highest Priority)
+          #
+          # FORMAT
+          # <code>:<subcodes>
+          # code − language code with two letters (required) [language list: https://en.wikipedia.org/wiki/List_of_ISO_639_language_codes]
+          # subcodes − script, region, etc. (optional) [region list: https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes]
+          #
+          # EXAMPLE
+          # en:us = en-us (BCP 47) > en (639-1) / eng (639-2/B) / english (name)
+          # ja = ja (639-1) / jpn (639-2/B) / japanese (name)
+          # tr = tr (639-1) / tur (639-2/B) / turkish (name)
+          # zh:hans-cn = zh-hans-cn (BCP 47) > zh (639-1) / chi (639-2/B) / chinese (name)
+          top_languages=en:us
+          bottom_languages=ja
+          # bottom_languages=en:us,ja
+
+          # Use only the matching subtitles if their titles contain these words.
+          preferred_words=
+
+          # Skip subtitles with these words in their title.
+          rejected_words=sign,song
+
+          # Set top subtitle as bottom subtitle if bottom subtitle is missing.
+          use_top_as_bottom=yes
+
+          # Display the secondary subtitle only when hovering.
+          secondary_on_hover=yes
+
+          # Secondary Subtitle Hover Area (50 = the top half of the screen)
+          hover_height_percent=20
+
+          # Style Settings for Merged Subtitles
+          # In MPV, styling options for secondary subtitles are quite limited. By merging subtitles, you can work around this limitation. If your video file is on an HDD, this process may take 2–3 minutes.
+          # Values are given in 1920×1080 resolution.
+          #
+          # COLOR FORMAT
+          # <alpha><alpha><b><b><g><g><r><r>
+          # EXAMPLE
+          # 370DE2 (RGB) > E20D37 (BGR) > &H00E20D37 (ASS)
+          # You can convert any RGB value to BGR by swapping the first and last two characters. Note that the first two characters in an ASS color code represent the alpha channel.
+          #
+          # Live Preview: https://github.com/magnum357i/mpv-stylesmanager
+          top_style=fn:Segoe UI Semibold,fs:60,1c:&H0000DEFF,2c:&H000000FF,3c:&H00000000,4c:&H00000000,b:0,i:0,u:0,s:0,sx:100,sy:100,fsp:0,frz:0,bs:1,bord:4,shad:0,an:8,ml:0,mr:0,mv:40,enc:1
+          bottom_style=fn:Calibri,fs:60,1c:&H00FFFFFF,2c:&H000000FF,3c:&H00000000,4c:&H00000000,b:0,i:0,u:0,s:0,sx:100,sy:100,fsp:0,frz:0,bs:1,bord:1.5,shad:0,an:2,ml:0,mr:0,mv:40,enc:1
+
+          # ASS Tags for Merged Subtitles
+          # When a line is stripped based on your current settings, these tags will be added to it.
+          #
+          # ASS Tags Page (official): https://aegisub.org/docs/latest/ass_tags/
+          top_tags=
+          bottom_tags=\blur4
+
+          # Don’t strip sign lines.
+          # If the ASS file contains sign lines (=lines with pos tag) and you don’t want them stripped, you can use this setting.
+          #
+          # Valid options: bottom, top, and none
+          keep_ts=none
+
+          # Removes entries like "(wind blowing)" or "MAN 1:".
+          # Don’t expect perfect results. If you have a SDH subtitle, and the cues are very distracting, you might want to try this setting.
+          # remove_sdh_entries=yes
+
+          # Enable extended search for external subtitles.
+          # Loads subtitles from subfolders with the same name as the video file. Useful for series.
+          #
+          # NOTE: Do not enable this setting if you are using something similar.
+          # expand_subtitle_search=yes
+
+          # Keep italics during merging.
+          detect_italics=yes
+
+          # Prevents you from seeing the same text 20 times on the screen.
+          remove_repeating_lines=yes
+
+          # Save Settings
+          # Example: moviename.dual.srt (if save_path is set to video)
+          save_filename=dual
+          # Valid options: <empty> = <temp> | video = <samefolderasvideo> | <yourpath>
+          save_path=video
+        '';
     };
     services = {
       plex-mpv-shim = {

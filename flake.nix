@@ -63,6 +63,8 @@
     nvf.url = "github:notashelf/nvf";
 
     scopebuddy.url = "github:OpenGamingCollective/ScopeBuddy";
+
+    mpv_websocket.url = "github:TheTabbingMan/mpv_websocket";
   };
 
   outputs = inputs @ {flake-parts, ...}:

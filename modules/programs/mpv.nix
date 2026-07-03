@@ -444,7 +444,7 @@
           media_key_seek = true;
           menu_mouse = true;
           mpv_ext = true;
-          mpv_ext_ipc = null;
+          mpv_ext_ipc = "/tmp/mpv-socket";
           mpv_ext_no_ovr = true;
           mpv_ext_path = null;
           mpv_ext_start = true;
@@ -527,7 +527,7 @@
           media_keys = true;
           menu_mouse = true;
           mpv_ext = true;
-          mpv_ext_ipc = null;
+          mpv_ext_ipc = "/tmp/mpv-socket";
           mpv_ext_no_ovr = true;
           mpv_ext_path = null;
           mpv_ext_start = true;

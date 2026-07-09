@@ -441,7 +441,7 @@
           kb_watched = "w";
           log_decisions = false;
           media_ended_cmd = null;
-          media_key_seek = true;
+          media_key_seek = false;
           menu_mouse = true;
           mpv_ext = true;
           mpv_ext_ipc = "/tmp/mpv-socket";
@@ -523,7 +523,7 @@
           local_kbps = 2147483;
           log_decisions = false;
           media_ended_cmd = null;
-          media_key_seek = true;
+          media_key_seek = false;
           media_keys = true;
           menu_mouse = true;
           mpv_ext = true;

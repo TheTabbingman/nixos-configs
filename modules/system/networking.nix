@@ -55,6 +55,8 @@
     sops.secrets."windscribe/chicago/preshared-key" = {};
     sops.secrets."windscribe/portugal/private-key" = {};
     sops.secrets."windscribe/portugal/preshared-key" = {};
+    sops.secrets."windscribe/tokyo/private-key" = {};
+    sops.secrets."windscribe/tokyo/preshared-key" = {};
     networking.wg-quick.interfaces = {
       wg0 = {
         autostart = true;
@@ -82,6 +84,21 @@
             presharedKeyFile = config.sops.secrets."windscribe/portugal/preshared-key".path;
             allowedIPs = ["0.0.0.0/0"];
             endpoint = "lis-249-wg.whiskergalaxy.com:443";
+            persistentKeepalive = 25;
+          }
+        ];
+      };
+      wg2 = {
+        autostart = false;
+        address = ["100.94.68.117/32"];
+        dns = ["10.255.255.3"];
+        privateKeyFile = config.sops.secrets."windscribe/tokyo/private-key".path;
+        peers = [
+          {
+            publicKey = "X6LjCVZ41wLoSbWWZpFET+Ejw0VsGuvJ5utU/l3rKl4=";
+            presharedKeyFile = config.sops.secrets."windscribe/tokyo/preshared-key".path;
+            allowedIPs = ["0.0.0.0/0"];
+            endpoint = "hnd-287-wg.whiskergalaxy.com:443";
             persistentKeepalive = 25;
           }
         ];

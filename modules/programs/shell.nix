@@ -47,6 +47,9 @@
         # Windscribe portugal
         wpu = "vpnoff && sudo systemctl start wg-quick-wg1";
         wpd = "sudo systemctl stop wg-quick-wg1";
+        # Windscribe tokyo
+        wtu = "vpnoff && sudo systemctl start wg-quick-wg2";
+        wtd = "sudo systemctl stop wg-quick-wg2";
         # Openvpn chicago
         ocu = "vpnoff && sudo systemctl start openvpn-chicago";
         ocd = "sudo systemctl stop openvpn-chicago";

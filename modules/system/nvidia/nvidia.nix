@@ -42,7 +42,7 @@
       package = lib.mkDefault config.boot.kernelPackages.nvidiaPackages.stable;
     };
     nixpkgs.overlays = [
-      (final: prev: {
+      (final: _: {
         cudaSupported = import inputs.nixpkgs {
           system = final.stdenv.hostPlatform.system;
           config = {

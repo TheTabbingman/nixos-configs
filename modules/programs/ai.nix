@@ -8,7 +8,17 @@
       enable = true;
       openFirewall = true;
       host = "[::]";
-      package = pkgs.ollama-cuda;
+      package = let
+        cudaEnabled =
+          if (pkgs ? cudaSupported)
+          then (pkgs.cudaSupported.config.cudaSupport or false)
+          else false;
+        ollamaPkg =
+          if cudaEnabled
+          then pkgs.ollama-cuda
+          else pkgs.ollama;
+      in
+        ollamaPkg;
       environmentVariables = {
         OLLAMA_FLASH_ATTENTION = "1";
         OLLAMA_KV_CACHE_TYPE = "q8_0";

@@ -1,4 +1,4 @@
-{...}: {
+{inputs, ...}: {
   flake.nixosModules.nvidia = {
     lib,
     config,
@@ -41,6 +41,16 @@
       # Optionally, you may need to select the appropriate driver version for your specific GPU.
       package = lib.mkDefault config.boot.kernelPackages.nvidiaPackages.stable;
     };
-    nixpkgs.config.cudaSupport = true;
+    nixpkgs.overlays = [
+      (final: prev: {
+        cudaSupported = import inputs.nixpkgs {
+          system = final.stdenv.hostPlatform.system;
+          config = {
+            allowUnfree = true;
+            cudaSupport = true;
+          };
+        };
+      })
+    ];
   };
 }

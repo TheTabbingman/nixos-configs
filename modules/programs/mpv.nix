@@ -20,7 +20,7 @@
         "PYTHONPATH"
         ":"
         # "${vsrifePythonEnv}/${pkgs.python3.sitePackages}"
-        "/home/jonah/persist/vsrife/venv_vsrife/lib/python3.13/site-packages"
+        "/home/jonah/persist/vsrife/venv_vsrife/lib/python3.13/site-packages" # NOTE: This is made imperatively
 
         # NOTE: This is only required when using imperitive venv
         "--prefix"

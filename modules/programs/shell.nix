@@ -40,7 +40,7 @@
         t = "${pkgs.gtrash}/bin/gtrash";
         fish-reload = "source ~/.config/fish/**/*.fish";
         # Stop all vpn
-        vpnoff = "wcd && wpd && ocd && opd";
+        vpnoff = "wcd && wpd && wtd && ocd && opd";
         # Windscribe chicago
         wcu = "vpnoff && sudo systemctl start wg-quick-wg0";
         wcd = "sudo systemctl stop wg-quick-wg0";

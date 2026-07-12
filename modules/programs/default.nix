@@ -94,6 +94,7 @@
         "application/x-extension-xhtml" = "librewolf.desktop";
         "application/xhtml+xml" = "librewolf.desktop";
         "x-scheme-handler/chrome" = "librewolf.desktop";
+        "application/pdf" = "librewolf.desktop";
         "application/zip" = "org.kde.ark.desktop";
         "application/x-rar" = "org.kde.ark.desktop";
         "video/x-matroska" = "mpv.desktop";

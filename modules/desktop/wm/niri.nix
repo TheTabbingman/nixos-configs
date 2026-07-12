@@ -560,9 +560,11 @@
                Mod+Shift+End  { move-column-to-last; }
 
                Mod+Ctrl+Left  { focus-monitor-left; }
+               Mod+Ctrl+WheelScrollLeft  { focus-monitor-left; }
                Mod+Ctrl+Down  { focus-monitor-down; }
                Mod+Ctrl+Up    { focus-monitor-up; }
                Mod+Ctrl+Right { focus-monitor-right; }
+               Mod+Ctrl+WheelScrollRight { focus-monitor-right; }
                Mod+Ctrl+H     { focus-monitor-left; }
                Mod+Ctrl+J     { focus-monitor-down; }
                Mod+Ctrl+K     { focus-monitor-up; }
@@ -572,9 +574,11 @@
                Mod+Ctrl+3     { focus-monitor "HDMI-A-1"; }
 
                Mod+Shift+Ctrl+Left  { move-column-to-monitor-left; }
+               Mod+Shift+Ctrl+WheelScrollLeft  { move-column-to-monitor-left; }
                Mod+Shift+Ctrl+Down  { move-column-to-monitor-down; }
                Mod+Shift+Ctrl+Up    { move-column-to-monitor-up; }
                Mod+Shift+Ctrl+Right { move-column-to-monitor-right; }
+               Mod+Shift+Ctrl+WheelScrollRight { move-column-to-monitor-right; }
                Mod+Shift+Ctrl+H     { move-column-to-monitor-left; }
                Mod+Shift+Ctrl+J     { move-column-to-monitor-down; }
                Mod+Shift+Ctrl+K     { move-column-to-monitor-up; }

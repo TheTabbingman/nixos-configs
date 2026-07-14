@@ -217,8 +217,99 @@
 
         keepaspect-window = false;
         auto-window-resize = false;
+      };
+      profiles = {
+        inverse_tone_mapping = {
+          # profile-cond = ''video_params and p["video-params/primaries"] ~= "bt.2020"'';
+          profile-restore = "copy";
+          target-trc = "pq";
+          target-prim = "bt.2020";
+          tone-mapping = "bt.2446a";
+          inverse-tone-mapping = true;
+          target-peak = 1000;
+        };
+        # HDR Base Profile: HDR Enables HDR
+        # -------------------------------------------------------------------------------------------------
 
-        target-colorspace-hint-mode = "source";
+        # This block handles the shared HDR output policy for PQ and HLG sources. The
+        # condition syntax is current mpv auto_profiles syntax, not an old legacy form.
+
+        HDR = {
+          profile-desc = "Enable HDR output policy for PQ or HLG sources";
+          profile-cond = ''p["video-params/gamma"] == "pq" or p["video-params/gamma"] == "hlg"'';
+          profile-restore = "copy";
+
+          # When the source is HDR, allow mpv to switch the output path into HDR-aware
+          # signaling instead of leaving the swapchain in a generic SDR state.
+          target-colorspace-hint = true;
+
+          # source-dynamic tells gpu-next to build output hints from source metadata and,
+          # when dynamic metadata exists, turn it into scene-varying HDR10-style luminance
+          # hints. This does not output native Dolby Vision or HDR10+, but it is the most
+          # useful experimental mode for a high-end Windows HDR chain that responds well
+          # to scene-varying HDR10-style output hints.
+          target-colorspace-hint-mode = "source-dynamic";
+
+          # Describe the intended HDR output target for this display chain. The panel is
+          # treated as PQ / BT.2020 container / P3-limited gamut with a practical 800 nit
+          # peak target rather than an unrealistic paper spec.
+          target-trc = "pq";
+          target-prim = "bt.2020";
+          target-gamut = "dci-p3";
+          target-peak = 1000;
+          target-contrast = "inf";
+
+          # Keep the shared HDR behavior here and push metadata-specific decisions into
+          # the conditional profiles below. That separation prevents later profile
+          # application from accidentally undoing format-specific choices.
+          gamut-mapping-mode = "perceptual";
+          hdr-peak-percentile = 99.995;
+          hdr-contrast-recovery = 0.30;
+        };
+
+        # -------------------------------------------------------------------------------------------------
+        # HDR Metadata Precedence
+        # -------------------------------------------------------------------------------------------------
+
+        # This is the generic HDR fallback. It covers plain HDR10 or HLG, Dolby Vision
+        # profile 7 fallback, and unknown Dolby Vision profiles whenever HDR10+ scene
+        # metadata is not present.
+        auto-hdr-generic = {
+          profile-desc = "Use computed scene analysis for HDR without HDR10+ and without supported DV metadata-specialized profiles";
+          profile-cond = ''(p["video-params/gamma"] == "pq" or p["video-params/gamma"] == "hlg") and (get("video-params/scene-max-r", 0) <= 0) and (get("video-params/scene-max-g", 0) <= 0) and (get("video-params/scene-max-b", 0) <= 0) and (get("current-tracks/video/dolby-vision-profile", 0) ~= 5) and (get("current-tracks/video/dolby-vision-profile", 0) ~= 8) and (get("current-tracks/video/dolby-vision-profile", 0) ~= 9)'';
+          profile-restore = "copy";
+
+          # When there is no metadata-specific path worth trusting, computed peak analysis
+          # remains the most robust general-purpose HDR fallback.
+          hdr-compute-peak = true;
+        };
+
+        # For streaming-style single-layer Dolby Vision profiles, trust the Dolby
+        # Vision metadata path more than generic frame analysis. This block appears
+        # after the generic fallback so supported DV profiles override it cleanly.
+        auto-dolby-vision-rpu = {
+          profile-desc = "Prefer Dolby Vision metadata path for profile 5 8 and 9 content";
+          profile-cond = ''(get("current-tracks/video/dolby-vision-profile", 0) == 5) or (get("current-tracks/video/dolby-vision-profile", 0) == 8) or (get("current-tracks/video/dolby-vision-profile", 0) == 9)'';
+          profile-restore = "copy";
+
+          # Disable compute-peak here so mpv does not fight the DV-derived metadata path
+          # with a second, less specific scene-analysis policy.
+          hdr-compute-peak = false;
+        };
+
+        # If HDR10+ scene metadata exists, prefer mpv's dedicated HDR10+ path. This is
+        # intentionally the last metadata-specialized block so HDR10+ wins if a file
+        # ever exposes both HDR10+ and Dolby Vision-compatible metadata.
+        auto-hdr10plus = {
+          profile-desc = "Automatically prefer HDR10+ metadata when present";
+          profile-cond = ''(get("video-params/scene-max-r", 0) > 0) or (get("video-params/scene-max-g", 0) > 0) or (get("video-params/scene-max-b", 0) > 0)'';
+          profile-restore = "copy";
+
+          # Use the HDR10+ tone-mapping path directly and avoid redundant compute-peak
+          # analysis when real HDR10+ scene metadata is available.
+          tone-mapping = "st2094-40";
+          hdr-compute-peak = false;
+        };
       };
       bindings = {
         # Optimized shaders for higher-end GPU

@@ -73,7 +73,7 @@
             mode = "1920x1080@143.856";
             position = "0x360";
             scale = 1;
-            vrr = 2;
+            vrr = 0;
           }
           {
             output = "HDMI-A-1";

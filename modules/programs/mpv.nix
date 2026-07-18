@@ -197,6 +197,7 @@
         profile = "high-quality";
         hr-seek = true;
         volume-max = 200;
+        audio-channels = "stereo"; # NOTE: '-af=pan="stereo|FL=0.707*FC+0.3*FL+0.1*SL+0.1*LFE|FR=0.707*FC+0.3*FR+0.1*SR+0.1*LFE"' If I think speech is too quiet and music too loud
         save-position-on-quit = true;
         vo = "gpu-next";
         ytdl-raw-options = "cookies-from-browser=firefox:~/.librewolf/default";

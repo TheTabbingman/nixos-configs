@@ -127,7 +127,6 @@
           "koreader"
           "libreoffice"
           "mozc"
-          "mozilla" # TODO: Should remove when I feel satisfied with librewolf
           "niri/dms"
           "nix"
           "OpenTabletDriver"

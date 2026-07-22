@@ -24,8 +24,6 @@
       homeModules.developer
       homeModules.scripts
       homeModules.niri
-      # homeModules.dms
-      # homeModules.hyprland
       homeModules.ai
     ];
 

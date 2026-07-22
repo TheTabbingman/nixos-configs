@@ -110,6 +110,7 @@
           "waydroid/data"
           "xdg-desktop-portal" # Has some icons from bottles
           "zoxide" # Has to be the folder because it overrites the file
+          "kwin/scripts"
         ]
         ++ mkPaths ".config" [
           "bcompare5"
@@ -151,6 +152,35 @@
         [
           ".bash_history"
           ".lazygit/newdir"
+          # KDE Plasma
+          {
+            file = ".config/kwinoutputconfig.json";
+            method = "symlink";
+          }
+          {
+            file = ".config/plasma-org.kde.plasma.desktop-appletsrc";
+            method = "symlink";
+          }
+          {
+            file = ".config/plasmashellrc";
+            method = "symlink";
+          }
+          {
+            file = ".config/kconf_updaterc";
+            method = "symlink";
+          }
+          {
+            file = ".config/kcminputrc";
+            method = "symlink";
+          }
+          {
+            file = ".config/plasma-localerc";
+            method = "symlink";
+          }
+          {
+            file = ".config/kglobalshortcutsrc";
+            method = "symlink";
+          }
         ]
         ++ mkPaths ".local/share" [
           "ark/ark_recentfiles"
@@ -169,15 +199,6 @@
           "nixpkgs/config.nix"
           "org.keshavnrj.ubuntu/WhatSie.conf"
           "sops/age/keys.txt" # Very important
-          # Plasma
-          "kwinoutputconfig.json"
-          "plasma-org.kde.plasma.desktop-appletsrc"
-          "plasmashellrc"
-          "kconf_updaterc"
-          "kwinrc"
-          "kcminputrc"
-          "kdeglobals"
-          "plasma-localerc"
         ];
     };
   };

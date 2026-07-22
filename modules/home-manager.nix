@@ -13,7 +13,8 @@
     home.file = let
       configDirs = [
         "owocr_config.ini"
-        # "kdeglobals"
+        "kdeglobals"
+        "kwinrc"
       ];
     in
       builtins.listToAttrs (

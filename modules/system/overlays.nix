@@ -7,7 +7,7 @@
     nixpkgs.overlays = [
       inputs.ulauncher.overlays.default
       (final: prev: {
-        unstable = import inputs.nixpkgs-unstable {
+        stable = import inputs.nixpkgs-stable {
           system = final.stdenv.hostPlatform.system;
           config = config.nixpkgs.config;
         };

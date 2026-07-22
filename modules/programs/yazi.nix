@@ -55,7 +55,7 @@
         lazygit = pkgs.yaziPlugins.lazygit;
         git = pkgs.yaziPlugins.git;
         restore = pkgs.yaziPlugins.restore;
-        mediainfo = pkgs.unstable.yaziPlugins.mediainfo;
+        mediainfo = pkgs.yaziPlugins.mediainfo;
       };
       keymap = {
         mgr.prepend_keymap = [

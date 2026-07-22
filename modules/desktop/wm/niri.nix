@@ -3,7 +3,7 @@
   inputs,
   ...
 }: {
-  flake.nixosModules.system = {pkgs, ...}: {
+  flake.nixosModules.niri = {pkgs, ...}: {
     imports = [
       inputs.niri.nixosModules.niri
       self.nixosModules.wmCommon
@@ -38,7 +38,7 @@
       # These need to be here so that the stuff started by systemd has them
       ELECTRON_OZONE_PLATFORM_HINT = "auto";
       NIXOS_OZONE_WL = "1"; # support electron and chromium based apps
-      DISPLAY = ":0"; # important for xwayland-satellite
+      # DISPLAY = ":0"; # important for xwayland-satellite
     };
     systemd.user.services.xwayland-satellite = {
       Unit = {

@@ -27,15 +27,15 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    hyprland.url = "github:hyprwm/Hyprland"; # NOTE: I would like to use nixpkgs but hyprland-plugins expects the flake (Would also like to not use hyprland at all but that requires hdr support in niri)
-    split-monitor-workspaces = {
-      url = "github:Duckonaut/split-monitor-workspaces";
-      inputs.hyprland.follows = "hyprland";
-    };
-    hyprland-plugins = {
-      url = "github:hyprwm/hyprland-plugins";
-      inputs.hyprland.follows = "hyprland";
-    };
+    # hyprland.url = "github:hyprwm/Hyprland"; # NOTE: I would like to use nixpkgs but hyprland-plugins expects the flake (Would also like to not use hyprland at all but that requires hdr support in niri)
+    # split-monitor-workspaces = {
+    #   url = "github:Duckonaut/split-monitor-workspaces";
+    #   inputs.hyprland.follows = "hyprland";
+    # };
+    # hyprland-plugins = {
+    #   url = "github:hyprwm/hyprland-plugins";
+    #   inputs.hyprland.follows = "hyprland";
+    # };
 
     stylix = {
       url = "github:nix-community/stylix/release-26.05";

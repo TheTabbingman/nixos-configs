@@ -7,7 +7,7 @@
     imports = [
       # ./dms.nix
     ];
-    programs.regreet.enable = !config.services.displayManager.sddm.enable && !config.services.displayManager.gdm.enable;
+    programs.regreet.enable = !config.services.displayManager.plasma-login-manager.enable && !config.services.displayManager.gdm.enable;
     programs.regreet.cageArgs = ["-s" "-d" "-m" "last"];
 
     # Keyring stuff
@@ -24,8 +24,6 @@
       identity
       unzip
       unrar
-      brightnessctl
-      playerctl
       wl-clipboard # optional: provide complete clipboard API (used by some terminal apps)
       qt6Packages.qt6ct
       ulauncher6
@@ -35,13 +33,6 @@
   };
   flake.homeModules.wm = {pkgs, ...}: {
     home.packages = with pkgs; [
-      mpd
-      grim
-      slurp
-      kdePackages.dolphin
-      brightnessctl
-      playerctl
-      wl-clipboard # optional: provide complete clipboard API (used by some terminal apps)
     ];
     services.playerctld.enable = true;
   };

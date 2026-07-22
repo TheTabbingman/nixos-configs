@@ -169,6 +169,15 @@
           "nixpkgs/config.nix"
           "org.keshavnrj.ubuntu/WhatSie.conf"
           "sops/age/keys.txt" # Very important
+          # Plasma
+          "kwinoutputconfig.json"
+          "plasma-org.kde.plasma.desktop-appletsrc"
+          "plasmashellrc"
+          "kconf_updaterc"
+          "kwinrc"
+          "kcminputrc"
+          "kdeglobals"
+          "plasma-localerc"
         ];
     };
   };

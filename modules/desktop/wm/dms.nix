@@ -1,5 +1,5 @@
 {inputs, ...}: {
-  flake.nixosModules.system = {
+  flake.nixosModules.dms = {
     pkgs,
     lib,
     config,

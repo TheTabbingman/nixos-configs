@@ -13,9 +13,10 @@
         nixosModules.nvidia
         nixosModules.programs
         nixosModules.gaming
-        nixosModules.hyprland
+        nixosModules.niri
         nixosModules.virtualization
         nixosModules.ai
+        nixosModules.plasma
       ]
       ++ [inputs.home-manager.nixosModules.home-manager];
   };

@@ -216,6 +216,9 @@
         deband-range = 16;
         deband-grain = 4;
 
+        video-sync = "display-resample";
+        interpolation = true;
+
         keepaspect-window = false;
         auto-window-resize = false;
       };

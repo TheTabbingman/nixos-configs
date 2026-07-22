@@ -266,6 +266,7 @@
               enable_wrapping = false;
             };
           };
+          quirks.prefer_hdr = 1;
         };
 
         # Default animations, see https://wiki.hyprland.org/Configuring/Animations/ for more

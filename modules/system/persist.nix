@@ -20,7 +20,6 @@
           "/etc/NetworkManager/system-connections"
           "/etc/ssh"
           "/root/.cache/nix" # Needed so it doesn't reclone repos on every boot
-          # "/root/.cache/nix-index" # Needed for when I need to run comma as root # Currently disabled to see if I can use sudo -E
           "/var/db/sudo/lectured"
           "/var/log"
           {

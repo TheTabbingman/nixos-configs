@@ -11,8 +11,12 @@
     #   vsrife
     #   ps.tensorrt
     # ]);
+    vapoursynth-py313 = pkgs.vapoursynth.override {
+      python3 = pkgs.python313; # torch_tensorrt doesn't seem to support python 3.14 yet
+    };
     mpv-with-vs = pkgs.mpv.override {
       mpv-unwrapped = pkgs.mpv-unwrapped.override {
+        vapoursynth = vapoursynth-py313;
         vapoursynthSupport = true;
       };
       extraMakeWrapperArgs = [

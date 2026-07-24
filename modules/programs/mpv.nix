@@ -222,6 +222,7 @@
 
         video-sync = "display-resample";
         interpolation = true;
+        target-contrast = "inf";
 
         keepaspect-window = false;
         auto-window-resize = false;
@@ -256,8 +257,8 @@
         "CTRL+SHIFT+r" = ''vf toggle @rife:vapoursynth="~~/rife-heavy.vpy":4:4'';
         "CTRL+ALT+r" = ''vf toggle @rife:vapoursynth="~~/rife-lite.vpy":4:4'';
 
-        "Ctrl+h" = ''cycle-values inverse-tone-mapping "yes" "no" ; cycle-values target-peak "600" "auto"; show-text "Inverse Tone Map: ''${inverse-tone-mapping}"'';
-        "Ctrl+SHIFT+h" = ''cycle-values target-peak "600" "400" "auto"; show-text "Target-peak: ''${target-peak}"'';
+        "Ctrl+h" = ''cycle-values inverse-tone-mapping "yes" "no" ; cycle-values target-peak "400" "auto"; show-text "Inverse Tone Map: ''${inverse-tone-mapping}"'';
+        "Ctrl+SHIFT+h" = ''cycle-values target-peak "400" "600" "auto"; show-text "Target-peak: ''${target-peak}"'';
 
         "RIGHT" = "seek 5";
         "LEFT" = "seek -5";

@@ -133,6 +133,11 @@
             desc = "Cd to /persist";
           }
           {
+            on = ["g" "m"];
+            run = "cd /mnt";
+            desc = "Cd to /mnt";
+          }
+          {
             on = "T";
             run = "plugin recycle-bin";
             desc = "Open Recycle Bin menu";

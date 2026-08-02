@@ -61,7 +61,7 @@
     };
 
     ulauncher = {
-      url = "github:Ulauncher/Ulauncher/pull/1784/merge";
+      url = "github:Ulauncher/Ulauncher";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

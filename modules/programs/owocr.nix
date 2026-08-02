@@ -1,16 +1,16 @@
 {...}: {
   flake.homeModules.programs = {pkgs, ...}: let
-    fixedOwocr = pkgs.owocr.overrideAttrs (oldAttrs: {
+    fixedOwocr = pkgs.stable.owocr.overrideAttrs (oldAttrs: {
       buildInputs =
         (oldAttrs.buildInputs or [])
         ++ [
-          pkgs.gst_all_1.gstreamer
+          pkgs.stable.gst_all_1.gstreamer
         ];
       nativeBuildInputs =
         (oldAttrs.nativeBuildInputs or [])
         ++ [
-          pkgs.gobject-introspection
-          pkgs.wrapGAppsHook3
+          pkgs.stable.gobject-introspection
+          pkgs.stable.wrapGAppsHook3
         ];
     });
   in {

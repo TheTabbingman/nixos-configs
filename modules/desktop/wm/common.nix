@@ -7,8 +7,10 @@
     imports = [
       # ./dms.nix
     ];
-    programs.regreet.enable = !config.services.displayManager.plasma-login-manager.enable && !config.services.displayManager.gdm.enable;
-    programs.regreet.cageArgs = ["-s" "-d" "-m" "last"];
+    services.displayManager.regreet = {
+      enable = !config.services.displayManager.plasma-login-manager.enable && !config.services.displayManager.gdm.enable;
+      cageArgs = ["-s" "-d" "-m" "last"];
+    };
 
     # Keyring stuff
     services.gnome.gnome-keyring.enable = true;

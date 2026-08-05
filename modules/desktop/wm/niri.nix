@@ -496,6 +496,7 @@
                Alt+Space hotkey-overlay-title="Run an Application: ulauncher" { spawn-sh "gapplication action io.ulauncher.Ulauncher toggle-window"; }
                Super+Alt+L hotkey-overlay-title="Lock the Screen: dms lock" { spawn-sh "dms ipc call lock lock"; }
                Mod+B hotkey-overlay-title="Open a Browser: Librewolf" {spawn "${lib.getExe pkgs.librewolf}";}
+               Mod+P hotkey-overlay-title="Restart plex-mpv-shim" {spawn-sh "systemctl --user restart plex-mpv-shim.service";}
 
                // Use spawn-sh to run a shell command. Do this if you need pipes, multiple commands, etc.
                // Note: the entire command goes as a single argument. It's passed verbatim to `sh -c`.

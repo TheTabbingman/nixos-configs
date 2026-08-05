@@ -122,7 +122,7 @@
 
     networking = {
       firewall.allowedTCPPorts = [5900];
-      extraHosts = "192.168.0.81 fat-boy"; # This needs to be manually changed if the ip ever changes
+      extraHosts = "192.168.0.129 fat-boy"; # This needs to be manually changed if the ip ever changes
     };
   };
 }

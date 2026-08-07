@@ -1,8 +1,7 @@
 {
   flake.nixosModules.ai = {pkgs, ...}: {
     environment.systemPackages = with pkgs; [
-      koboldcpp
-      llama-cpp
+      pkgs.cudaSupported.whisperx
     ];
     services.ollama = {
       enable = true;

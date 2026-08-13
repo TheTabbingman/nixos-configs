@@ -26,6 +26,7 @@
           with pkgs'; [
             gamescope
             gamemode
+            mangohud
           ];
       })
       cartridges

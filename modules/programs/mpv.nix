@@ -220,6 +220,7 @@
         deband-range = 16;
         deband-grain = 4;
 
+        deinterlace = "auto";
         video-sync = "display-resample";
         interpolation = true;
         target-contrast = "inf";

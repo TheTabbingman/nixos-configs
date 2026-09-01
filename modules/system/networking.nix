@@ -31,7 +31,7 @@
     # This generates a fileSystems block for every share in the list
     fileSystems = let
       # Define your share names here
-      shares = ["6X6" "3X4" "Ramdisk" "SSD" "Family" "Randy"];
+      shares = ["6X6" "3X4" "Ramdisk" "SSD" "Family" "2X4"];
 
       commonOptions = [
         "x-systemd.automount"

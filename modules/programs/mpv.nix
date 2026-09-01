@@ -214,7 +214,7 @@
         # range: how far the filter samples (1-64). 16 is standard.
         # grain: adds dynamic noise to mask residual banding (0 = off).
         #   Set to 0 if using a static grain shader instead.
-        deband = true;
+        deband = false;
         deband-iterations = 2;
         deband-threshold = 35;
         deband-range = 16;
